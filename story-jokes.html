@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مولد النكت القصصية | النكتة الملحمية 😂</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+    
+    <style>
+        :root {
+            --primary: #ff8800;
+            --primary-glow: rgba(255, 136, 0, 0.5);
+            --secondary: #ffcc00;
+            --bg-dark: #1a0f0a;
+            --bg-card: #221411;
+            --bg-input: #2d1c16;
+            --border-color: #4a3024;
+            --text-light: #fce4d6;
+            --text-muted: #c0a090;
+            --card-shadow: 0 20px 50px rgba(0,0,0,0.8);
+        }
+        body.light-mode {
+            --bg-dark: #fff9f0;
+            --bg-card: #ffffff;
+            --bg-input: #f5e6d3;
+            --border-color: #e0c8a8;
+            --text-light: #3a2510;
+            --text-muted: #6b4e3d;
+            --card-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; transition: background 0.3s, color 0.2s, border 0.3s; }
+        body {
+            font-family: 'Cairo', sans-serif;
+            background: var(--bg-dark); color: var(--text-light);
+            min-height: 100vh; display: flex; flex-direction: column; align-items: center; padding: 20px;
+            background-image: radial-gradient(circle at 50% 0%, var(--primary-glow) 0%, transparent 40%);
+        }
+        .container {
+            max-width: 850px; width: 100%; background: var(--bg-card);
+            padding: 40px; border-radius: 40px; border: 1px solid var(--border-color);
+            box-shadow: var(--card-shadow); text-align: center; margin-bottom: 30px;
+            position: relative; overflow: hidden;
+        }
+        .container::before {
+            content: "😂🤣😆"; position: absolute; bottom: -30px; right: -20px;
+            font-size: 6rem; opacity: 0.05; z-index: 0; white-space: pre;
+        }
+        .theme-toggle {
+            position: absolute; top: 20px; left: 20px; background: var(--bg-input);
+            border: 1px solid var(--border-color); color: var(--text-light);
+            font-size: 1.3rem; padding: 8px 12px; border-radius: 50px; cursor: pointer; z-index: 10;
+        }
+        .container > * { position: relative; z-index: 1; }
+        h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.2rem; font-weight: 900; margin-bottom: 10px;
+            background: linear-gradient(135deg, #ffffff, var(--primary), var(--secondary));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; letter-spacing: 2px;
+        }
+        .sub { color: var(--text-muted); margin-bottom: 25px; font-size: 1.1rem; }
+        .input-group { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; margin-bottom: 15px; }
+        input {
+            flex: 1; min-width: 200px; padding: 16px; border-radius: 20px;
+            background: var(--bg-input); border: 2px solid var(--border-color);
+            color: var(--text-light); font-size: 1.1rem; outline: none; font-family: 'Cairo';
+            direction: rtl;
+        }
+        input:focus { border-color: var(--primary); box-shadow: 0 0 15px var(--primary-glow); }
+        .btn-generate {
+            padding: 16px 30px; border: none; border-radius: 20px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: #000; font-weight: 900; cursor: pointer; transition: 0.3s;
+            font-size: 1.1rem; letter-spacing: 1px; display: flex; align-items: center; gap: 8px;
+        }
+        .btn-generate:hover { transform: scale(1.05); box-shadow: 0 0 25px var(--primary-glow); }
+        .loader {
+            display: none; margin: 20px auto; width: 40px; height: 40px;
+            border: 4px solid var(--border-color); border-top-color: var(--primary);
+            border-radius: 50%; animation: spin 0.8s linear infinite;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+        .output-box {
+            margin-top: 25px; padding: 30px; background: var(--bg-dark); border-radius: 25px;
+            border-right: 6px solid var(--primary); text-align: right; line-height: 2.2;
+            font-size: 1.1rem; display: none; animation: fadeUp 0.6s ease; position: relative;
+            box-shadow: inset 0 0 20px rgba(0,0,0,0.3); max-height: 600px; overflow-y: auto;
+        }
+        .output-box.show { display: block; }
+        @keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        .highlight { color: var(--primary); font-weight: 700; font-size: 1.2rem; }
+        .highlight2 { color: var(--secondary); font-weight: 700; }
+        .action-buttons { display: none; gap: 10px; margin-top: 20px; flex-wrap: wrap; justify-content: center; }
+        .btn-action {
+            padding: 12px 20px; border-radius: 15px; border: 1px solid var(--border-color);
+            background: var(--bg-input); color: var(--text-light); cursor: pointer;
+            font-size: 0.95rem; font-weight: 700; transition: 0.2s;
+        }
+        .btn-action:hover { background: var(--primary); color: #000; border-color: var(--primary); }
+        .counter { margin-top: 15px; color: var(--text-muted); font-size: 0.9rem; }
+        .saved-stories {
+            margin-top: 30px; text-align: right; max-height: 300px; overflow-y: auto; padding: 10px;
+            display: none;
+        }
+        .saved-stories h3 { color: var(--primary); margin-bottom: 15px; text-align: center; }
+        .story-item {
+            background: var(--bg-input); padding: 15px; border-radius: 15px;
+            margin-bottom: 10px; border-right: 3px solid var(--primary);
+            font-size: 0.9rem; color: var(--text-muted); position: relative;
+        }
+        .delete-btn { position: absolute; top: 10px; left: 10px; color: red; cursor: pointer; }
+        @media (max-width: 600px) {
+            .container { padding: 20px; }
+            h1 { font-size: 1.6rem; }
+            .input-group { flex-direction: column; }
+            input { width: 100%; }
+            .btn-generate { justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <button class="theme-toggle" onclick="toggleTheme()" title="تبديل الوضع الليلي والنهاري">🌓</button>
+        <h1>😂 مولد النكت القصصية</h1>
+        <p class="sub">أدخل كلمة (اختياري) واضغط الزر، لتضحك حتى البكاء! لن تتكرر النكتة أبداً.</p>
+
+        <div class="input-group">
+            <input type="text" id="jokeWord" placeholder="مثلاً: بطيخ، فيلسوف، جمل... (اختياري)">
+            <button class="btn-generate" onclick="generateStoryJoke()">
+                <i class="fas fa-laugh-squint"></i> توليد نكتة أسطورية
+            </button>
+        </div>
+
+        <div class="loader" id="loader"></div>
+        <div id="jokeOutput" class="output-box"></div>
+        <div class="action-buttons" id="actionButtons">
+            <button class="btn-action" onclick="copyJoke()"><i class="fas fa-copy"></i> نسخ النكتة</button>
+            <button class="btn-action" onclick="saveJoke()"><i class="fas fa-save"></i> حفظ في المكتبة</button>
+            <button class="btn-action" onclick="downloadJokeImage()"><i class="fas fa-image"></i> تحميل كصورة</button>
+            <button class="btn-action" onclick="playLaugh()"><i class="fas fa-play"></i> 😂 اضحك بصوت عال</button>
+        </div>
+        <div class="counter" id="jokeCounter">تم سرد 0 نكتة</div>
+    </div>
+
+    <div class="container saved-stories" id="savedStoriesContainer">
+        <h3>📚 مكتبة النكت المحفوظة</h3>
+        <div id="savedStoriesList"></div>
+    </div>
+
+    <script>
+        let jokeCount = 0;
+        let jokeHistory = [];
+
+        // موسوعة النكت (25+ عنصر لكل فئة)
+        const characters = [
+            'أستاذ جامعي غريب الأطوار يعيش في قبو', 'مبرمج نائم منذ 3 أيام', 'وزير سابق لا يعرف كيف يقود سيارة',
+            'سيدة عجوز تمتلك 100 قطة تتحدث', 'فيلسوف صحراوي يحب الشاي بالسكر', 'طباخ فاشل يحرق الماء',
+            'شاعر يكتب قصائد للجدران', 'مخترع آلة الزمن من الكراتين', 'سائق تاكسي يرفض الركاب',
+            'بائع وهمي للهواء', 'ملك متقاعد يبيع الفشار', 'غواص يخاف الماء', 'طيار أرضي',
+            'دكتور يعالج بالضحك', 'محامي يدافع عن الصراصير', 'مهندس يبني بيوتاً من الورق',
+            'موسيقي يعزف على أمشاط', 'حارس ليلي ينام في النهار', 'رسام يرسم بالعصير',
+            'مترجم لغة الطيور', 'عالم فلك يخاف من الظلام', 'بطل كمال أجسام يأكل الحلويات سراً',
+            'ساحر فاشل يخفي أذنيه', 'نادل ينسى الطلبات', 'قاضي يحكم على النمل'
+        ];
+        const places = [
+            'مطعم للروبوتات', 'مقبرة طائرات مهجورة', 'سوق للكلمات المفقودة', 'مصنع للأحلام المكسورة',
+            'مكتبة الأشباح', 'حديقة الديناصورات الورقية', 'ميناء السفن المقلوبة', 'جبل الوسائد العملاقة',
+            'كهف الشوكولاتة السائلة', 'مدينة البطاريق الاستوائية', 'مستشفى الألعاب المكسورة',
+            'قصر المرايا الضاحكة', 'صحراء الآيس كريم', 'محطة قطار للسلاحف', 'نهر العصير الفوار',
+            'غابة الأمشاط الكهربائية', 'برج الساعات المعطوبة', 'جزيرة الأرانب العملاقة',
+            'قرية الكتب الطائرة', 'سجن الكلمات النابية', 'حانة الأبطال الخاسرين', 'مدرسة المشاغبين',
+            'سيرك الحشرات المدربة', 'ملعب كرة القدم الفارغ', 'مختبر العباقرة المجانين'
+        ];
+        const situations = [
+            'حاول إقناع الجميع أن القهوة تسبب الجنون', 'دخل في جدال مع طاولة', 'حاول شراء سحابة من أحد المارة',
+            'كتب رسالة طويلة للغد', 'عثر على شبكة واي فاي في الصحراء', 'تحدى مرآة في مباراة نظرات',
+            'حاول تعليم سمكة الغناء', 'ألقى محاضرة عن فوائد الكسل', 'بدأ يتكلم مع الهاتف كأنه صديقه',
+            'رتب مظاهرة للدفاع عن حقوق النمل', 'حاول قياس سرعة الضوء بعصا', 'فتح مطعماً للأشباح',
+            'كتب كتاباً عن أخطائه الإملائية', 'تسلق نخلة للهروب من فيلسوف', 'حاول بيع ظله',
+            'صنع فيلماً وثائقياً عن حياة حذائه', 'اخترع لغة جديدة للتواصل مع القطط',
+            'أعلن نفسه إمبراطوراً للأرصفة', 'بدأ يزرع نباتات بلاستيكية', 'حاول الطيران بمظلة مقلوبة',
+            'عزف سيمفونية باستخدام أغراض المطبخ', 'بنى قلعة من المعكرونة', 'رسم خريطة للجنة',
+            'أجرى انتخابات بين أصابعه', 'حلّق لحيته بطريقة غريبة جداً'
+        ];
+        const dialogues = [
+            'قال بكل ثقة: "أنا لا أعتقد أنني مخطئ، لكنني قد أكون!"',
+            'صرخ: "إذا لم تضحك الآن، سأغني لك!"',
+            'همس: "السر هو أنني كنت أعرف النهاية طوال الوقت!"',
+            'سأل الجميع: "لماذا كلكم تنظرون إليّ هكذا؟ أنا لست مجنوناً!"',
+            'رد بصوت عالٍ: "هذا لا يفسر لماذا اختفت الجوارب!"',
+            'أعلن فجأة: "لقد اكتشفت أن الصمت يصدر صوتاً إذا أمعنت السمع!"',
+            'شهق قائلاً: "أخيراً فهمت لماذا السماء زرقاء... إنها محرجة!"',
+            'تمتم وهو يحدق في السقف: "لو كان للكرسي أجنحة لطار، لكنه اختار البقاء."',
+            'نظر للجمهور وسأل: "هل سبق لأحدكم أن تشاجر مع ظله وانتصر؟"',
+            'قال بحماس: "أنا لا أحلم، أنا أعيش في حلم وأنتم جميعاً مجرد شخصيات ثانوية!"',
+            'استفسر بجدية: "كم وزن الفكرة إذا وضعتها على الميزان؟"',
+            'وبخ الجدار قائلاً: "أنت تقف في طريقي منذ زمن طويل!"',
+            'غنى بصوت عال: "أنا سعيد لأنني تعيس بهذا الشكل الجميل!"'
+        ];
+        const punchlines = [
+            'وسقط الجميع على الأرض من الضحك، بينما وقف الجدار ينظر إليهم باستغراب.',
+            'منذ ذلك اليوم، أصبحت هذه القصة تُروى في كل حفلة.',
+            'قال أحد الحضور: "هذا أغبى ما سمعته في حياتي، استمر!"',
+            'بعدها، أُغلق المطعم وفتحت عيادة نفسية بدلاً منه.',
+            'قال الراوي: "إن لم تكن تبتسم الآن، فأنت ميت من الداخل!"',
+            'وهكذا، تحول المكان إلى كرنفال للضحك، وهربت الكآبة بلا عودة.',
+            'وقف الجميع وصفقوا بحرارة، بينما الشخص يبحث عن حذائه الضائع.',
+            'في النهاية، تبين أن كل هذه الأحداث كانت حلماً لقطار نائم.',
+            'أُلف كتاب عن هذه الحادثة، وأصبح من أكثر الكتب مبيعاً بين الجدران.',
+            'النكتة لم تنته، بل استمرت في الانتشار كالزكام في الشتاء.',
+            'أُقيم تمثال لذلك الموقف في الساحة، وظل الحمام يضحك عليه.',
+            'وهكذا اكتشف الجميع أن العبقرية والجنون يسكنان الشقة نفسها.',
+            'قال فيلسوف صغير: "الآن فهمت لماذا السماء تضحك عندما تمطر."'
+        ];
+
+        function getDynamicJokePool(word) {
+            if (!word) return null;
+            return {
+                character: `خبير ${word} العالمي سيئ الحظ`,
+                place: `مهرجان ${word} السنوي الفاشل`,
+                situation: `حاول أن يشرح للجمهور أن ${word} هو سبب كل المشاكل`,
+                dialogue: `صرخ بأعلى صوته: "${word} ليس مجرد كلمة، إنه أسلوب حياة!"`,
+                punchline: `وهكذا أصبح ${word} أسطورة تُروى في كل مكان، وتُضحك كل من يسمعها.`
+            };
+        }
+
+        function generateStoryJoke() {
+            const word = document.getElementById('jokeWord').value.trim();
+            
+            document.getElementById('loader').style.display = 'block';
+            document.getElementById('jokeOutput').classList.remove('show');
+            document.getElementById('actionButtons').style.display = 'none';
+
+            setTimeout(() => {
+                let joke, signature;
+                let attempt = 0;
+                
+                do {
+                    const dynamic = getDynamicJokePool(word);
+                    const useDynamic = dynamic && Math.random() < 0.5;
+                    
+                    const c = useDynamic ? dynamic.character : characters[Math.floor(Math.random() * characters.length)];
+                    const p = useDynamic ? dynamic.place : places[Math.floor(Math.random() * places.length)];
+                    const s = useDynamic ? dynamic.situation : situations[Math.floor(Math.random() * situations.length)];
+                    const d = useDynamic ? dynamic.dialogue : dialogues[Math.floor(Math.random() * dialogues.length)];
+                    const pL = useDynamic ? dynamic.punchline : punchlines[Math.floor(Math.random() * punchlines.length)];
+
+                    const wordInsert = word || 'الموقف كله';
+                    
+                    joke = `
+                        <span class="highlight">🔥 البداية المأساوية:</span><br><br>
+                        كان هناك <span class="highlight2">${c}</span> يجلس بهدوء في <span class="highlight">${p}</span>.<br>
+                        فجأة، حدث شيء غريب جداً: ${s} يتعلق بـ "<strong>${wordInsert}</strong>". 
+                        صمت الجميع في الغرفة، ونظر الجدار بفضول إلى الشخص.<br><br>
+
+                        <span class="highlight2">💬 الحوار الذي لا يُنسى:</span><br><br>
+                        التفت ${c} إلى الحضور و ${d}.<br>
+                        ارتفعت أصوات الضحك، لكن ${c} استمر بجدية قائلاً: "أنتم لا تفهمون حتى الآن، الموضوع متعلق بـ <strong>${wordInsert}</strong>!"<br><br>
+
+                        <span class="highlight">🤯 الذروة الساخرة:</span><br><br>
+                        عندها، دخل شخص غريب وقال: "أنا هنا لإصلاح الموقف!" لكنه تعثر وسقط في برميل.<br>
+                        ${pL}<br><br>
+
+                        <span class="highlight">🎭 الخاتمة اللانهائية:</span><br><br>
+                        وغادر الجميع القاعة، وهم يضحكون حتى البكاء. قال أحدهم في النهاية وهو يمسح دموعه: "ربما هذا هو معنى الحياة: أن نضحك على أنفسنا وعلى <strong>${wordInsert}</strong>!".
+                    `;
+
+                    signature = c + p + s;
+                    attempt++;
+                } while (jokeHistory.includes(signature) && attempt < 100);
+
+                jokeHistory.push(signature);
+                if (jokeHistory.length > 100) jokeHistory.shift();
+
+                jokeCount++;
+                document.getElementById('jokeCounter').textContent = `تم سرد ${jokeCount} نكتة`;
+                document.getElementById('loader').style.display = 'none';
+                
+                const outputBox = document.getElementById('jokeOutput');
+                typeWriter(outputBox, joke, 15, () => {
+                    document.getElementById('actionButtons').style.display = 'flex';
+                });
+            }, 500);
+        }
+
+        function typeWriter(element, text, speed = 20, callback) {
+            let i = 0;
+            let currentTag = '';
+            let inTag = false;
+            element.innerHTML = '';
+            element.classList.add('show');
+            
+            function type() {
+                if (i < text.length) {
+                    let char = text.charAt(i);
+                    if (char === '<') { inTag = true; currentTag = '<'; } 
+                    else if (char === '>') { inTag = false; currentTag += '>'; element.innerHTML += currentTag; currentTag = ''; i++; setTimeout(type, speed); return; } 
+                    else if (inTag) { currentTag += char; } 
+                    else { element.innerHTML += char; }
+                    i++;
+                    setTimeout(type, speed);
+                } else if (callback) { callback(); }
+            }
+            type();
+        }
+
+        function copyJoke() {
+            navigator.clipboard.writeText(document.getElementById('jokeOutput').innerText).then(() => alert('✅ تم نسخ النكتة!'));
+        }
+
+        function saveJoke() {
+            const content = document.getElementById('jokeOutput').innerHTML;
+            const word = document.getElementById('jokeWord').value || 'عامة';
+            let saved = JSON.parse(localStorage.getItem('jokeLibrary') || '[]');
+            saved.unshift({ id: Date.now(), word, date: new Date().toLocaleString('ar-SA'), content });
+            if (saved.length > 50) saved.pop();
+            localStorage.setItem('jokeLibrary', JSON.stringify(saved));
+            alert('📚 حُفظت النكتة في المكتبة!');
+            displaySavedJokes();
+        }
+
+        function downloadJokeImage() {
+            html2canvas(document.getElementById('jokeOutput'), { backgroundColor: null }).then(canvas => {
+                const link = document.createElement('a');
+                link.download = `نكتتي_${Date.now()}.png`;
+                link.href = canvas.toDataURL();
+                link.click();
+            });
+        }
+
+        function playLaugh() {
+            try {
+                const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                const duration = 1.5;
+                const sampleRate = audioCtx.sampleRate;
+                const buffer = audioCtx.createBuffer(1, sampleRate * duration, sampleRate);
+                const data = buffer.getChannelData(0);
+                
+                for (let i = 0; i < data.length; i++) {
+                    const t = i / sampleRate;
+                    // توليد صوت ضحك اصطناعي (موجة مربعة متقطعة بترددات مختلفة)
+                    const freq = 200 + Math.sin(t * 30) * 150;
+                    const osc = Math.sign(Math.sin(2 * Math.PI * freq * t));
+                    const envelope = Math.sin(t * Math.PI / duration) * (0.5 + 0.5 * Math.sin(t * 20));
+                    data[i] = osc * envelope * 0.3;
+                }
+                
+                const source = audioCtx.createBufferSource();
+                source.buffer = buffer;
+                source.connect(audioCtx.destination);
+                source.start();
+                setTimeout(() => audioCtx.close(), duration * 1000 + 100);
+            } catch (e) {
+                alert('🎉 ها ها ها ها! (تخيل صوت ضحك عالٍ)');
+            }
+        }
+
+        function displaySavedJokes() {
+            const saved = JSON.parse(localStorage.getItem('jokeLibrary') || '[]');
+            const container = document.getElementById('savedStoriesContainer');
+            const list = document.getElementById('savedStoriesList');
+            if (saved.length === 0) { container.style.display = 'none'; return; }
+            container.style.display = 'block';
+            list.innerHTML = saved.map(s => `
+                <div class="story-item">
+                    <strong>😂 ${s.word}</strong> | <small>${s.date}</small>
+                    <span class="delete-btn" onclick="deleteJoke(${s.id})"><i class="fas fa-trash"></i></span>
+                    <p style="margin-top:8px;">${s.content.substring(0, 150)}...</p>
+                </div>
+            `).join('');
+        }
+
+        function deleteJoke(id) {
+            let saved = JSON.parse(localStorage.getItem('jokeLibrary') || '[]');
+            saved = saved.filter(s => s.id !== id);
+            localStorage.setItem('jokeLibrary', JSON.stringify(saved));
+            displaySavedJokes();
+        }
+
+        function toggleTheme() {
+            document.body.classList.toggle('light-mode');
+            localStorage.setItem('jokeTheme', document.body.classList.contains('light-mode') ? 'light' : 'dark');
+        }
+
+        window.onload = function() {
+            if (localStorage.getItem('jokeTheme') === 'light') document.body.classList.add('light-mode');
+            displaySavedJokes();
+            generateStoryJoke();
+        };
+    </script>
+</body>
+</html>

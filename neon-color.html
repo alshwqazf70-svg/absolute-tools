@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>صانع الألوان النيونية | الأداة الإبداعية ✦</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+    <style>
+        :root {
+            --primary: #ff00ff;
+            --primary-glow: rgba(255, 0, 255, 0.6);
+            --secondary: #00ffff;
+            --bg-dark: #0a0a0f;
+            --bg-card: #12121a;
+            --bg-input: #1a1a25;
+            --border-color: #2a2a3a;
+            --text-light: #f0e6ff;
+            --text-muted: #9090b0;
+            --card-shadow: 0 20px 50px rgba(0,0,0,0.9);
+        }
+        body.light-mode {
+            --bg-dark: #f8f6fc;
+            --bg-card: #ffffff;
+            --bg-input: #f0ecf8;
+            --border-color: #d8d0e8;
+            --text-light: #1a1028;
+            --text-muted: #6b5880;
+            --card-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; transition: background 0.3s, color 0.2s; }
+        body {
+            font-family: 'Cairo', sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-light);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            background-image: radial-gradient(circle at 50% 0%, var(--primary-glow) 0%, transparent 40%);
+        }
+        .container {
+            max-width: 900px;
+            width: 100%;
+            background: var(--bg-card);
+            padding: 40px;
+            border-radius: 40px;
+            border: 1px solid var(--border-color);
+            box-shadow: var(--card-shadow);
+            text-align: center;
+            margin-bottom: 30px;
+            position: relative;
+            overflow: hidden;
+        }
+        .container::before {
+            content: "🎨";
+            position: absolute;
+            bottom: -30px;
+            left: -20px;
+            font-size: 7rem;
+            opacity: 0.04;
+            z-index: 0;
+        }
+        .theme-toggle {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: var(--bg-input);
+            border: 1px solid var(--border-color);
+            color: var(--text-light);
+            font-size: 1.3rem;
+            padding: 8px 12px;
+            border-radius: 50px;
+            cursor: pointer;
+            z-index: 10;
+        }
+        .container > * { position: relative; z-index: 1; }
+        h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, #fff, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+            letter-spacing: 2px;
+        }
+        .sub { color: var(--text-muted); margin-bottom: 25px; }
+
+        .input-group {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        input[type="color"] {
+            width: 55px;
+            height: 55px;
+            border: 3px solid var(--border-color);
+            border-radius: 18px;
+            background: transparent;
+            cursor: pointer;
+            outline: none;
+            padding: 3px;
+        }
+        input[type="color"]:focus { border-color: var(--primary); box-shadow: 0 0 20px var(--primary-glow); }
+        input[type="text"] {
+            flex: 1;
+            min-width: 180px;
+            padding: 14px;
+            border-radius: 15px;
+            background: var(--bg-input);
+            border: 2px solid var(--border-color);
+            color: var(--text-light);
+            font-size: 1rem;
+            outline: none;
+            font-family: 'Cairo';
+        }
+        input[type="text"]:focus { border-color: var(--primary); box-shadow: 0 0 15px var(--primary-glow); }
+        select {
+            padding: 14px;
+            border-radius: 15px;
+            background: var(--bg-input);
+            border: 2px solid var(--border-color);
+            color: var(--text-light);
+            font-size: 1rem;
+            font-family: 'Cairo';
+            cursor: pointer;
+            min-width: 160px;
+        }
+        .btn-generate {
+            padding: 14px 28px;
+            border: none;
+            border-radius: 18px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: #000;
+            font-weight: 900;
+            cursor: pointer;
+            transition: 0.3s;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .btn-generate:hover { transform: scale(1.05); box-shadow: 0 0 30px var(--primary-glow); }
+
+        .toolbar {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin: 15px 0;
+        }
+        .btn-tool {
+            background: var(--bg-input);
+            border: 1px solid var(--border-color);
+            color: var(--text-light);
+            padding: 10px 16px;
+            border-radius: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            font-size: 0.85rem;
+        }
+        .btn-tool:hover { background: var(--primary); color: #000; border-color: var(--primary); }
+
+        .palette-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 15px;
+            margin-top: 25px;
+        }
+        .color-card {
+            aspect-ratio: 1;
+            border-radius: 22px;
+            border: 2px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-end;
+            padding: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.6);
+            position: relative;
+            overflow: hidden;
+        }
+        .color-card:hover {
+            transform: scale(1.07);
+            border-color: #fff;
+            box-shadow: 0 0 35px currentColor;
+        }
+        .color-card.copied { animation: pop 0.3s ease; }
+        @keyframes pop { 0% { transform: scale(1); } 50% { transform: scale(0.95); } 100% { transform: scale(1); } }
+        .color-hex {
+            background: rgba(0,0,0,0.65);
+            backdrop-filter: blur(6px);
+            padding: 6px 14px;
+            border-radius: 50px;
+            color: #fff;
+            font-size: 0.8rem;
+            font-weight: 700;
+            font-family: 'Orbitron', monospace;
+            letter-spacing: 1px;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        .color-name {
+            font-size: 0.7rem;
+            color: rgba(255,255,255,0.8);
+            margin-top: 4px;
+        }
+        .counter { margin-top: 15px; color: var(--text-muted); font-size: 0.9rem; }
+
+        @media (max-width: 600px) {
+            .container { padding: 20px; }
+            h1 { font-size: 1.5rem; }
+            .input-group { flex-direction: column; }
+            input[type="color"] { margin: 0 auto; }
+            .palette-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <button class="theme-toggle" onclick="toggleTheme()" title="تبديل الوضع">🌓</button>
+        <h1>🎨 صانع الألوان النيونية</h1>
+        <p class="sub">اختر لوناً، أو اكتب اسمه، أو استخدم الوضع التلقائي لصنع لوحات نيونية ساحرة.</p>
+
+        <div class="input-group">
+            <input type="color" id="baseColorPicker" value="#ff00ff">
+            <input type="text" id="colorNameInput" placeholder="مثلاً: neon blue, coral...">
+            <select id="modeSelect">
+                <option value="neon">⚡ نيوني ساطع</option>
+                <option value="pastel">🌸 باستيل هادئ</option>
+                <option value="mono">🎯 أحادي اللون</option>
+                <option value="complementary">🔄 تكميلي</option>
+            </select>
+            <button class="btn-generate" onclick="generatePalette()">
+                <i class="fas fa-palette"></i> توليد اللوحة
+            </button>
+        </div>
+
+        <div class="toolbar">
+            <button class="btn-tool" onclick="copyAllColors()"><i class="fas fa-copy"></i> نسخ الكل</button>
+            <button class="btn-tool" onclick="exportJSON()"><i class="fas fa-code"></i> JSON</button>
+            <button class="btn-tool" onclick="exportCSS()"><i class="fab fa-css3-alt"></i> CSS</button>
+            <button class="btn-tool" onclick="savePalette()"><i class="fas fa-save"></i> حفظ</button>
+            <button class="btn-tool" onclick="downloadImage()"><i class="fas fa-image"></i> صورة</button>
+            <button class="btn-tool" onclick="randomColor()"><i class="fas fa-dice"></i> عشوائي</button>
+        </div>
+
+        <div id="paletteGrid" class="palette-grid"></div>
+        <div class="counter" id="paletteCounter">تم توليد 0 لوحة</div>
+    </div>
+
+    <script>
+        let paletteCount = 0;
+        let currentPalette = [];
+
+        const colorMap = {
+            'red': '#ff3333', 'crimson': '#dc143c', 'firebrick': '#b22222',
+            'blue': '#0099ff', 'navy': '#0033cc', 'royalblue': '#4169e1', 'skyblue': '#87ceeb',
+            'green': '#00cc44', 'lime': '#32cd32', 'forestgreen': '#228b22', 'emerald': '#50c878',
+            'yellow': '#ffdd00', 'gold': '#ffd700', 'amber': '#ffbf00',
+            'purple': '#aa44ff', 'violet': '#8b00ff', 'orchid': '#da70d6', 'plum': '#dda0dd',
+            'pink': '#ff66aa', 'hotpink': '#ff69b4', 'deeppink': '#ff1493',
+            'orange': '#ff8800', 'coral': '#ff7f50', 'darkorange': '#ff8c00',
+            'cyan': '#00ddff', 'turquoise': '#40e0d0', 'teal': '#008080',
+            'magenta': '#ff00ff', 'fuchsia': '#ff00ff',
+            'white': '#f8f8ff', 'snow': '#fffafa', 'ivory': '#fffff0',
+            'neon blue': '#00ffff', 'neon pink': '#ff00ff', 'neon green': '#39ff14'
+        };
+
+        function hexToHSL(hex) {
+            let r = parseInt(hex.slice(1,3), 16) / 255;
+            let g = parseInt(hex.slice(3,5), 16) / 255;
+            let b = parseInt(hex.slice(5,7), 16) / 255;
+            const max = Math.max(r, g, b), min = Math.min(r, g, b);
+            let h, s, l = (max + min) / 2;
+            if (max === min) { h = s = 0; }
+            else {
+                const d = max - min;
+                s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+                switch (max) {
+                    case r: h = ((g - b) / d + (g < b ? 6 : 0)) / 6; break;
+                    case g: h = ((b - r) / d + 2) / 6; break;
+                    case b: h = ((r - g) / d + 4) / 6; break;
+                }
+            }
+            return { h: h * 360, s: s * 100, l: l * 100 };
+        }
+
+        function HSLToHex(h, s, l) {
+            s /= 100; l /= 100;
+            const a = s * Math.min(l, 1 - l);
+            const f = n => {
+                const k = (n + h / 30) % 12;
+                const color = l - a * Math.max(Math.min(k - 3, 9 - k, 1), -1);
+                return Math.round(255 * color).toString(16).padStart(2, '0');
+            };
+            return `#${f(0)}${f(8)}${f(4)}`;
+        }
+
+        function generatePalette() {
+            const picker = document.getElementById('baseColorPicker').value;
+            const nameInput = document.getElementById('colorNameInput').value.trim().toLowerCase();
+            const mode = document.getElementById('modeSelect').value;
+            let baseColor = colorMap[nameInput] || picker;
+            const hsl = hexToHSL(baseColor);
+
+            let palette = [];
+            const count = 10;
+
+            if (mode === 'neon') {
+                for (let i = 0; i < count; i++) {
+                    const h = (hsl.h + i * 35) % 360;
+                    palette.push(HSLToHex(h, 100, 55));
+                }
+            } else if (mode === 'pastel') {
+                for (let i = 0; i < count; i++) {
+                    const h = (hsl.h + i * 30) % 360;
+                    palette.push(HSLToHex(h, 50, 80));
+                }
+            } else if (mode === 'mono') {
+                for (let i = 0; i < count; i++) {
+                    palette.push(HSLToHex(hsl.h, hsl.s, 15 + i * 8));
+                }
+            } else if (mode === 'complementary') {
+                const compH = (hsl.h + 180) % 360;
+                for (let i = 0; i < 5; i++) {
+                    palette.push(HSLToHex(hsl.h, hsl.s, 30 + i * 15));
+                    palette.push(HSLToHex(compH, hsl.s, 30 + i * 15));
+                }
+            }
+
+            currentPalette = palette;
+            renderPalette(palette);
+            paletteCount++;
+            document.getElementById('paletteCounter').textContent = `تم توليد ${paletteCount} لوحة`;
+        }
+
+        function renderPalette(palette) {
+            const grid = document.getElementById('paletteGrid');
+            grid.innerHTML = '';
+            palette.forEach(hex => {
+                const card = document.createElement('div');
+                card.className = 'color-card';
+                card.style.background = hex;
+                card.style.boxShadow = `0 8px 30px ${hex}66`;
+                card.innerHTML = `
+                    <span class="color-hex">${hex}</span>
+                    <span class="color-name">نيوني</span>
+                `;
+                card.onclick = () => copySingle(hex, card);
+                grid.appendChild(card);
+            });
+        }
+
+        function copySingle(hex, element) {
+            navigator.clipboard.writeText(hex).then(() => {
+                if (element) {
+                    element.classList.add('copied');
+                    setTimeout(() => element.classList.remove('copied'), 300);
+                }
+            });
+        }
+
+        function copyAllColors() {
+            navigator.clipboard.writeText(currentPalette.join(', ')).then(() => alert('✅ تم نسخ جميع الألوان'));
+        }
+
+        function exportJSON() {
+            const json = JSON.stringify(currentPalette, null, 2);
+            const blob = new Blob([json], { type: 'application/json' });
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = 'palette.json';
+            link.click();
+        }
+
+        function exportCSS() {
+            const css = ':root {\n' + currentPalette.map((c, i) => `  --color-${i+1}: ${c};`).join('\n') + '\n}';
+            const blob = new Blob([css], { type: 'text/css' });
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = 'palette.css';
+            link.click();
+        }
+
+        function savePalette() {
+            let saved = JSON.parse(localStorage.getItem('colorPalettes') || '[]');
+            saved.unshift({ date: new Date().toLocaleString('ar-SA'), colors: currentPalette });
+            if (saved.length > 20) saved.pop();
+            localStorage.setItem('colorPalettes', JSON.stringify(saved));
+            alert('💾 تم حفظ اللوحة في المكتبة!');
+        }
+
+        function downloadImage() {
+            html2canvas(document.getElementById('paletteGrid'), { backgroundColor: '#0a0a0f' }).then(canvas => {
+                const link = document.createElement('a');
+                link.download = `لوحة_نيونية_${Date.now()}.png`;
+                link.href = canvas.toDataURL();
+                link.click();
+            });
+        }
+
+        function randomColor() {
+            const randomHex = '#' + Math.floor(Math.random()*16777215).toString(16).padStart(6, '0');
+            document.getElementById('baseColorPicker').value = randomHex;
+            document.getElementById('colorNameInput').value = '';
+            generatePalette();
+        }
+
+        function toggleTheme() {
+            document.body.classList.toggle('light-mode');
+            localStorage.setItem('paletteTheme', document.body.classList.contains('light-mode') ? 'light' : 'dark');
+        }
+
+        window.onload = function() {
+            if (localStorage.getItem('paletteTheme') === 'light') document.body.classList.add('light-mode');
+            generatePalette();
+        };
+    </script>
+</body>
+</html>

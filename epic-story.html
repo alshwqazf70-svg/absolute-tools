@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مولد القصص الملحمية | النسخة الأسطورية ✦</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- مكتبة html2canvas لتحويل العنصر لصورة (بدون سيرفر) -->
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+    
+    <style>
+        /* ================================================================
+           التصميم الأسطوري: نسخة مطورة مع الوضع النهاري
+           ================================================================ */
+        :root {
+            --primary: #00ff88;
+            --primary-glow: rgba(0, 255, 136, 0.5);
+            --secondary: #00ccff;
+            --bg-dark: #0b0e14;
+            --bg-card: #131821;
+            --bg-input: #1b212b;
+            --border-color: #2a2f3a;
+            --text-light: #f3f4f6;
+            --text-muted: #9ca3af;
+            --card-shadow: 0 20px 50px rgba(0, 0, 0, 0.7);
+        }
+
+        body.light-mode {
+            --bg-dark: #f0f2f5;
+            --bg-card: #ffffff;
+            --bg-input: #e8eef2;
+            --border-color: #d0d9e0;
+            --text-light: #1a1e24;
+            --text-muted: #555;
+            --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; transition: background 0.3s, color 0.2s, border 0.3s; }
+        
+        body {
+            font-family: 'Cairo', sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-light);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            margin: 0;
+            background-image: radial-gradient(circle at 50% 0%, var(--primary-glow) 0%, transparent 30%);
+        }
+
+        .container {
+            max-width: 850px;
+            width: 100%;
+            background: var(--bg-card);
+            padding: 40px;
+            border-radius: 40px;
+            border: 1px solid var(--border-color);
+            box-shadow: var(--card-shadow);
+            text-align: center;
+            margin-bottom: 30px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .container::before {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: conic-gradient(from 0deg, transparent, var(--primary-glow), transparent, var(--secondary), transparent);
+            opacity: 0.05;
+            animation: rotateGlow 12s linear infinite;
+            z-index: 0;
+        }
+        @keyframes rotateGlow { to { transform: rotate(360deg); } }
+        .container > * { position: relative; z-index: 1; }
+
+        .theme-toggle {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: var(--bg-input);
+            border: 1px solid var(--border-color);
+            color: var(--text-light);
+            font-size: 1.3rem;
+            padding: 8px 12px;
+            border-radius: 50px;
+            cursor: pointer;
+            z-index: 10;
+        }
+
+        h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.2rem;
+            font-weight: 900;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, #ffffff, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: 2px;
+        }
+        .sub { color: var(--text-muted); margin-bottom: 25px; font-size: 1.1rem; }
+
+        .input-group { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; margin-bottom: 15px; }
+        input {
+            flex: 1; min-width: 200px; padding: 16px; border-radius: 20px;
+            background: var(--bg-input); border: 2px solid var(--border-color);
+            color: var(--text-light); font-size: 1.1rem; outline: none; font-family: 'Cairo';
+        }
+        input:focus { border-color: var(--primary); box-shadow: 0 0 15px var(--primary-glow); }
+
+        .btn-generate {
+            padding: 16px 30px; border: none; border-radius: 20px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: #000; font-weight: 900; cursor: pointer; transition: 0.3s;
+            font-size: 1.1rem; letter-spacing: 1px; display: flex; align-items: center; gap: 8px;
+        }
+        .btn-generate:hover { transform: scale(1.05); box-shadow: 0 0 25px var(--primary-glow); }
+
+        .loader {
+            display: none; margin: 20px auto; width: 40px; height: 40px;
+            border: 4px solid var(--border-color); border-top-color: var(--primary);
+            border-radius: 50%; animation: spin 0.8s linear infinite;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        .output-box {
+            margin-top: 25px; padding: 30px; background: var(--bg-dark); border-radius: 25px;
+            border-right: 6px solid var(--primary); text-align: right; line-height: 2.2;
+            font-size: 1.1rem; display: none; animation: fadeUp 0.6s ease; position: relative;
+            box-shadow: inset 0 0 20px rgba(0,0,0,0.3);
+        }
+        .output-box.show { display: block; }
+        @keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        
+        .highlight { color: var(--primary); font-weight: 700; font-size: 1.2rem; }
+        .highlight2 { color: var(--secondary); font-weight: 700; }
+
+        .action-buttons {
+            display: none; gap: 10px; margin-top: 20px; flex-wrap: wrap; justify-content: center;
+        }
+        .btn-action {
+            padding: 12px 20px; border-radius: 15px; border: 1px solid var(--border-color);
+            background: var(--bg-input); color: var(--text-light); cursor: pointer;
+            font-size: 0.95rem; font-weight: 700; transition: 0.2s;
+        }
+        .btn-action:hover { background: var(--primary); color: #000; border-color: var(--primary); }
+
+        .counter { margin-top: 15px; color: var(--text-muted); font-size: 0.9rem; }
+
+        .saved-stories {
+            margin-top: 30px; text-align: right; max-height: 300px; overflow-y: auto; padding: 10px;
+            display: none;
+        }
+        .saved-stories h3 { color: var(--primary); margin-bottom: 15px; text-align: center; }
+        .story-item {
+            background: var(--bg-input); padding: 15px; border-radius: 15px;
+            margin-bottom: 10px; border-right: 3px solid var(--primary);
+            font-size: 0.9rem; color: var(--text-muted); position: relative;
+        }
+        .delete-btn { position: absolute; top: 10px; left: 10px; color: red; cursor: pointer; }
+
+        @media (max-width: 600px) {
+            .container { padding: 20px; }
+            h1 { font-size: 1.6rem; }
+            .input-group { flex-direction: column; }
+            input { width: 100%; }
+            .btn-generate { justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <button class="theme-toggle" onclick="toggleTheme()" title="تبديل الوضع الليلي والنهاري">🌓</button>
+
+        <h1>✨ مولد القصص الملحمية ✨</h1>
+        <p class="sub">اكتب كلمة مفتاحية، وسأصنع لك رواية خيالية من 4 فصول، طويلة ومثيرة، ولن تتكرر أبداً.</p>
+
+        <div class="input-group">
+            <input type="text" id="epicWord" placeholder="مثال: المستقبل، الصحراء، الحب..." value="المستقبل">
+            <button class="btn-generate" onclick="generateEpicStory()">
+                <i class="fas fa-feather-alt"></i> توليد الملحمة
+            </button>
+        </div>
+
+        <div class="loader" id="loader"></div>
+        
+        <div id="epicOutput" class="output-box"></div>
+        
+        <div class="action-buttons" id="actionButtons">
+            <button class="btn-action" onclick="copyStory()"><i class="fas fa-copy"></i> نسخ القصة</button>
+            <button class="btn-action" onclick="saveStory()"><i class="fas fa-save"></i> حفظ في المكتبة</button>
+            <button class="btn-action" onclick="downloadImage()"><i class="fas fa-image"></i> تحميل كصورة</button>
+        </div>
+        
+        <div class="counter" id="storyCounter">تم توليد 0 قصة</div>
+    </div>
+
+    <div class="container saved-stories" id="savedStoriesContainer">
+        <h3>📚 مكتبتي الملحمية</h3>
+        <div id="savedStoriesList"></div>
+    </div>
+
+    <script>
+        // ================================================================
+        // محرك القصص اللامحدود (النسخة المطورة)
+        // ================================================================
+        let storyCount = 0;
+        let storyHistory = []; // منع التكرار بذاكرة منزلقة
+
+        // قواعد بيانات موسعة جداً (20+ عنصر لكل فئة)
+        const heroes = [
+            'آخر فرسان مملكة الضوء', 'مخترع عبقري منسي', 'محارب الظل الصامت', 'ملكة الأرقام والرموز',
+            'راهب العواصف الهائجة', 'لص الأحلام الممنوعة', 'صياد التنين الأسود', 'حارس بوابة الأبد',
+            'أمير الذرات المتناثرة', 'سارق النار المقدسة', 'سيدة البحار الجليدية', 'الغريب ذو الوشاح القرمزي',
+            'كاهن القمر الدامي', 'جاسوس الزمن الضائع', 'ميكانيكي الواقع المكسور', 'فارس النور الأخير',
+            'ناظم الشعر والرياح', 'قارئ مصير النجوم', 'راقصة الظلال المتوحشة', 'رسام الأبعاد المفقودة'
+        ];
+        const realms = [
+            'أرض الرماد المقدسة', 'مدينة السايبر المضيئة', 'الصحراء الزرقاء اللامتناهية', 'مملكة الرياح المتجمدة',
+            'غابة الذئاب الحجرية', 'كهوف البلور الصدئة', 'جزر السحاب المتكسرة', 'سهل البراكين الهادئة',
+            'محيط الحمم الذهبية', 'قمة عالم الأبدية', 'وادي الأنفاس الأخيرة', 'مستنقع الأحجار الكريمة',
+            'ميناء الأشباح التائهة', 'مكتبة العصور المنسية', 'سجن العمالقة الأوائل', 'حديقة الزمن الملتوي',
+            'قصر العرش الوهمي', 'أطلال سفينة السماء', 'طريق العواصف الرملية', 'ملاذ الشياطين التائبين'
+        ];
+        const troubles = [
+            'انفجار في محطة الطاقة المركزية', 'غزو كائنات فضائية غامضة', 'جفاف يهدد الحياة كلها', 'فيروس يصيب العقل البشري',
+            'كسوف شمسي لا ينتهي', 'صحوة إله قديم', 'انقسام في نسيج الواقع', 'ثورة آلات ذكية',
+            'لعنة صمت أبدي', 'اختفاء جميع الأطفال', 'سقوط نجم سام', 'نمو كريستالات وردية قاتلة',
+            'بكاء التماثيل الحجرية', 'انعكاس الجاذبية', 'طاعون الذكريات المحرمة', 'تشقق السماء وسقوطها',
+            'حريق أبيض غامض', 'موجة صمت عارمة', 'تمرد الكائنات الظليلة', 'مطر من الشهب الحارقة'
+        ];
+        const solutions = [
+            'اكتشف أن القوة الحقيقية تكمن في الصدق', 'بنى آلة تعيد الزمن إلى الوراء', 'استخدم الموسيقى لتهدئة الوحوش', 'تحدى قوانين الفيزياء',
+            'تحدث مع العدو بلغة الحب', 'ذرف دمعة أعادت الحياة', 'زرع شجرة من نور', 'رسم نجمة في كف يده',
+            'عزف لحن الأمس البعيد', 'أحرق خريطة الواقع', 'قفز في بئر الأمنيات', 'أطعم الوحش قلبه',
+            'قرأ التعويذة بالمقلوب', 'ضحك حتى انكسرت اللعنة', 'كسر السيف بالعزيمة', 'نسج شرنقة من الأمل',
+            'قذف بظله في النار', 'همس باسمه الحقيقي', 'صافح الموت وابتسم', 'فتح نافذة في العدم'
+        ];
+        const endings = [
+            'وساد السلام في العالم للأبد.', 'ولكنه أدرك أن المستقبل يعتمد على اختياراته.', 'وانتهت الحرب، لكن الحكمة بقيت.',
+            'وعاد الجميع إلى حياتهم، أقوى مما كانوا.', 'واختفى البطل من الذاكرة، لكن أثره خلد.', 'وانشق القمر نصفين فرحاً.',
+            'وتحولت الصحراء إلى جنات.', 'وأصبح الغرباء إخوة.', 'وهكذا بدأ عصر جديد من النور.',
+            'وعادت النجوم تضحك في السماء.', 'وسقط جدار الظلام إلى الأبد.', 'وكتب التاريخ اسمه بحروف من ذهب.',
+            'وقامت مملكة العدل من الرماد.', 'وغفت الوحوش في أعماق الأرض.', 'ولمعت الشمس خضراء للمرة الأولى.',
+            'وسكتت الرياح احتراماً له.', 'وأقفل كتاب الشر إلى الأبد.', 'ونبتت الزهور بين الصخور.',
+            'وولد الأمل من رحم المعاناة.', 'ورحل الخوف بلا عودة.'
+        ];
+
+        // دالة التوليد الديناميكي باستخدام الكلمة المفتاحية
+        function getDynamicPool(word) {
+            return {
+                hero: `حامل سر ${word}`,
+                realm: `مملكة ${word} المفقودة`,
+                trouble: `لعنة ${word} الأبدية`,
+                solution: `اكتشف جوهر ${word} السحري`,
+                ending: `وأصبح ${word} مفتاح النجاة`
+            };
+        }
+
+        function generateEpicStory() {
+            const word = document.getElementById('epicWord').value.trim();
+            if (!word) { alert('يرجى كتابة كلمة مفتاحية!'); return; }
+
+            // إظهار مؤشر التحميل وإخفاء الأزرار
+            document.getElementById('loader').style.display = 'block';
+            document.getElementById('epicOutput').classList.remove('show');
+            document.getElementById('actionButtons').style.display = 'none';
+
+            // ننتظر قليلاً عشان الإثارة (يحس المستخدم أن في شغل جبار يصير)
+            setTimeout(() => {
+                let story, signature;
+                let attempt = 0;
+
+                do {
+                    // دمج القوائم الثابتة مع المولد الديناميكي
+                    const pool = Math.random() < 0.4 ? getDynamicPool(word) : null;
+                    
+                    const h = pool?.hero || heroes[Math.floor(Math.random() * heroes.length)];
+                    const r = pool?.realm || realms[Math.floor(Math.random() * realms.length)];
+                    const t = pool?.trouble || troubles[Math.floor(Math.random() * troubles.length)];
+                    const s = pool?.solution || solutions[Math.floor(Math.random() * solutions.length)];
+                    const e = pool?.ending || endings[Math.floor(Math.random() * endings.length)];
+
+                    story = `
+                        <span class="highlight">📖 الفصل الأول: شرارة التغيير</span><br><br>
+                        في عالم <span class="highlight2">${r}</span>، عاش ${h} حياة ملؤها الغموض، تحيط به أسطورة "<strong>${word}</strong>". 
+                        كل شيء تغير عندما حلَّت: <span class="highlight">${t}</span>. السماء لم تعد كما كانت، والأرض تشققت. نهض ${h} وهو يعلم أن عليه مواجهة مصيره.<br><br>
+
+                        <span class="highlight">📖 الفصل الثاني: الرحلة عبر المجهول</span><br><br>
+                        حاملاً معه مفتاحاً قديماً نُقِش عليه "<strong>${word}</strong>"، انطلق ${h} في رحلة عبر ${r}. 
+                        واجه خلالها السراب والعطش والوحوش الطائرة. في ليلة حالكة، اكتشف أن "<strong>${word}</strong>" ليست مجرد كلمة، بل سرٌّ كونيٌّ يربط بين العوالم.<br><br>
+
+                        <span class="highlight">📖 الفصل الثالث: المواجهة الحاسمة</span><br><br>
+                        في أعماق ${r}، تجسد الشر في هيئة مرعبة. وقف ${h} وحيداً. بدلاً من القتال العنيف، ${s}. 
+                        تردد صدى "<strong>${word}</strong>" في أرجاء الكون، محولاً الظلام إلى ضوء، واليأس إلى أمل.<br><br>
+
+                        <span class="highlight">📖 الفصل الرابع: النهاية الأبدية</span><br><br>
+                        بعد المعركة العظيمة، تجمعت بقايا الممالك لتكريم ${h}. وقف على أنقاض القلعة القديمة وقال: "لن تنسى الأجيال قوة ${word}". 
+                        <span class="highlight2">${e}</span>
+                    `;
+
+                    signature = h + r + t;
+                    attempt++;
+                } while (storyHistory.includes(signature) && attempt < 100);
+
+                // إضافة التوقيع للتاريخ (منع التكرار)
+                storyHistory.push(signature);
+                if (storyHistory.length > 100) storyHistory.shift();
+
+                // عرض النتيجة بتأثير الآلة الكاتبة
+                storyCount++;
+                document.getElementById('storyCounter').textContent = `تم توليد ${storyCount} قصة`;
+                document.getElementById('loader').style.display = 'none';
+                
+                const outputBox = document.getElementById('epicOutput');
+                typeWriter(outputBox, story, 10, () => {
+                    document.getElementById('actionButtons').style.display = 'flex';
+                });
+            }, 600);
+        }
+
+        // دالة الآلة الكاتبة الذكية (تحترم وسوم HTML)
+        function typeWriter(element, text, speed = 20, callback) {
+            let i = 0;
+            let currentTag = '';
+            let inTag = false;
+            element.innerHTML = '';
+            element.classList.add('show');
+            
+            function type() {
+                if (i < text.length) {
+                    let char = text.charAt(i);
+                    
+                    if (char === '<') {
+                        inTag = true;
+                        currentTag = '<';
+                    } else if (char === '>') {
+                        inTag = false;
+                        currentTag += '>';
+                        element.innerHTML += currentTag;
+                        currentTag = '';
+                        i++;
+                        setTimeout(type, speed);
+                        return;
+                    } else if (inTag) {
+                        currentTag += char;
+                    } else {
+                        element.innerHTML += char;
+                    }
+                    i++;
+                    setTimeout(type, speed);
+                } else if (callback) {
+                    callback();
+                }
+            }
+            type();
+        }
+
+        // دوال الأزرار التفاعلية
+        function copyStory() {
+            const storyText = document.getElementById('epicOutput').innerText;
+            navigator.clipboard.writeText(storyText).then(() => {
+                alert('✅ تم نسخ الملحمة إلى الحافظة!');
+            });
+        }
+
+        function saveStory() {
+            const storyHTML = document.getElementById('epicOutput').innerHTML;
+            const word = document.getElementById('epicWord').value;
+            let saved = JSON.parse(localStorage.getItem('epicLibrary') || '[]');
+            saved.unshift({ 
+                id: Date.now(), 
+                word: word, 
+                date: new Date().toLocaleString('ar-SA'), 
+                content: storyHTML 
+            });
+            if (saved.length > 50) saved.pop(); // نحتفظ بآخر 50 قصة
+            localStorage.setItem('epicLibrary', JSON.stringify(saved));
+            alert('📚 تم حفظ القصة في المكتبة!');
+            displaySavedStories();
+        }
+
+        function downloadImage() {
+            const element = document.getElementById('epicOutput');
+            html2canvas(element, { backgroundColor: null }).then(canvas => {
+                const link = document.createElement('a');
+                link.download = `قصتي_الملحمية_${Date.now()}.png`;
+                link.href = canvas.toDataURL();
+                link.click();
+            });
+        }
+
+        function displaySavedStories() {
+            const saved = JSON.parse(localStorage.getItem('epicLibrary') || '[]');
+            const container = document.getElementById('savedStoriesContainer');
+            const list = document.getElementById('savedStoriesList');
+            
+            if (saved.length === 0) {
+                container.style.display = 'none';
+                return;
+            }
+            
+            container.style.display = 'block';
+            list.innerHTML = saved.map((s, index) => `
+                <div class="story-item">
+                    <strong>📌 ${s.word}</strong> | <small>${s.date}</small>
+                    <span class="delete-btn" onclick="deleteStory(${s.id})"><i class="fas fa-trash"></i></span>
+                    <p style="margin-top:8px;">${s.content.substring(0, 150)}...</p>
+                </div>
+            `).join('');
+        }
+
+        function deleteStory(id) {
+            let saved = JSON.parse(localStorage.getItem('epicLibrary') || '[]');
+            saved = saved.filter(s => s.id !== id);
+            localStorage.setItem('epicLibrary', JSON.stringify(saved));
+            displaySavedStories();
+        }
+
+        function toggleTheme() {
+            document.body.classList.toggle('light-mode');
+            localStorage.setItem('theme', document.body.classList.contains('light-mode') ? 'light' : 'dark');
+        }
+
+        // تحميل الإعدادات عند فتح الصفحة
+        window.onload = function() {
+            if (localStorage.getItem('theme') === 'light') {
+                document.body.classList.add('light-mode');
+            }
+            displaySavedStories();
+            generateEpicStory(); // توليد أول قصة تلقائياً
+        };
+    </script>
+</body>
+</html>

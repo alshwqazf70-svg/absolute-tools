@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>محلل النصوص الذكي | الإحصائيات الأسطورية ✦</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+    <style>
+        :root {
+            --primary: #00ff88;
+            --primary-glow: rgba(0, 255, 136, 0.5);
+            --secondary: #00ccff;
+            --bg-dark: #0b0e14;
+            --bg-card: #131821;
+            --bg-input: #1b212b;
+            --border-color: #2a2f3a;
+            --text-light: #f3f4f6;
+            --text-muted: #9ca3af;
+        }
+        body.light-mode {
+            --bg-dark: #f0f2f5;
+            --bg-card: #ffffff;
+            --bg-input: #e8eef2;
+            --border-color: #d0d9e0;
+            --text-light: #1a1e24;
+            --text-muted: #555;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; transition: background 0.3s, color 0.2s; }
+        body {
+            font-family: 'Cairo', sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-light);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            background-image: radial-gradient(circle at 50% 0%, var(--primary-glow) 0%, transparent 40%);
+        }
+        .container {
+            max-width: 850px;
+            width: 100%;
+            background: var(--bg-card);
+            padding: 40px;
+            border-radius: 40px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+            text-align: center;
+            margin-bottom: 30px;
+            position: relative;
+        }
+        .theme-toggle {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: var(--bg-input);
+            border: 1px solid var(--border-color);
+            color: var(--text-light);
+            font-size: 1.3rem;
+            padding: 8px 12px;
+            border-radius: 50px;
+            cursor: pointer;
+            z-index: 10;
+        }
+        h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, #fff, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+        }
+        .sub { color: var(--text-muted); margin-bottom: 25px; }
+
+        .analyzer-box { margin-top: 20px; }
+        textarea {
+            width: 100%;
+            min-height: 160px;
+            padding: 18px;
+            border-radius: 20px;
+            background: var(--bg-input);
+            border: 2px solid var(--border-color);
+            color: var(--text-light);
+            font-size: 1.05rem;
+            outline: none;
+            font-family: 'Cairo';
+            resize: vertical;
+            text-align: right;
+            direction: rtl;
+        }
+        textarea:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 15px var(--primary-glow);
+        }
+
+        .btn-analyze {
+            width: 100%;
+            padding: 14px;
+            margin-top: 15px;
+            border: none;
+            border-radius: 15px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: #000;
+            font-weight: 900;
+            cursor: pointer;
+            transition: 0.3s;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        .btn-analyze:hover { transform: scale(1.02); }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+            gap: 15px;
+            margin-top: 25px;
+        }
+        .stat-card {
+            background: var(--bg-input);
+            padding: 20px;
+            border-radius: 18px;
+            border: 1px solid var(--border-color);
+            text-align: center;
+            transition: 0.3s;
+        }
+        .stat-card:hover { border-color: var(--primary); }
+        .stat-number {
+            display: block;
+            font-size: 2.2rem;
+            font-weight: 900;
+            color: var(--primary);
+        }
+        .stat-label { color: var(--text-muted); font-size: 0.9rem; margin-top: 5px; }
+
+        .action-buttons {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .btn-action {
+            background: var(--bg-input);
+            border: 1px solid var(--border-color);
+            color: var(--text-light);
+            padding: 10px 18px;
+            border-radius: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+        .btn-action:hover { background: var(--primary); color: #000; border-color: var(--primary); }
+
+        .counter { margin-top: 15px; color: var(--text-muted); font-size: 0.85rem; }
+
+        @media (max-width: 600px) {
+            .container { padding: 20px; }
+            h1 { font-size: 1.6rem; }
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <button class="theme-toggle" onclick="toggleTheme()" title="تبديل الوضع">🌓</button>
+        <h1>📊 محلل النصوص الذكي</h1>
+        <p class="sub">اكتب أو الصق أي نص، وستظهر الإحصائيات مباشرة أثناء الكتابة.</p>
+
+        <div class="analyzer-box">
+            <textarea id="textInput" placeholder="ابدأ الكتابة هنا..." oninput="analyzeText()">الأدوات المطلقة المتنوعة هي منصة عربية متكاملة تحتوي على أدوات إبداعية وألعاب أسطورية. اكتب هنا أي نص لتحليله.</textarea>
+            <button class="btn-analyze" onclick="analyzeText()">
+                <i class="fas fa-chart-bar"></i> تحليل يدوي
+            </button>
+
+            <div class="stats-grid" id="statsGrid">
+                <!-- تمتلئ ديناميكيًا -->
+            </div>
+
+            <div class="action-buttons">
+                <button class="btn-action" onclick="copyStats()"><i class="fas fa-copy"></i> نسخ الإحصائيات</button>
+                <button class="btn-action" onclick="exportCSV()"><i class="fas fa-file-csv"></i> CSV</button>
+                <button class="btn-action" onclick="saveAnalysis()"><i class="fas fa-save"></i> حفظ</button>
+                <button class="btn-action" onclick="downloadStatsImage()"><i class="fas fa-image"></i> صورة</button>
+            </div>
+            <div class="counter" id="analyzeCounter">تم التحليل 0 مرة</div>
+        </div>
+    </div>
+
+    <script>
+        let analyzeCount = 0;
+        let lastStats = null;
+
+        function analyzeText() {
+            const text = document.getElementById('textInput').value.trim();
+            if (!text) {
+                document.getElementById('statsGrid').innerHTML = '';
+                return;
+            }
+
+            // 1. الكلمات
+            const words = text.split(/\s+/).filter(w => w.length > 0);
+            const wordCount = words.length;
+
+            // 2. الجمل (النقاط، علامات الاستفهام، التعجب، الفواصل المنقوطة)
+            const sentences = text.split(/[.!؟!?;،\n]+/).filter(s => s.trim().length > 0);
+            const sentenceCount = sentences.length;
+
+            // 3. الفقرات (أسطر منفصلة بـ \n)
+            const paragraphs = text.split(/\n+/).filter(p => p.trim().length > 0);
+            const paragraphCount = paragraphs.length;
+
+            // 4. الأحرف مع المسافات
+            const charWithSpaces = text.length;
+
+            // 5. الأحرف بدون مسافات
+            const charNoSpaces = text.replace(/\s/g, '').length;
+
+            // 6. متوسط طول الكلمة
+            const totalLetters = words.reduce((acc, w) => acc + w.length, 0);
+            const avgWordLength = wordCount > 0 ? (totalLetters / wordCount).toFixed(1) : 0;
+
+            // 7. وقت القراءة (200 كلمة/دقيقة)
+            const readingTimeMin = Math.ceil(wordCount / 200);
+
+            // 8. الكلمة الأكثر تكرارًا
+            const freqMap = {};
+            words.forEach(w => {
+                const clean = w.replace(/[،,؛.؟!]/g, ''); // إزالة علامات الترقيم
+                if (clean.length > 0) freqMap[clean] = (freqMap[clean] || 0) + 1;
+            });
+            let mostFrequent = '—';
+            let maxCount = 0;
+            Object.entries(freqMap).forEach(([word, count]) => {
+                if (count > maxCount) {
+                    mostFrequent = word;
+                    maxCount = count;
+                }
+            });
+
+            // بناء الإحصائيات
+            const stats = [
+                { label: 'عدد الكلمات', value: wordCount.toLocaleString() },
+                { label: 'عدد الجمل', value: sentenceCount.toLocaleString() },
+                { label: 'عدد الفقرات', value: paragraphCount.toLocaleString() },
+                { label: 'الأحرف (مع المسافات)', value: charWithSpaces.toLocaleString() },
+                { label: 'الأحرف (بدون مسافات)', value: charNoSpaces.toLocaleString() },
+                { label: 'متوسط طول الكلمة', value: avgWordLength },
+                { label: 'وقت القراءة (دقيقة)', value: readingTimeMin },
+                { label: 'أكثر كلمة تكررًا', value: mostFrequent + (maxCount > 0 ? ` (${maxCount})` : '') }
+            ];
+
+            lastStats = stats;
+            renderStats(stats);
+            analyzeCount++;
+            document.getElementById('analyzeCounter').textContent = `تم التحليل ${analyzeCount} مرة`;
+        }
+
+        function renderStats(stats) {
+            const grid = document.getElementById('statsGrid');
+            grid.innerHTML = stats.map(s => `
+                <div class="stat-card">
+                    <span class="stat-number">${s.value}</span>
+                    <span class="stat-label">${s.label}</span>
+                </div>
+            `).join('');
+        }
+
+        function copyStats() {
+            if (!lastStats) return;
+            const text = lastStats.map(s => `${s.label}: ${s.value}`).join('\n');
+            navigator.clipboard.writeText(text).then(() => alert('✅ تم نسخ الإحصائيات'));
+        }
+
+        function exportCSV() {
+            if (!lastStats) return;
+            const csv = 'الإحصائية,القيمة\n' + lastStats.map(s => `${s.label},${s.value}`).join('\n');
+            const blob = new Blob([csv], { type: 'text/csv' });
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = 'تحليل_النص.csv';
+            link.click();
+        }
+
+        function saveAnalysis() {
+            if (!lastStats) return;
+            const text = document.getElementById('textInput').value.trim();
+            const record = {
+                date: new Date().toLocaleString('ar-SA'),
+                text: text.substring(0, 100),
+                stats: lastStats
+            };
+            let saved = JSON.parse(localStorage.getItem('textAnalyses') || '[]');
+            saved.unshift(record);
+            if (saved.length > 20) saved.pop();
+            localStorage.setItem('textAnalyses', JSON.stringify(saved));
+            alert('💾 تم حفظ التحليل في المكتبة');
+        }
+
+        function downloadStatsImage() {
+            const element = document.getElementById('statsGrid');
+            html2canvas(element, { backgroundColor: null }).then(canvas => {
+                const link = document.createElement('a');
+                link.download = `تحليل_نص_${Date.now()}.png`;
+                link.href = canvas.toDataURL();
+                link.click();
+            });
+        }
+
+        function toggleTheme() {
+            document.body.classList.toggle('light-mode');
+            localStorage.setItem('textAnalyzerTheme', document.body.classList.contains('light-mode') ? 'light' : 'dark');
+        }
+
+        window.onload = function() {
+            if (localStorage.getItem('textAnalyzerTheme') === 'light') document.body.classList.add('light-mode');
+            analyzeText();
+        };
+    </script>
+</body>
+</html>

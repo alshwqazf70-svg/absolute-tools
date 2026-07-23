@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>اللغز التطوري | الألغاز الأسطورية 🧩</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+    <style>
+        :root {
+            --primary: #00ff88;
+            --primary-glow: rgba(0, 255, 136, 0.5);
+            --secondary: #00ccff;
+            --bg-dark: #0b0e14;
+            --bg-card: #131821;
+            --bg-input: #1b212b;
+            --border-color: #2a2f3a;
+            --text-light: #f3f4f6;
+            --text-muted: #9ca3af;
+            --danger: #ef4444;
+        }
+        body.light-mode {
+            --bg-dark: #f0f2f5;
+            --bg-card: #ffffff;
+            --bg-input: #e8eef2;
+            --border-color: #d0d9e0;
+            --text-light: #1a1e24;
+            --text-muted: #555;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; transition: background 0.3s, color 0.2s; }
+        body {
+            font-family: 'Cairo', sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-light);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            background-image: radial-gradient(circle at 50% 0%, var(--primary-glow) 0%, transparent 30%);
+        }
+        .container {
+            max-width: 750px;
+            width: 100%;
+            background: var(--bg-card);
+            padding: 40px;
+            border-radius: 40px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.7);
+            text-align: center;
+            margin-bottom: 30px;
+            position: relative;
+        }
+        .theme-toggle {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: var(--bg-input);
+            border: 1px solid var(--border-color);
+            color: var(--text-light);
+            font-size: 1.3rem;
+            padding: 8px 12px;
+            border-radius: 50px;
+            cursor: pointer;
+            z-index: 10;
+        }
+        h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, #ffffff, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+        }
+        .sub { color: var(--text-muted); margin-bottom: 25px; }
+
+        .xp-bar {
+            background: var(--bg-input);
+            padding: 10px 25px;
+            border-radius: 50px;
+            display: inline-flex;
+            gap: 15px;
+            align-items: center;
+            margin-bottom: 20px;
+            border: 1px solid var(--border-color);
+        }
+        .xp-score { color: var(--primary); font-weight: 900; font-size: 1.3rem; }
+
+        .loader {
+            display: none;
+            margin: 20px auto;
+            width: 40px;
+            height: 40px;
+            border: 4px solid var(--border-color);
+            border-top-color: var(--primary);
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        .riddle-box {
+            margin-top: 15px;
+        }
+        .riddle-question {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #fff;
+            background: var(--bg-input);
+            padding: 25px;
+            border-radius: 20px;
+            border-right: 5px solid var(--primary);
+            margin-bottom: 20px;
+            text-align: right;
+            line-height: 1.8;
+            min-height: 100px;
+            word-wrap: break-word;
+        }
+        .input-group {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 15px;
+        }
+        input {
+            flex: 1;
+            min-width: 150px;
+            padding: 14px;
+            border-radius: 15px;
+            background: var(--bg-input);
+            border: 2px solid var(--border-color);
+            color: var(--text-light);
+            font-size: 1.1rem;
+            outline: none;
+            font-family: 'Cairo';
+        }
+        input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 15px var(--primary-glow);
+        }
+        .btn-riddle {
+            padding: 14px 25px;
+            border: none;
+            border-radius: 15px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: #000;
+            font-weight: 900;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .btn-riddle:hover { transform: scale(1.05); }
+
+        .action-buttons {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 15px;
+        }
+        .btn-action {
+            padding: 10px 18px;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            background: var(--bg-input);
+            color: var(--text-light);
+            font-weight: 700;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+        .btn-action:hover { background: var(--primary); color: #000; }
+
+        .feedback {
+            margin-top: 15px;
+            font-size: 1.1rem;
+            min-height: 30px;
+            color: var(--text-muted);
+            font-weight: 700;
+        }
+        .feedback.success { color: var(--primary); }
+        .feedback.error { color: var(--danger); }
+
+        .counter { margin-top: 10px; color: var(--text-muted); font-size: 0.9rem; }
+
+        .history-box {
+            margin-top: 30px;
+            background: var(--bg-input);
+            border-radius: 20px;
+            padding: 20px;
+            text-align: right;
+            display: none;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+        .history-item {
+            padding: 8px 0;
+            border-bottom: 1px solid var(--border-color);
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 600px) {
+            .container { padding: 20px; }
+            h1 { font-size: 1.6rem; }
+            .input-group { flex-direction: column; }
+            input { width: 100%; }
+            .riddle-question { font-size: 1.1rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <button class="theme-toggle" onclick="toggleTheme()" title="تبديل الوضع">🌓</button>
+        <h1>🧩 اللغز التطوري</h1>
+        <p class="sub">اختبر ذكاءك، اكسب النقاط، وتحدَّ زملاءك!</p>
+
+        <div class="xp-bar">
+            <span>⭐ النقاط:</span>
+            <span class="xp-score" id="playerXP">0</span>
+        </div>
+
+        <div class="loader" id="loader"></div>
+
+        <div class="riddle-box">
+            <div class="riddle-question" id="riddleDisplay"></div>
+            <div class="input-group">
+                <input type="text" id="userAnswer" placeholder="أكتب إجابتك هنا..." autocomplete="off">
+                <button class="btn-riddle" onclick="checkAnswer()">🔍 تحقق</button>
+            </div>
+            <div class="action-buttons">
+                <button class="btn-action" onclick="useHint()">💡 تلميح (-1)</button>
+                <button class="btn-action" onclick="copyRiddle()">📋 نسخ اللغز</button>
+                <button class="btn-action" onclick="saveRiddle()">💾 حفظ</button>
+                <button class="btn-action" onclick="downloadRiddleImage()">🖼️ صورة</button>
+            </div>
+            <div class="feedback" id="feedbackMessage"></div>
+            <div class="counter" id="progressDisplay">تم حل 0 لغز</div>
+        </div>
+
+        <div class="history-box" id="historyBox">
+            <h4 style="color:var(--primary); margin-bottom:10px;">📜 آخر النتائج</h4>
+            <div id="historyList"></div>
+        </div>
+    </div>
+
+    <script>
+        // ========== نظام XP ==========
+        let xp = parseInt(localStorage.getItem('riddleXP')) || 0;
+        function updateXPUI() {
+            document.getElementById('playerXP').textContent = xp;
+            localStorage.setItem('riddleXP', xp);
+        }
+        function addXP(v) { 
+            xp += v; 
+            if (xp < 0) xp = 0; 
+            updateXPUI(); 
+        }
+        updateXPUI();
+
+        // ========== مكتبة الألغاز الضخمة ==========
+        const riddleBank = [
+            { q: 'ما هو الشيء الذي يمشي بلا أرجل ويبكي بلا عيون؟', a: 'السحاب' },
+            { q: 'شيء في السماء، إذا أضفت له حرفاً أصبح في الأرض؟', a: 'نجم (منجم)' },
+            { q: 'ما هو الشيء الذي تأكل منه ولا يستطيع أن يأكل منك؟', a: 'الطبق' },
+            { q: 'له أسنان ولا يعض، ما هو؟', a: 'المشط' },
+            { q: 'كلما أخذت منه زاد وكبر؟', a: 'الحفرة' },
+            { q: 'يرى كل شيء ولا يرى نفسه؟', a: 'المرآة' },
+            { q: 'ما هو البيت الذي ليس له أبواب ولا نوافذ؟', a: 'بيت الشعر' },
+            { q: 'ما هو الشيء الذي إذا غسلته صار متسخاً؟', a: 'الماء' }
+        ];
+
+        // ========== ديناميكي: ألغاز الرياضيات والمنطق ==========
+        function generateMathRiddle() {
+            const a = Math.floor(Math.random() * 20) + 1;
+            const b = Math.floor(Math.random() * 10) + 1;
+            return {
+                q: `إذا كان ${a} × ${b} = ${a*b}، فما هو ${a+1} × ${b}؟`,
+                a: String((a+1) * b)
+            };
+        }
+
+        function generatePatternRiddle() {
+            const start = Math.floor(Math.random() * 30) + 1;
+            const step = Math.floor(Math.random() * 6) + 2;
+            const seq = [start, start+step, start+step*2];
+            return {
+                q: `ما الرقم التالي في السلسلة: ${seq.join('، ')}، ؟`,
+                a: String(seq[2] + step)
+            };
+        }
+
+        let usedRiddles = [];
+        function getNewRiddle() {
+            let riddle;
+            const attempt = 0;
+            do {
+                const type = Math.floor(Math.random() * 10);
+                if (type < 3) {
+                    riddle = { ...riddleBank[Math.floor(Math.random() * riddleBank.length)] };
+                } else if (type < 6) {
+                    riddle = generateMathRiddle();
+                } else {
+                    riddle = generatePatternRiddle();
+                }
+                // توقيع بسيط
+            } while (usedRiddles.includes(riddle.q) && usedRiddles.length < 200);
+            
+            usedRiddles.push(riddle.q);
+            if (usedRiddles.length > 200) usedRiddles.shift();
+            return riddle;
+        }
+
+        let currentRiddle = getNewRiddle();
+        let solvedCount = 0;
+        let history = JSON.parse(localStorage.getItem('riddleHistory') || '[]');
+
+        // ========== تأثير الآلة الكاتبة ==========
+        function typeWriter(element, text, speed, callback) {
+            let i = 0;
+            element.innerHTML = '';
+            function type() {
+                if (i < text.length) {
+                    element.innerHTML += text.charAt(i);
+                    i++;
+                    setTimeout(type, speed);
+                } else if (callback) callback();
+            }
+            type();
+        }
+
+        // ========== عرض اللغز ==========
+        function displayRiddle() {
+            document.getElementById('loader').style.display = 'block';
+            document.getElementById('riddleDisplay').innerHTML = '';
+            document.getElementById('userAnswer').value = '';
+            document.getElementById('feedbackMessage').className = 'feedback';
+            document.getElementById('feedbackMessage').textContent = '';
+            document.getElementById('loader').style.display = 'none';
+            
+            typeWriter(document.getElementById('riddleDisplay'), currentRiddle.q, 25);
+        }
+
+        // ========== التحقق ==========
+        function checkAnswer() {
+            const input = document.getElementById('userAnswer').value.trim();
+            const fb = document.getElementById('feedbackMessage');
+            if (!input) {
+                fb.className = 'feedback error';
+                fb.textContent = '⚠️ اكتب إجابتك أولاً!';
+                return;
+            }
+            if (input === currentRiddle.a) {
+                solvedCount++;
+                addXP(3);
+                fb.className = 'feedback success';
+                fb.textContent = '🎉 صحيح! +3 XP';
+                document.getElementById('progressDisplay').textContent = `تم حل ${solvedCount} لغز`;
+                playSound('success');
+                saveHistory(true);
+                setTimeout(() => {
+                    currentRiddle = getNewRiddle();
+                    displayRiddle();
+                }, 1500);
+            } else {
+                fb.className = 'feedback error';
+                fb.textContent = '❌ خطأ، حاول مجدداً';
+                playSound('error');
+                saveHistory(false);
+            }
+        }
+
+        function useHint() {
+            const fb = document.getElementById('feedbackMessage');
+            if (xp < 1) {
+                fb.className = 'feedback error';
+                fb.textContent = '⚠️ لا تملك نقاطاً كافية';
+                return;
+            }
+            addXP(-1);
+            fb.className = 'feedback success';
+            fb.textContent = `💡 التلميح: الإجابة تبدأ بـ "${currentRiddle.a.charAt(0)}..."`;
+        }
+
+        // ========== وظائف الأزرار ==========
+        function copyRiddle() {
+            navigator.clipboard.writeText(currentRiddle.q).then(() => alert('✅ تم نسخ اللغز'));
+        }
+
+        function saveRiddle() {
+            let saved = JSON.parse(localStorage.getItem('savedRiddles') || '[]');
+            saved.unshift({ q: currentRiddle.q, a: currentRiddle.a, date: new Date().toLocaleString() });
+            if (saved.length > 20) saved.pop();
+            localStorage.setItem('savedRiddles', JSON.stringify(saved));
+            alert('💾 حفظنا اللغز في مكتبتك!');
+        }
+
+        function downloadRiddleImage() {
+            const el = document.getElementById('riddleDisplay');
+            html2canvas(el, { backgroundColor: null }).then(canvas => {
+                const link = document.createElement('a');
+                link.download = `لغز_${Date.now()}.png`;
+                link.href = canvas.toDataURL();
+                link.click();
+            });
+        }
+
+        // ========== التاريخ ==========
+        function saveHistory(success) {
+            history.unshift({ 
+                q: currentRiddle.q.substring(0, 30) + '...', 
+                result: success ? '✅' : '❌',
+                time: new Date().toLocaleTimeString()
+            });
+            if (history.length > 5) history.pop();
+            localStorage.setItem('riddleHistory', JSON.stringify(history));
+            renderHistory();
+        }
+
+        function renderHistory() {
+            const box = document.getElementById('historyBox');
+            const list = document.getElementById('historyList');
+            if (history.length === 0) { box.style.display = 'none'; return; }
+            box.style.display = 'block';
+            list.innerHTML = history.map(h => `<div class="history-item">${h.result} ${h.q} - ${h.time}</div>`).join('');
+        }
+
+        // ========== مؤثرات صوتية اصطناعية ==========
+        function playSound(type) {
+            try {
+                const ctx = new (window.AudioContext || window.webkitAudioContext)();
+                const osc = ctx.createOscillator();
+                const gain = ctx.createGain();
+                osc.connect(gain);
+                gain.connect(ctx.destination);
+                osc.frequency.value = type === 'success' ? 800 : 300;
+                gain.gain.setValueAtTime(0.3, ctx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.3);
+                osc.start(ctx.currentTime);
+                osc.stop(ctx.currentTime + 0.3);
+            } catch(e) {}
+        }
+
+        // ========== الوضع الليلي ==========
+        function toggleTheme() {
+            document.body.classList.toggle('light-mode');
+            localStorage.setItem('riddleTheme', document.body.classList.contains('light-mode') ? 'light' : 'dark');
+        }
+
+        // ========== بدء التشغيل ==========
+        window.onload = function() {
+            if (localStorage.getItem('riddleTheme') === 'light') document.body.classList.add('light-mode');
+            renderHistory();
+            displayRiddle();
+        };
+    </script>
+</body>
+</html>

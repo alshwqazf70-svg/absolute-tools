@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مولد أسماء النطاقات | الأداة الاحترافية 🔀</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+    <style>
+        :root {
+            --primary: #7c3aed;
+            --primary-glow: rgba(124, 58, 237, 0.5);
+            --secondary: #00ccff;
+            --bg-dark: #0a0810;
+            --bg-card: #13101e;
+            --bg-input: #1b1728;
+            --border-color: #2d2638;
+            --text-light: #f3eefc;
+            --text-muted: #a090c0;
+            --card-shadow: 0 20px 50px rgba(0,0,0,0.8);
+        }
+        body.light-mode {
+            --bg-dark: #f5f2fc;
+            --bg-card: #ffffff;
+            --bg-input: #ede4fc;
+            --border-color: #d8c8f0;
+            --text-light: #1a1028;
+            --text-muted: #5b4880;
+            --card-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; transition: background 0.3s, color 0.2s; }
+        body {
+            font-family: 'Cairo', sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-light);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            background-image: radial-gradient(circle at 50% 0%, var(--primary-glow) 0%, transparent 40%);
+        }
+        .container {
+            max-width: 950px;
+            width: 100%;
+            background: var(--bg-card);
+            padding: 40px;
+            border-radius: 40px;
+            border: 1px solid var(--border-color);
+            box-shadow: var(--card-shadow);
+            text-align: center;
+            margin-bottom: 30px;
+            position: relative;
+            overflow: hidden;
+        }
+        .container::before {
+            content: "🌐";
+            position: absolute;
+            bottom: -30px;
+            left: -20px;
+            font-size: 7rem;
+            opacity: 0.04;
+            z-index: 0;
+        }
+        .theme-toggle {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: var(--bg-input);
+            border: 1px solid var(--border-color);
+            color: var(--text-light);
+            font-size: 1.3rem;
+            padding: 8px 12px;
+            border-radius: 50px;
+            cursor: pointer;
+            z-index: 10;
+        }
+        .container > * { position: relative; z-index: 1; }
+        h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, #fff, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+            letter-spacing: 2px;
+        }
+        .sub { color: var(--text-muted); margin-bottom: 25px; }
+
+        .input-group {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 25px;
+        }
+        input {
+            flex: 1;
+            min-width: 220px;
+            padding: 16px;
+            border-radius: 18px;
+            background: var(--bg-input);
+            border: 2px solid var(--border-color);
+            color: var(--text-light);
+            font-size: 1.1rem;
+            outline: none;
+            font-family: 'Cairo';
+        }
+        input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 15px var(--primary-glow);
+        }
+        .btn-generate {
+            padding: 16px 30px;
+            border: none;
+            border-radius: 18px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: #fff;
+            font-weight: 900;
+            cursor: pointer;
+            transition: 0.3s;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .btn-generate:hover { transform: scale(1.05); box-shadow: 0 0 30px var(--primary-glow); }
+
+        .toolbar {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin: 10px 0 20px;
+        }
+        .btn-tool {
+            background: var(--bg-input);
+            border: 1px solid var(--border-color);
+            color: var(--text-light);
+            padding: 10px 16px;
+            border-radius: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            font-size: 0.85rem;
+            transition: 0.2s;
+        }
+        .btn-tool:hover { background: var(--primary); color: #fff; border-color: var(--primary); }
+
+        .search-box { margin: 10px 0; }
+        #searchInput {
+            width: 100%;
+            max-width: 300px;
+            padding: 10px;
+            border-radius: 12px;
+            background: var(--bg-input);
+            border: 1px solid var(--border-color);
+            color: var(--text-light);
+            font-family: 'Cairo';
+            text-align: center;
+        }
+
+        .domains-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 10px;
+            margin-top: 20px;
+            max-height: 500px;
+            overflow-y: auto;
+            padding: 5px;
+        }
+        .domain-item {
+            background: var(--bg-input);
+            padding: 14px;
+            border-radius: 14px;
+            border: 1px solid var(--border-color);
+            font-size: 0.9rem;
+            font-family: 'Cairo', monospace;
+            color: var(--primary);
+            transition: 0.3s;
+            cursor: pointer;
+            position: relative;
+            text-align: center;
+        }
+        .domain-item:hover {
+            border-color: var(--secondary);
+            background: #1f2937;
+            transform: translateY(-3px);
+        }
+        .domain-item.copied { animation: pop 0.3s ease; }
+        @keyframes pop { 0% { transform: scale(1); } 50% { transform: scale(0.95); } 100% { transform: scale(1); } }
+        .availability {
+            position: absolute;
+            top: 6px;
+            right: 8px;
+            font-size: 0.6rem;
+            background: #10b981;
+            color: #fff;
+            padding: 2px 6px;
+            border-radius: 6px;
+        }
+        .availability.taken { background: #ef4444; }
+
+        .counter { margin-top: 15px; color: var(--text-muted); font-size: 0.9rem; }
+
+        @media (max-width: 600px) {
+            .container { padding: 20px; }
+            h1 { font-size: 1.5rem; }
+            .input-group { flex-direction: column; }
+            input { width: 100%; }
+            .domains-grid { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <button class="theme-toggle" onclick="toggleTheme()" title="تبديل الوضع">🌓</button>
+        <h1>🌐 مولد أسماء النطاقات</h1>
+        <p class="sub">أدخل الكلمة الرئيسية، ودعنا نصنع لك عشرات الأفكار لنطاقك الجديد.</p>
+
+        <div class="input-group">
+            <input type="text" id="keywordInput" placeholder="مثلاً: mybrand، تقنية..." value="mybrand">
+            <button class="btn-generate" onclick="generateDomains()">
+                <i class="fas fa-globe"></i> توليد النطاقات
+            </button>
+        </div>
+
+        <div class="toolbar">
+            <button class="btn-tool" onclick="copyAllDomains()"><i class="fas fa-copy"></i> نسخ الكل</button>
+            <button class="btn-tool" onclick="exportCSV()"><i class="fas fa-file-csv"></i> CSV</button>
+            <button class="btn-tool" onclick="exportTXT()"><i class="fas fa-file-alt"></i> TXT</button>
+            <button class="btn-tool" onclick="saveDomains()"><i class="fas fa-save"></i> حفظ</button>
+            <button class="btn-tool" onclick="downloadImage()"><i class="fas fa-image"></i> صورة</button>
+        </div>
+
+        <div class="search-box">
+            <input type="text" id="searchInput" placeholder="🔍 تصفية النطاقات..." oninput="filterDomains()">
+        </div>
+
+        <div id="domainsGrid" class="domains-grid"></div>
+        <div class="counter" id="domainCounter">تم توليد 0 نطاقاً</div>
+    </div>
+
+    <script>
+        let domainCount = 0;
+        let usedDomains = new Set();
+        let allDomains = [];
+
+        // موسوعة البادئات واللواحق
+        const prefixes = ['get', 'go', 'my', 'app', 'try', 'the', 'pro', 'neo', 'ultra', 'smart', 'cloud', 'top', 'best', 'new', 'digital', 'cyber', 'next', 'hyper', 'omni', 'meta', 'alpha', 'prime', 'elite', 'super', 'max', 'flex', 'sync', 'pixel', 'nova', 'zen', 'flow', 'rise', 'core', 'hub', 'net', 'web', 'tech', 'data', 'code', 'byte'];
+        const suffixes = ['hub', 'lab', 'zone', 'io', 'ai', 'tech', 'pro', 'online', 'solutions', 'fy', 'x', 'systems', 'works', 'me', 'ly', 'ster', 'able', 'wise', 'ful', 'less', 'box', 'kit', 'base', 'space', 'world', 'pad', 'bit', 'byte', 'gen', 'ify', 'ora', 'ica', 'ous', 'ium', 'est', 'ist', 'er', 'ed', 'ing'];
+        const tlds = [
+            { tld: '.com', popular: true }, { tld: '.net', popular: true }, { tld: '.org', popular: false },
+            { tld: '.io', popular: true }, { tld: '.co', popular: true }, { tld: '.ai', popular: true },
+            { tld: '.tech', popular: true }, { tld: '.cloud', popular: true }, { tld: '.online', popular: false },
+            { tld: '.pro', popular: false }, { tld: '.dev', popular: true }, { tld: '.app', popular: true },
+            { tld: '.me', popular: true }, { tld: '.sa', popular: false }, { tld: '.ae', popular: false },
+            { tld: '.store', popular: false }, { tld: '.shop', popular: true }, { tld: '.site', popular: false },
+            { tld: '.xyz', popular: false }, { tld: '.info', popular: false }
+        ];
+
+        function generateDomains() {
+            const keyword = document.getElementById('keywordInput').value.trim().toLowerCase();
+            if (!keyword) { alert('يرجى كتابة كلمة رئيسية!'); return; }
+
+            // تنظيف الكلمة من المسافات والرموز
+            const clean = keyword.replace(/[^a-zA-Z0-9\u0621-\u064A]/g, '').toLowerCase();
+            if (clean.length < 2) { alert('الكلمة قصيرة جداً!'); return; }
+
+            let generated = [];
+            let attempts = 0;
+
+            // توليد متغيرات الكلمة (اختصارات)
+            const variations = [clean];
+            if (clean.length > 4) variations.push(clean.substring(0, Math.floor(clean.length / 2)));
+            if (clean.length > 5) variations.push(clean.substring(0, 3) + clean.substring(clean.length - 2));
+
+            while (generated.length < 30 && attempts < 500) {
+                const base = variations[Math.floor(Math.random() * variations.length)];
+                let name;
+                const pattern = Math.floor(Math.random() * 4);
+
+                if (pattern === 0) {
+                    name = prefixes[Math.floor(Math.random() * prefixes.length)] + base;
+                } else if (pattern === 1) {
+                    name = base + suffixes[Math.floor(Math.random() * suffixes.length)];
+                } else if (pattern === 2) {
+                    name = prefixes[Math.floor(Math.random() * prefixes.length)] + base + suffixes[Math.floor(Math.random() * suffixes.length)];
+                } else {
+                    name = base;
+                }
+
+                const tld = tlds[Math.floor(Math.random() * tlds.length)];
+                const fullDomain = name + tld.tld;
+
+                if (!usedDomains.has(fullDomain)) {
+                    usedDomains.add(fullDomain);
+                    generated.push({ domain: fullDomain, popular: tld.popular });
+                }
+                attempts++;
+            }
+
+            if (usedDomains.size > 2000) usedDomains.clear();
+
+            allDomains = generated;
+            domainCount += generated.length;
+            renderDomains(allDomains);
+            document.getElementById('searchInput').value = '';
+        }
+
+        function renderDomains(list) {
+            const grid = document.getElementById('domainsGrid');
+            grid.innerHTML = '';
+            list.forEach(item => {
+                const div = document.createElement('div');
+                div.className = 'domain-item';
+                div.innerHTML = `
+                    ${item.domain}
+                    <span class="availability ${item.popular ? '' : 'taken'}">
+                        ${item.popular ? '✓' : '?'}
+                    </span>
+                `;
+                div.onclick = () => copySingle(item.domain, div);
+                grid.appendChild(div);
+            });
+            document.getElementById('domainCounter').textContent = `عرض ${list.length} نطاقاً من أصل ${allDomains.length}`;
+        }
+
+        function filterDomains() {
+            const query = document.getElementById('searchInput').value.toLowerCase();
+            const filtered = allDomains.filter(d => d.domain.toLowerCase().includes(query));
+            renderDomains(filtered.length > 0 ? filtered : allDomains);
+        }
+
+        function copySingle(domain, element) {
+            navigator.clipboard.writeText(domain).then(() => {
+                if (element) {
+                    element.classList.add('copied');
+                    setTimeout(() => element.classList.remove('copied'), 300);
+                }
+            });
+        }
+
+        function copyAllDomains() {
+            navigator.clipboard.writeText(allDomains.map(d => d.domain).join('\n')).then(() => alert('✅ تم نسخ جميع النطاقات'));
+        }
+
+        function exportCSV() {
+            const csv = 'Domain\n' + allDomains.map(d => d.domain).join('\n');
+            const blob = new Blob([csv], { type: 'text/csv' });
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = 'domains.csv';
+            link.click();
+        }
+
+        function exportTXT() {
+            const blob = new Blob([allDomains.map(d => d.domain).join('\n')], { type: 'text/plain' });
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = 'domains.txt';
+            link.click();
+        }
+
+        function saveDomains() {
+            let saved = JSON.parse(localStorage.getItem('domainLibrary') || '[]');
+            const newItems = allDomains.map(d => ({ domain: d.domain, date: new Date().toLocaleString('ar-SA') }));
+            localStorage.setItem('domainLibrary', JSON.stringify([...newItems, ...saved].slice(0, 50)));
+            alert('💾 تم حفظ النطاقات في المكتبة!');
+        }
+
+        function downloadImage() {
+            html2canvas(document.getElementById('domainsGrid'), { backgroundColor: null }).then(canvas => {
+                const link = document.createElement('a');
+                link.download = `نطاقات_${Date.now()}.png`;
+                link.href = canvas.toDataURL();
+                link.click();
+            });
+        }
+
+        function toggleTheme() {
+            document.body.classList.toggle('light-mode');
+            localStorage.setItem('domainTheme', document.body.classList.contains('light-mode') ? 'light' : 'dark');
+        }
+
+        window.onload = function() {
+            if (localStorage.getItem('domainTheme') === 'light') document.body.classList.add('light-mode');
+            generateDomains();
+        };
+    </script>
+</body>
+</html>

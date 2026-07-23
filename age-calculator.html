@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>حاسبة العمر المتطورة | عمرك بالثواني ✦</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+    <style>
+        :root {
+            --primary: #ff6b6b;
+            --primary-glow: rgba(255, 107, 107, 0.5);
+            --secondary: #ffa500;
+            --bg-dark: #140a0a;
+            --bg-card: #1e1111;
+            --bg-input: #281a1a;
+            --border-color: #3d2a2a;
+            --text-light: #fce4e4;
+            --text-muted: #c09090;
+            --card-shadow: 0 20px 50px rgba(0,0,0,0.8);
+        }
+        body.light-mode {
+            --bg-dark: #fdf5f5;
+            --bg-card: #ffffff;
+            --bg-input: #fce8e8;
+            --border-color: #f0c8c8;
+            --text-light: #3a1010;
+            --text-muted: #704040;
+            --card-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; transition: background 0.3s, color 0.2s; }
+        body {
+            font-family: 'Cairo', sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-light);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            background-image: radial-gradient(circle at 50% 0%, var(--primary-glow) 0%, transparent 40%);
+        }
+        .container {
+            max-width: 800px;
+            width: 100%;
+            background: var(--bg-card);
+            padding: 40px;
+            border-radius: 40px;
+            border: 1px solid var(--border-color);
+            box-shadow: var(--card-shadow);
+            text-align: center;
+            margin-bottom: 30px;
+            position: relative;
+            overflow: hidden;
+        }
+        .container::before {
+            content: "🎂";
+            position: absolute;
+            bottom: -30px;
+            left: -20px;
+            font-size: 7rem;
+            opacity: 0.04;
+            z-index: 0;
+        }
+        .theme-toggle {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: var(--bg-input);
+            border: 1px solid var(--border-color);
+            color: var(--text-light);
+            font-size: 1.3rem;
+            padding: 8px 12px;
+            border-radius: 50px;
+            cursor: pointer;
+            z-index: 10;
+        }
+        .container > * { position: relative; z-index: 1; }
+        h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, #fff, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+            letter-spacing: 2px;
+        }
+        .sub { color: var(--text-muted); margin-bottom: 25px; }
+
+        .input-group {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 25px;
+        }
+        input[type="date"] {
+            padding: 16px;
+            border-radius: 18px;
+            background: var(--bg-input);
+            border: 2px solid var(--border-color);
+            color: var(--text-light);
+            font-size: 1.1rem;
+            outline: none;
+            font-family: 'Cairo';
+            flex: 1;
+            min-width: 200px;
+        }
+        input[type="date"]:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 15px var(--primary-glow);
+        }
+        .btn-calc {
+            padding: 16px 30px;
+            border: none;
+            border-radius: 18px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: #fff;
+            font-weight: 900;
+            cursor: pointer;
+            transition: 0.3s;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .btn-calc:hover { transform: scale(1.05); box-shadow: 0 0 30px var(--primary-glow); }
+
+        .live-counter {
+            background: var(--bg-input);
+            padding: 20px;
+            border-radius: 20px;
+            margin: 20px 0;
+            border: 2px solid var(--primary);
+        }
+        .live-seconds {
+            font-family: 'Orbitron', monospace;
+            font-size: 3rem;
+            font-weight: 900;
+            color: var(--primary);
+            direction: ltr;
+        }
+        .live-label { color: var(--text-muted); font-size: 0.9rem; }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+            gap: 12px;
+            margin-top: 25px;
+        }
+        .stat-card {
+            background: var(--bg-input);
+            padding: 18px 12px;
+            border-radius: 18px;
+            border: 1px solid var(--border-color);
+            text-align: center;
+            transition: 0.3s;
+        }
+        .stat-card:hover { border-color: var(--primary); }
+        .stat-number {
+            display: block;
+            font-size: 2rem;
+            font-weight: 900;
+            color: var(--primary);
+            font-family: 'Orbitron', monospace;
+        }
+        .stat-label { color: var(--text-muted); font-size: 0.8rem; margin-top: 5px; }
+
+        .milestone-box {
+            margin-top: 20px;
+            padding: 20px;
+            background: var(--bg-dark);
+            border-radius: 18px;
+            border-right: 5px solid var(--secondary);
+            text-align: right;
+            line-height: 1.9;
+            font-size: 1.05rem;
+        }
+        .milestone-box .highlight { color: var(--primary); font-weight: 700; }
+
+        .action-buttons {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .btn-action {
+            background: var(--bg-input);
+            border: 1px solid var(--border-color);
+            color: var(--text-light);
+            padding: 10px 16px;
+            border-radius: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            font-size: 0.85rem;
+        }
+        .btn-action:hover { background: var(--primary); color: #fff; border-color: var(--primary); }
+
+        .counter { margin-top: 15px; color: var(--text-muted); font-size: 0.9rem; }
+
+        @media (max-width: 600px) {
+            .container { padding: 20px; }
+            h1 { font-size: 1.5rem; }
+            .live-seconds { font-size: 2rem; }
+            .stats-grid { grid-template-columns: repeat(3, 1fr); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <button class="theme-toggle" onclick="toggleTheme()" title="تبديل الوضع">🌓</button>
+        <h1>🎂 حاسبة العمر المتطورة</h1>
+        <p class="sub">اختر تاريخ ميلادك، واكتشف تفاصيل مذهلة عن عمرك!</p>
+
+        <div class="input-group">
+            <input type="date" id="birthDate" value="2000-01-01">
+            <button class="btn-calc" onclick="calculateAge()">
+                <i class="fas fa-calculator"></i> احسب عمري
+            </button>
+        </div>
+
+        <div id="liveCounterBox" class="live-counter" style="display: none;">
+            <div class="live-seconds" id="liveSeconds">0</div>
+            <div class="live-label">⏱️ ثانية عشتها حتى الآن</div>
+        </div>
+
+        <div id="statsGrid" class="stats-grid" style="display: none;">
+            <!-- تمتلئ ديناميكياً -->
+        </div>
+
+        <div id="milestoneBox" class="milestone-box" style="display: none;"></div>
+
+        <div class="action-buttons" id="actionButtons" style="display: none;">
+            <button class="btn-action" onclick="copyResults()"><i class="fas fa-copy"></i> نسخ</button>
+            <button class="btn-action" onclick="saveResult()"><i class="fas fa-save"></i> حفظ</button>
+            <button class="btn-action" onclick="downloadImage()"><i class="fas fa-image"></i> صورة</button>
+        </div>
+        <div class="counter" id="calcCounter">تم الحساب 0 مرة</div>
+    </div>
+
+    <script>
+        let calcCount = 0;
+        let liveInterval = null;
+        let currentData = null;
+
+        function calculateAge() {
+            const birthValue = document.getElementById('birthDate').value;
+            if (!birthValue) { alert('يرجى اختيار تاريخ ميلاد صحيح!'); return; }
+
+            const birth = new Date(birthValue + 'T00:00:00');
+            const now = new Date();
+            if (birth > now) { alert('تاريخ الميلاد لا يمكن أن يكون في المستقبل!'); return; }
+
+            // إيقاف المؤقت السابق
+            if (liveInterval) clearInterval(liveInterval);
+
+            function updateData() {
+                const current = new Date();
+                const diffMs = current - birth;
+                const totalSeconds = Math.floor(diffMs / 1000);
+                const totalMinutes = Math.floor(totalSeconds / 60);
+                const totalHours = Math.floor(totalMinutes / 60);
+                const totalDays = Math.floor(totalHours / 24);
+                const totalWeeks = Math.floor(totalDays / 7);
+                const totalMonths = Math.floor(totalDays / 30.44);
+                const totalYears = Math.floor(totalDays / 365.25);
+
+                // تحديث العداد الحي
+                document.getElementById('liveSeconds').textContent = totalSeconds.toLocaleString();
+
+                // عرض الإحصائيات
+                const stats = [
+                    { value: totalYears.toLocaleString(), label: 'سنة' },
+                    { value: totalMonths.toLocaleString(), label: 'شهر' },
+                    { value: totalWeeks.toLocaleString(), label: 'أسبوع' },
+                    { value: totalDays.toLocaleString(), label: 'يوم' },
+                    { value: totalHours.toLocaleString(), label: 'ساعة' },
+                    { value: totalMinutes.toLocaleString(), label: 'دقيقة' },
+                ];
+
+                const grid = document.getElementById('statsGrid');
+                grid.innerHTML = stats.map(s => `
+                    <div class="stat-card">
+                        <span class="stat-number">${s.value}</span>
+                        <span class="stat-label">${s.label}</span>
+                    </div>
+                `).join('');
+                grid.style.display = 'grid';
+
+                // البرج الفلكي
+                const month = birth.getMonth() + 1;
+                const day = birth.getDate();
+                const zodiac = getZodiac(month, day);
+
+                // حدث تاريخي عشوائي (محاكاة)
+                const events = [
+                    'اختراع الإنترنت', 'إطلاق أول قمر صناعي', 'نهاية الحرب الباردة',
+                    'ظهور أول حاسوب شخصي', 'تأسيس الأمم المتحدة', 'اكتشاف بنية الحمض النووي'
+                ];
+                const randomEvent = events[Math.floor(Math.random() * events.length)];
+
+                // رسالة تحفيزية
+                const messages = [
+                    `🎉 لقد عشت <span class="highlight">${totalDays.toLocaleString()}</span> يوماً! هذا إنجاز عظيم.`,
+                    `💪 أنت أقوى مما تتصور! <span class="highlight">${totalWeeks.toLocaleString()}</span> أسبوعاً من الصمود.`,
+                    `🌟 في كل يوم تشرق فيه الشمس، تزداد حكمتك. <span class="highlight">${totalYears}</span> سنة من الخبرة.`,
+                    `🌍 لقد سافرت حول الشمس <span class="highlight">${totalYears}</span> مرة! استمر في الاستكشاف.`
+                ];
+
+                const msg = messages[Math.floor(Math.random() * messages.length)];
+                document.getElementById('milestoneBox').innerHTML = `
+                    ${msg}<br><br>
+                    <span class="highlight">🔮 برجك الفلكي:</span> ${zodiac.name} - ${zodiac.description}<br>
+                    <span class="highlight">📅 حدث قريب من ميلادك:</span> ${randomEvent}
+                `;
+                document.getElementById('milestoneBox').style.display = 'block';
+                document.getElementById('liveCounterBox').style.display = 'block';
+                document.getElementById('actionButtons').style.display = 'flex';
+
+                currentData = {
+                    birth: birthValue,
+                    years: totalYears,
+                    days: totalDays,
+                    zodiac: zodiac.name,
+                    msg: msg.replace(/<[^>]*>/g, '')
+                };
+            }
+
+            updateData();
+            // تحديث كل ثانية
+            liveInterval = setInterval(updateData, 1000);
+
+            calcCount++;
+            document.getElementById('calcCounter').textContent = `تم الحساب ${calcCount} مرة`;
+        }
+
+        function getZodiac(month, day) {
+            const zodiacs = [
+                { name: 'الجدي', start: [1,1], end: [1,19], desc: 'عملي وطموح' },
+                { name: 'الدلو', start: [1,20], end: [2,18], desc: 'مبتكر ومستقل' },
+                { name: 'الحوت', start: [2,19], end: [3,20], desc: 'حساس ومبدع' },
+                { name: 'الحمل', start: [3,21], end: [4,19], desc: 'شجاع ومغامر' },
+                { name: 'الثور', start: [4,20], end: [5,20], desc: 'صبور وموثوق' },
+                { name: 'الجوزاء', start: [5,21], end: [6,20], desc: 'فضولي واجتماعي' },
+                { name: 'السرطان', start: [6,21], end: [7,22], desc: 'عاطفي ووفيّ' },
+                { name: 'الأسد', start: [7,23], end: [8,22], desc: 'قائد وكريم' },
+                { name: 'العذراء', start: [8,23], end: [9,22], desc: 'دقيق ومحلل' },
+                { name: 'الميزان', start: [9,23], end: [10,22], desc: 'عادل ومتوازن' },
+                { name: 'العقرب', start: [10,23], end: [11,21], desc: 'عاطفي وغامض' },
+                { name: 'القوس', start: [11,22], end: [12,21], desc: 'متفائل ومغامر' },
+                { name: 'الجدي', start: [12,22], end: [12,31], desc: 'عملي وطموح' }
+            ];
+            for (const z of zodiacs) {
+                if ((month === z.start[0] && day >= z.start[1]) || (month === z.end[0] && day <= z.end[1])) {
+                    return z;
+                }
+            }
+            return zodiacs[0];
+        }
+
+        function copyResults() {
+            if (!currentData) return;
+            const text = `عمري: ${currentData.years} سنة | ${currentData.days} يوم | برج ${currentData.zodiac}`;
+            navigator.clipboard.writeText(text).then(() => alert('✅ تم نسخ النتائج'));
+        }
+
+        function saveResult() {
+            if (!currentData) return;
+            let saved = JSON.parse(localStorage.getItem('ageResults') || '[]');
+            saved.unshift({ ...currentData, date: new Date().toLocaleString('ar-SA') });
+            if (saved.length > 10) saved.pop();
+            localStorage.setItem('ageResults', JSON.stringify(saved));
+            alert('💾 تم حفظ النتيجة');
+        }
+
+        function downloadImage() {
+            html2canvas(document.getElementById('statsGrid'), { backgroundColor: null }).then(canvas => {
+                const link = document.createElement('a');
+                link.download = `عمرك_${Date.now()}.png`;
+                link.href = canvas.toDataURL();
+                link.click();
+            });
+        }
+
+        function toggleTheme() {
+            document.body.classList.toggle('light-mode');
+            localStorage.setItem('ageTheme', document.body.classList.contains('light-mode') ? 'light' : 'dark');
+        }
+
+        window.onload = function() {
+            if (localStorage.getItem('ageTheme') === 'light') document.body.classList.add('light-mode');
+            calculateAge();
+        };
+    </script>
+</body>
+</html>
