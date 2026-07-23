@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>من نحن - الأدوات المطلقة المتنوعة</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* نفس التصميم الأساسي */
+        :root {
+            --primary: #00ff88;
+            --bg-dark: #0b0e14;
+            --bg-card: #131821;
+            --border-color: #2a2f3a;
+            --text-light: #f3f4f6;
+            --text-muted: #9ca3af;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'Cairo', sans-serif;
+            background: var(--bg-dark); color: var(--text-light);
+            min-height: 100vh; display: flex; flex-direction: column;
+        }
+        a { text-decoration: none; color: inherit; }
+        nav {
+            background: rgba(11, 14, 20, 0.9); backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-color); padding: 15px 30px;
+            display: flex; justify-content: space-between; align-items: center;
+            position: sticky; top: 0; z-index: 100;
+        }
+        .logo { font-weight: 900; font-size: 1.3rem; color: var(--primary); display: flex; align-items: center; gap: 10px; }
+        .nav-links { display: flex; gap: 20px; align-items: center; flex-wrap: wrap; }
+        .nav-links a { color: var(--text-muted); font-weight: 600; transition: 0.3s; }
+        .nav-links a:hover { color: var(--primary); }
+        .container { max-width: 800px; margin: 0 auto; padding: 40px 20px; width: 100%; flex: 1; }
+        .page-title { font-size: 2.2rem; font-weight: 900; margin-bottom: 20px; background: linear-gradient(135deg, #fff, var(--primary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .content-box { background: var(--bg-card); padding: 30px; border-radius: 20px; border: 1px solid var(--border-color); line-height: 1.8; text-align: center; }
+        .content-box h2 { color: var(--primary); margin-top: 20px; font-size: 1.4rem; }
+        footer { background: var(--bg-dark); border-top: 1px solid var(--border-color); padding: 30px 20px; text-align: center; color: var(--text-muted); margin-top: auto; }
+        footer strong { color: var(--primary); }
+        @media (max-width: 600px) { .logo { font-size: 1rem; } .nav-links { gap: 10px; font-size: 0.9rem; } }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="logo"><i class="fas fa-shield-halved"></i> الأدوات المطلقة</div>
+        <div class="nav-links">
+            <a href="index.html">الرئيسية</a>
+            <a href="about.html" style="color: var(--primary);">من نحن</a>
+        </div>
+    </nav>
+    <div class="container">
+        <h1 class="page-title">🧑‍💻 من نحن</h1>
+        <div class="content-box">
+            <h2>✨ مرحباً بك في "الأدوات المطلقة المتنوعة"</h2>
+            <p>نحن مجموعة من المبدعين والمبرمجين الشغوفين بتقديم <strong>أفضل الأدوات والألعاب</strong> التي تعمل مباشرة في متصفحك دون الحاجة لأي تثبيت أو خادم.</p>
+            
+            <h2>💡 ما الذي نقدمه؟</h2>
+            <p>نقدم مجموعة متكاملة من <strong>12 أداة و10 ألعاب</strong>، تم تصميمها لتكون مفيدة، ممتعة، وتعمل بشكل لا نهائي. سواء كنت تريد توليد إيميلات وهمية، إيجاد فكرة مشروع، كتابة قصة، أو قضاء وقت ممتع في الألعاب، فنحن نوفر لك كل ذلك في مكان واحد.</p>
+
+            <h2>🚀 فلسفتنا</h2>
+            <p>نؤمن بأن التكنولوجيا يجب أن تكون <strong>مجانية، سهلة، ومتاحة للجميع</strong>. لذلك، جميع أدواتنا تعمل على أي متصفح، ولا تحتاج إلى تسجيل الدخول أو دفع أي رسوم.</p>
+
+            <h2>📍 من أين نحن؟</h2>
+            <p>نحن فخورون بأن موقعنا <strong>صنع في اليمن</strong>، بأيادٍ يمنية، لعيون العالم العربي والعالم أجمع.</p>
+            
+            <h2>🤝 تواصل معنا</h2>
+            <p>إذا كان لديك أي اقتراح أو فكرة، لا تتردد في التواصل معنا عبر صفحة <a href="contact.html" style="color: var(--primary);">اتصل بنا</a>.</p>
+        </div>
+    </div>
+    <footer>&copy; 2026 <strong>الأدوات المطلقة المتنوعة</strong>. صنع في اليمن بفخر.</footer>
+</body>
+</html>
