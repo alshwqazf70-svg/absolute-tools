@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://alshwqazf70-svg.github.io/absolute-tools/sitemap.xml
