@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مولد أسماء النطاقات | أفكار لا حصر لها</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #00ff88;
+            --primary-shadow: rgba(0, 255, 136, 0.3);
+            --secondary: #00ccff;
+            --bg-dark: #0b0e14;
+            --bg-card: #131821;
+            --bg-input: #1b212b;
+            --border-color: #2a2f3a;
+            --text-light: #f3f4f6;
+            --text-muted: #9ca3af;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'Cairo', sans-serif;
+            background: var(--bg-dark); color: var(--text-light);
+            min-height: 100vh; display: flex; flex-direction: column; align-items: center; padding: 20px;
+        }
+        .container {
+            max-width: 850px; width: 100%; background: var(--bg-card);
+            padding: 40px; border-radius: 30px; border: 1px solid var(--border-color);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.6); text-align: center;
+        }
+        h1 {
+            font-family: 'Orbitron', sans-serif; font-size: 2rem; font-weight: 900;
+            background: linear-gradient(135deg, #ffffff, var(--primary), var(--secondary));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
+        .sub { color: var(--text-muted); margin-bottom: 20px; }
+
+        .input-group { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; margin-bottom: 20px; }
+        input {
+            flex: 1; min-width: 180px; padding: 14px; border-radius: 15px;
+            background: var(--bg-input); border: 1px solid var(--border-color);
+            color: #fff; font-size: 1rem; outline: none; font-family: 'Cairo';
+        }
+        input:focus { border-color: var(--primary); }
+
+        .btn-generate {
+            padding: 14px 30px; border: none; border-radius: 15px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: #000; font-weight: 900; cursor: pointer; transition: 0.3s;
+        }
+        .btn-generate:hover { transform: scale(1.05); }
+
+        .domains-grid {
+            display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 10px; margin-top: 20px; max-height: 450px; overflow-y: auto;
+        }
+        .domain-item {
+            background: var(--bg-input); padding: 12px; border-radius: 12px;
+            border: 1px solid var(--border-color); font-size: 0.9rem; font-family: monospace;
+            color: var(--primary); transition: 0.3s; cursor: pointer;
+        }
+        .domain-item:hover {
+            border-color: var(--secondary); background: #1f2937; transform: translateY(-3px);
+        }
+        .counter { margin-top: 15px; color: var(--text-muted); font-size: 0.85rem; }
+
+        @media (max-width: 600px) {
+            .container { padding: 20px; }
+            h1 { font-size: 1.6rem; }
+            .input-group { flex-direction: column; }
+            input { width: 100%; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>🔀 مولد أسماء النطاقات</h1>
+        <p class="sub">أدخل الكلمة الرئيسية لمشروعك، وسأولد لك 30 فكرة فريدة لاسم نطاق!</p>
+
+        <div class="input-group">
+            <input type="text" id="keywordInput" placeholder="كلمة رئيسية (مثال: cybershield)" value="cybershield">
+            <button class="btn-generate" onclick="generateDomains()">🚀 توليد نطاقات</button>
+        </div>
+
+        <div id="domainsGrid" class="domains-grid"></div>
+        <div class="counter" id="domainCounter">تم توليد 0 نطاقاً</div>
+    </div>
+
+    <script>
+        // ================================================================
+        // محرك أسماء النطاقات اللامحدود (دمج البادئات واللواحق)
+        // ================================================================
+        let domainCount = 0;
+        let usedDomains = new Set();
+
+        function generateDomains() {
+            const keyword = document.getElementById('keywordInput').value.trim().toLowerCase();
+            if (!keyword) {
+                alert('يرجى كتابة كلمة رئيسية أولاً!');
+                return;
+            }
+
+            // قواعد بيانات البادئات واللواحق والنطاقات
+            const prefixes = ['get', 'go', 'my', 'app', 'try', 'the', 'pro', 'neo', 'ultra', 'smart', 'cloud', 'top', 'best', 'new', 'digital', 'cyber'];
+            const suffixes = ['hub', 'lab', 'zone', 'io', 'ai', 'tech', 'pro', 'online', 'solutions', 'fy', 'x', 'systems', 'works', 'me'];
+            const tlds = ['.com', '.net', '.io', '.org', '.tech', '.co', '.ai', '.cloud', '.online', '.pro', '.dev', '.app'];
+
+            let generated = [];
+            let attempts = 0;
+
+            // توليد 30 نطاقاً فريداً
+            while (generated.length < 30 && attempts < 500) {
+                let name;
+                // الاختيار بين بادئة + كلمة، كلمة + لاحقة، أو بادئة + كلمة + لاحقة
+                const pattern = Math.floor(Math.random() * 3);
+                
+                if (pattern === 0) {
+                    const prefix = prefixes[Math.floor(Math.random() * prefixes.length)];
+                    name = prefix + keyword;
+                } else if (pattern === 1) {
+                    const suffix = suffixes[Math.floor(Math.random() * suffixes.length)];
+                    name = keyword + suffix;
+                } else {
+                    const prefix = prefixes[Math.floor(Math.random() * prefixes.length)];
+                    const suffix = suffixes[Math.floor(Math.random() * suffixes.length)];
+                    name = prefix + keyword + suffix;
+                }
+                
+                // إضافة نطاق عشوائي
+                const tld = tlds[Math.floor(Math.random() * tlds.length)];
+                const fullDomain = name + tld;
+
+                // التحقق من التكرار
+                if (!usedDomains.has(fullDomain)) {
+                    usedDomains.add(fullDomain);
+                    generated.push(fullDomain);
+                }
+                attempts++;
+            }
+
+            // تنظيف الذاكرة (إذا كبرت القائمة أكثر من اللازم)
+            if (usedDomains.size > 1000) usedDomains.clear();
+
+            // عرض النتائج
+            domainCount += generated.length;
+            const grid = document.getElementById('domainsGrid');
+            grid.innerHTML = '';
+
+            generated.forEach(domain => {
+                const div = document.createElement('div');
+                div.className = 'domain-item';
+                div.textContent = domain;
+                div.onclick = () => copyToClipboard(domain);
+                grid.appendChild(div);
+            });
+
+            document.getElementById('domainCounter').textContent = `تم توليد ${domainCount} نطاقاً`;
+        }
+
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(() => {
+                alert(`✅ تم نسخ النطاق: ${text}`);
+            });
+        }
+
+        // تشغيل أولي عند فتح الصفحة
+        generateDomains();
+    </script>
+</body>
+</html>

@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مولد أفكار المشاريع | ريادة الأعمال اللانهائية</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #00ff88;
+            --primary-shadow: rgba(0, 255, 136, 0.3);
+            --secondary: #00ccff;
+            --bg-dark: #0b0e14;
+            --bg-card: #131821;
+            --bg-input: #1b212b;
+            --border-color: #2a2f3a;
+            --text-light: #f3f4f6;
+            --text-muted: #9ca3af;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'Cairo', sans-serif;
+            background: var(--bg-dark); color: var(--text-light);
+            min-height: 100vh; display: flex; flex-direction: column; align-items: center; padding: 20px;
+        }
+        .container {
+            max-width: 850px; width: 100%; background: var(--bg-card);
+            padding: 40px; border-radius: 30px; border: 1px solid var(--border-color);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.6); text-align: center;
+        }
+        h1 {
+            font-family: 'Orbitron', sans-serif; font-size: 2rem; font-weight: 900;
+            background: linear-gradient(135deg, #ffffff, var(--primary), var(--secondary));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
+        .sub { color: var(--text-muted); margin-bottom: 20px; }
+
+        .input-group { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; margin-bottom: 20px; }
+        select, input {
+            padding: 14px; border-radius: 15px; background: var(--bg-input);
+            border: 1px solid var(--border-color); color: #fff; font-size: 1rem;
+            outline: none; font-family: 'Cairo';
+        }
+        select { min-width: 180px; cursor: pointer; }
+        select:focus, input:focus { border-color: var(--primary); }
+
+        .btn-generate {
+            padding: 14px 30px; border: none; border-radius: 15px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: #000; font-weight: 900; cursor: pointer; transition: 0.3s;
+        }
+        .btn-generate:hover { transform: scale(1.05); }
+
+        .output-box {
+            margin-top: 25px; padding: 25px; background: #0b0e14; border-radius: 20px;
+            border-right: 4px solid var(--primary); text-align: right; line-height: 1.8;
+            display: none; animation: fadeUp 0.6s ease;
+        }
+        .output-box.show { display: block; }
+        @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        .highlight { color: var(--primary); font-weight: 700; }
+        .highlight2 { color: var(--secondary); font-weight: 700; }
+        .counter { margin-top: 15px; color: var(--text-muted); font-size: 0.85rem; }
+
+        @media (max-width: 600px) {
+            .container { padding: 20px; }
+            h1 { font-size: 1.6rem; }
+            .input-group { flex-direction: column; }
+            select, input, button { width: 100%; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>🚀 مولد أفكار المشاريع</h1>
+        <p class="sub">اختر المجال الذي يثير اهتمامك، وسأولد لك فكرة مشروع جديدة ومتكاملة في ثانية!</p>
+
+        <div class="input-group">
+            <select id="industrySelect">
+                <option value="tech">💻 التقنية والبرمجيات</option>
+                <option value="edu">📚 التعليم والتدريب</option>
+                <option value="health">🏥 الصحة واللياقة</option>
+                <option value="food">🍔 الطعام والمطاعم</option>
+                <option value="eco">🌱 البيئة والاستدامة</option>
+                <option value="ecom">🛍️ التجارة الإلكترونية</option>
+                <option value="art">🎨 الفن والإبداع</option>
+                <option value="ai">🤖 الذكاء الاصطناعي</option>
+            </select>
+            <button class="btn-generate" onclick="generateIdea()">💡 توليد فكرة جديدة</button>
+        </div>
+
+        <div id="ideaOutput" class="output-box"></div>
+        <div class="counter" id="ideaCounter">تم توليد 0 فكرة</div>
+    </div>
+
+    <script>
+        // ================================================================
+        // محرك أفكار المشاريع (خوارزمية دمج لا نهائية)
+        // ================================================================
+        let ideaCount = 0;
+        let usedIdeas = new Set();
+
+        // قواعد بيانات ضخمة للدمج
+        const actions = ['تطبيق', 'منصة', 'أداة', 'مساعد', 'نظام', 'شبكة', 'مجتمع', 'سوق', 'مولد', 'محلل'];
+        const styles = ['ذكي', 'سريع', 'آمن', 'مبتكر', 'مخصص', 'مرن', 'قوي', 'خفيف'];
+        const verbs = ['لبيع', 'لشراء', 'لتأجير', 'لتبادل', 'لمشاركة', 'لتوصيل', 'لتعليم', 'لتدريب', 'لتحليل', 'لمراقبة'];
+        const audiences = ['الأطفال', 'المراهقين', 'الطلاب', 'المعلمين', 'المبرمجين', 'المصممين', 'المسوقين', 'رواد الأعمال', 'الشركات الصغيرة', 'الموظفين'];
+
+        const industriesMap = {
+            tech: { suffix: ['البرمجة', 'البيانات', 'الأمن السيبراني', 'البلوك تشين'], tag: 'تقنية' },
+            edu: { suffix: ['التعليم', 'المناهج', 'الدروس الخصوصية', 'التعلم عن بعد'], tag: 'تعليم' },
+            health: { suffix: ['اللياقة البدنية', 'الصحة النفسية', 'التغذية', 'الطب عن بعد'], tag: 'صحة' },
+            food: { suffix: ['الوجبات الصحية', 'المطاعم', 'الطهي المنزلي', 'توصيل الطعام'], tag: 'طعام' },
+            eco: { suffix: ['الطاقة المتجددة', 'إعادة التدوير', 'الاستدامة', 'النقل الأخضر'], tag: 'بيئة' },
+            ecom: { suffix: ['التجزئة', 'السلع اليدوية', 'المنتجات المحلية', 'البيع بالجملة'], tag: 'تجارة' },
+            art: { suffix: ['الفن الرقمي', 'الرسم', 'التصوير', 'الموسيقى'], tag: 'فن' },
+            ai: { suffix: ['التعلم الآلي', 'معالجة اللغة الطبيعية', 'الرؤية الحاسوبية', 'الروبوتات'], tag: 'ذكاء اصطناعي' }
+        };
+
+        function generateIdea() {
+            const industry = document.getElementById('industrySelect').value;
+            const data = industriesMap[industry];
+
+            let signature, title, description, attempt = 0;
+
+            do {
+                // اختيار عشوائي من المصفوفات
+                const action = actions[Math.floor(Math.random() * actions.length)];
+                const style = styles[Math.floor(Math.random() * styles.length)];
+                const verb = verbs[Math.floor(Math.random() * verbs.length)];
+                const audience = audiences[Math.floor(Math.random() * audiences.length)];
+                const suffix = data.suffix[Math.floor(Math.random() * data.suffix.length)];
+
+                // توليد العنوان
+                title = `${action} ${style} ${verb} ${audience} ${suffix}`;
+
+                // توليد الوصف الديناميكي
+                const descParts = [
+                    `هو ${style} ${action} متخصص في ${verb} ${audience} في مجال ${suffix}.`,
+                    `يعتمد هذا الحل على تقنيات حديثة لتقديم تجربة استثنائية ومخصصة.`,
+                    `يهدف هذا المشروع إلى سد فجوة كبيرة في السوق المحلية والعالمية.`,
+                    `سيساعد هذا ${action} ${audience} على تحقيق أهدافهم بكفاءة أعلى.`
+                ];
+                description = descParts.join(' ');
+
+                signature = title + description;
+                attempt++;
+            } while (usedIdeas.has(signature) && attempt < 50);
+
+            usedIdeas.add(signature);
+            if (usedIdeas.size > 200) usedIdeas.clear();
+
+            // عرض النتيجة
+            ideaCount++;
+            document.getElementById('ideaOutput').innerHTML = `
+                <span class="highlight">📌 الفكرة:</span><br><br>
+                <span class="highlight2" style="font-size:1.3rem;">${title}</span><br><br>
+                <span class="highlight">📝 الوصف:</span><br>
+                ${description}<br><br>
+                <span style="color: var(--text-muted); font-size:0.9rem;">🏷️ المجال: ${data.tag}</span>
+            `;
+            document.getElementById('ideaOutput').classList.add('show');
+            document.getElementById('ideaCounter').textContent = `تم توليد ${ideaCount} فكرة`;
+        }
+
+        // تشغيل أولي عند فتح الصفحة
+        generateIdea();
+    </script>
+</body>
+</html>

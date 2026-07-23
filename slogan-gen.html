@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مولد شعارات العلامات التجارية</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #00ff88;
+            --primary-shadow: rgba(0, 255, 136, 0.3);
+            --secondary: #00ccff;
+            --bg-dark: #0b0e14;
+            --bg-card: #131821;
+            --bg-input: #1b212b;
+            --border-color: #2a2f3a;
+            --text-light: #f3f4f6;
+            --text-muted: #9ca3af;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'Cairo', sans-serif;
+            background: var(--bg-dark); color: var(--text-light);
+            min-height: 100vh; display: flex; flex-direction: column; align-items: center; padding: 20px;
+        }
+        .container {
+            max-width: 850px; width: 100%; background: var(--bg-card);
+            padding: 40px; border-radius: 30px; border: 1px solid var(--border-color);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.6); text-align: center;
+        }
+        h1 {
+            font-family: 'Orbitron', sans-serif; font-size: 2rem; font-weight: 900;
+            background: linear-gradient(135deg, #ffffff, var(--primary), var(--secondary));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
+        .sub { color: var(--text-muted); margin-bottom: 20px; }
+
+        .input-group { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; margin-bottom: 20px; }
+        input {
+            flex: 1; min-width: 180px; padding: 14px; border-radius: 15px;
+            background: var(--bg-input); border: 1px solid var(--border-color);
+            color: #fff; font-size: 1rem; outline: none; font-family: 'Cairo';
+        }
+        input:focus { border-color: var(--primary); }
+
+        .btn-generate {
+            padding: 14px 30px; border: none; border-radius: 15px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: #000; font-weight: 900; cursor: pointer; transition: 0.3s;
+        }
+        .btn-generate:hover { transform: scale(1.05); }
+
+        .slogan-grid {
+            display: grid; grid-template-columns: 1fr; gap: 12px; margin-top: 20px; text-align: right;
+        }
+        .slogan-item {
+            background: var(--bg-input); padding: 15px 20px; border-radius: 15px;
+            border-right: 4px solid var(--primary); font-size: 1.1rem; line-height: 1.6;
+            transition: 0.3s; cursor: pointer; display: flex; justify-content: space-between; align-items: center;
+        }
+        .slogan-item:hover { border-color: var(--secondary); background: #1f2937; }
+        .slogan-item .copy-icon { color: var(--text-muted); font-size: 0.9rem; cursor: pointer; transition: 0.3s; }
+        .slogan-item .copy-icon:hover { color: var(--primary); }
+
+        .counter { margin-top: 15px; color: var(--text-muted); font-size: 0.85rem; }
+
+        @media (max-width: 600px) {
+            .container { padding: 20px; }
+            h1 { font-size: 1.6rem; }
+            .input-group { flex-direction: column; }
+            input { width: 100%; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>🏷️ مولد شعارات العلامات</h1>
+        <p class="sub">أدخل اسم علامتك التجارية، وسأولد لك شعارات إعلانية قوية ومؤثرة في ثانية!</p>
+
+        <div class="input-group">
+            <input type="text" id="brandName" placeholder="اسم علامتك (مثال: CyberShield)" value="CyberShield">
+            <button class="btn-generate" onclick="generateSlogans()">🎯 توليد شعارات</button>
+        </div>
+
+        <div id="sloganGrid" class="slogan-grid"></div>
+        <div class="counter" id="sloganCounter">تم توليد 0 شعاراً</div>
+    </div>
+
+    <script>
+        // ================================================================
+        // محرك الشعارات اللامحدود (دمج إعلاني لا نهائي)
+        // ================================================================
+        let sloganCount = 0;
+        let usedSlogans = new Set();
+
+        function generateSlogans() {
+            const brand = document.getElementById('brandName').value.trim();
+            if (!brand) { alert('يرجى كتابة اسم العلامة التجارية!'); return; }
+
+            // قواعد بيانات إعلانية
+            const verbs = ['نبتكر', 'نصمم', 'نحمي', 'نطور', 'نبدع', 'نُحدث', 'نقود', 'نرتقي'];
+            const adjectives = ['الذكي', 'المبتكر', 'الآمن', 'السريع', 'القوي', 'الفريد', 'المرن', 'الموثوق'];
+            const values = ['التميز', 'الثقة', 'الإبداع', 'الجودة', 'الشفافية', 'النجاح', 'الريادة'];
+            const actions = ['للمستقبل', 'لك', 'لعالمك', 'لحياتك', 'لرؤيتك', 'لإنجازك'];
+
+            // هياكل الجمل المختلفة
+            const structures = [
+                (v, b, a) => `${v} ${b} ${a}`,
+                (v, b, a) => `${b} هو ${v} ${a}`,
+                (v, b, a) => `${v} ${a} مع ${b}`,
+                (v, b, a) => `${b}: ${v} ${a}`,
+                (v, b, a) => `مع ${b}، ${v} ${a}`,
+            ];
+
+            let generated = [];
+            let attempts = 0;
+
+            do {
+                const v = verbs[Math.floor(Math.random() * verbs.length)];
+                const adj = adjectives[Math.floor(Math.random() * adjectives.length)];
+                const val = values[Math.floor(Math.random() * values.length)];
+                const act = actions[Math.floor(Math.random() * actions.length)];
+                const struct = structures[Math.floor(Math.random() * structures.length)];
+
+                // توليد الشعار
+                let slogan = struct(v, brand, act);
+                // إضافة تنويعات باستخدام الصفات والقيم
+                if (Math.random() > 0.5) slogan = slogan.replace(brand, `${adj} ${brand}`);
+                if (Math.random() > 0.5) slogan = slogan.replace(act, `${val} ${act}`);
+                
+                // تنظيف النص
+                slogan = slogan.replace(/\s+/g, ' ').trim();
+                
+                // التحقق من التكرار
+                if (!usedSlogans.has(slogan)) {
+                    usedSlogans.add(slogan);
+                    generated.push(slogan);
+                }
+                attempts++;
+            } while (generated.length < 5 && attempts < 100);
+
+            // عرض النتائج
+            sloganCount += generated.length;
+            const grid = document.getElementById('sloganGrid');
+            grid.innerHTML = '';
+
+            generated.forEach(s => {
+                const div = document.createElement('div');
+                div.className = 'slogan-item';
+                div.innerHTML = `
+                    <span>${s}</span>
+                    <span class="copy-icon" onclick="copyToClipboard('${s}')"><i class="far fa-copy"></i> نسخ</span>
+                `;
+                div.onclick = () => copyToClipboard(s);
+                grid.appendChild(div);
+            });
+
+            document.getElementById('sloganCounter').textContent = `تم توليد ${sloganCount} شعاراً`;
+        }
+
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(() => {
+                alert(`✅ تم نسخ الشعار: "${text}"`);
+            });
+        }
+
+        // تشغيل أولي عند فتح الصفحة
+        generateSlogans();
+    </script>
+</body>
+</html>

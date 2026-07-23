@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مولد القصص الملحمية | المحرك اللامحدود</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* ================================================================
+           التصميم الأسطوري (نسخة واحدة)
+           ================================================================ */
+        :root {
+            --primary: #00ff88;
+            --primary-shadow: rgba(0, 255, 136, 0.3);
+            --secondary: #00ccff;
+            --bg-dark: #0b0e14;
+            --bg-card: #131821;
+            --bg-input: #1b212b;
+            --border-color: #2a2f3a;
+            --text-light: #f3f4f6;
+            --text-muted: #9ca3af;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'Cairo', sans-serif;
+            background: var(--bg-dark); color: var(--text-light);
+            min-height: 100vh; display: flex; flex-direction: column; align-items: center; padding: 20px;
+        }
+        .container {
+            max-width: 850px; width: 100%; background: var(--bg-card);
+            padding: 40px; border-radius: 30px; border: 1px solid var(--border-color);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.6); text-align: center;
+        }
+        h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2rem; font-weight: 900; margin-bottom: 10px;
+            background: linear-gradient(135deg, #ffffff, var(--primary), var(--secondary));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
+        .sub { color: var(--text-muted); margin-bottom: 20px; }
+
+        .input-group { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; margin-bottom: 20px; }
+        input {
+            flex: 1; min-width: 180px; padding: 14px; border-radius: 15px;
+            background: var(--bg-input); border: 1px solid var(--border-color);
+            color: #fff; font-size: 1rem; outline: none; font-family: 'Cairo';
+        }
+        input:focus { border-color: var(--primary); }
+
+        .btn-generate {
+            padding: 14px 30px; border: none; border-radius: 15px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: #000; font-weight: 900; cursor: pointer; transition: 0.3s;
+        }
+        .btn-generate:hover { transform: scale(1.05); }
+
+        .output-box {
+            margin-top: 25px; padding: 25px; background: #0b0e14; border-radius: 20px;
+            border-right: 4px solid var(--primary); text-align: right; line-height: 2; font-size: 1.05rem;
+            display: none; animation: fadeUp 0.6s ease;
+        }
+        .output-box.show { display: block; }
+        @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        .highlight { color: var(--primary); font-weight: 700; }
+        .highlight2 { color: var(--secondary); font-weight: 700; }
+        .counter { margin-top: 15px; color: var(--text-muted); font-size: 0.85rem; }
+        @media (max-width: 600px) {
+            .container { padding: 20px; }
+            h1 { font-size: 1.6rem; }
+            .input-group { flex-direction: column; }
+            input { width: 100%; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>📖 مولد القصص الملحمية</h1>
+        <p class="sub">اكتب كلمة مفتاحية، وسأصنع لك رواية خيالية مكونة من 4 فصول، طويلة ومثيرة، ولن تتكرر أبداً.</p>
+
+        <div class="input-group">
+            <input type="text" id="epicWord" placeholder="كلمة مثل: مستقبل، صحراء، حرب..." value="المستقبل">
+            <button class="btn-generate" onclick="generateEpicStory()">🚀 توليد الملحمة</button>
+        </div>
+
+        <div id="epicOutput" class="output-box"></div>
+        <div class="counter" id="storyCounter">تم توليد 0 قصة</div>
+    </div>
+
+    <script>
+        // ================================================================
+        // محرك القصص اللامحدود (منع التكرار + توليد ديناميكي)
+        // ================================================================
+        let storyCount = 0;
+        let usedStories = new Set();
+
+        function generateEpicStory() {
+            const word = document.getElementById('epicWord').value.trim();
+            if (!word) { alert('يرجى كتابة كلمة مفتاحية!'); return; }
+
+            // قواعد بيانات متعددة لتوليد تنوع لا نهائي
+            const heroes = ['آخر فرسان مملكة الضوء', 'مخترع عبقري منسي', 'محارب الظل الصامت', 'ملكة الأرقام والرموز'];
+            const realms = ['أرض الرماد المقدسة', 'مدينة السايبر المضيئة', 'الصحراء الزرقاء اللامتناهية', 'مملكة الرياح المتجمدة'];
+            const troubles = ['انفجار في محطة الطاقة المركزية', 'غزو كائنات فضائية غامضة', 'جفاف يهدد الحياة', 'فيروس يصيب العقل البشري'];
+            const solutions = ['اكتشف أن القوة الحقيقية تكمن في الصدق', 'بنى آلة تعيد الزمن إلى الوراء', 'استخدم الموسيقى لتهدئة الوحوش', 'تحدى قوانين الفيزياء'];
+            const endings = ['وساد السلام في العالم للأبد.', 'ولكنه أدرك أن المستقبل يعتمد على اختياراته.', 'وانتهت الحرب، لكن الحكمة بقيت.', 'وعاد الجميع إلى حياتهم، أقوى مما كانوا.'];
+
+            let story, signature;
+            let attempt = 0;
+
+            // خوارزمية منع التكرار
+            do {
+                const h = heroes[Math.floor(Math.random() * heroes.length)];
+                const r = realms[Math.floor(Math.random() * realms.length)];
+                const t = troubles[Math.floor(Math.random() * troubles.length)];
+                const s = solutions[Math.floor(Math.random() * solutions.length)];
+                const e = endings[Math.floor(Math.random() * endings.length)];
+
+                story = `
+                    <span class="highlight">📖 الفصل الأول: شرارة التغيير</span><br><br>
+                    في عالم <span class="highlight2">${r}</span>، كان هناك ${h}. كان يعيش حياة هادئة ومستقرة، حتى حدث أمر غير متوقع: <span class="highlight">${t}</span>. 
+                    اهتزت الأرض، وسقطت السماء. عرف ${h} أن عليه التحرك فوراً قبل فوات الأوان.<br><br>
+
+                    <span class="highlight">📖 الفصل الثاني: الرحلة عبر المجهول</span><br><br>
+                    حاملاً معه أداة غامضة تحمل سرَّ "${word}"، انطلق ${h} عبر الوديان المظلمة والجبال الجليدية. 
+                    في كل خطوة كان يكتشف أن "${word}" ليست مجرد كلمة، بل هي مفتاحٌ سريٌ يُعيد التوازن للكون.<br><br>
+
+                    <span class="highlight">📖 الفصل الثالث: المواجهة الحاسمة</span><br><br>
+                    عند جسر النهاية، واجه ${h} وحشاً مرعباً لم يره أحد من قبل. لكنه لم يستخدم سيفاً، بل استخدم ${s}. 
+                    ترددت أصداء "${word}" في أرجاء المعركة، محولةً الهزيمة إلى انتصار ساحق.<br><br>
+
+                    <span class="highlight">📖 الفصل الرابع: النهاية الأبدية</span><br><br>
+                    بعد انتهاء المعركة، جمع ${h} بقية الأبطال وقال: "لن أنسى أبداً قوة ${word}". ${e}
+                `;
+
+                // التوقيع لمنع التكرار
+                signature = h + r + t;
+                attempt++;
+            } while (usedStories.has(signature) && attempt < 50);
+
+            // إضافة التوقيع للمجموعة وإدارة الذاكرة
+            usedStories.add(signature);
+            if (usedStories.size > 200) usedStories.clear();
+
+            // عرض النتيجة
+            storyCount++;
+            document.getElementById('epicOutput').innerHTML = story;
+            document.getElementById('epicOutput').classList.add('show');
+            document.getElementById('storyCounter').textContent = `تم توليد ${storyCount} قصة`;
+        }
+
+        // توليد قصة أولية عند فتح الصفحة
+        generateEpicStory();
+    </script>
+</body>
+</html>

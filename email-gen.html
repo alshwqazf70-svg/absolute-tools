@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مولد الإيميلات الوهمية | Gmail Dot Trick</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #00ff88;
+            --primary-shadow: rgba(0, 255, 136, 0.3);
+            --secondary: #00ccff;
+            --bg-dark: #0b0e14;
+            --bg-card: #131821;
+            --bg-input: #1b212b;
+            --border-color: #2a2f3a;
+            --text-light: #f3f4f6;
+            --text-muted: #9ca3af;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'Cairo', sans-serif;
+            background: var(--bg-dark); color: var(--text-light);
+            min-height: 100vh; display: flex; flex-direction: column; align-items: center; padding: 20px;
+        }
+        .container {
+            max-width: 850px; width: 100%; background: var(--bg-card);
+            padding: 40px; border-radius: 30px; border: 1px solid var(--border-color);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.6); text-align: center;
+        }
+        h1 {
+            font-family: 'Orbitron', sans-serif; font-size: 2rem; font-weight: 900;
+            background: linear-gradient(135deg, #ffffff, var(--primary), var(--secondary));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
+        .sub { color: var(--text-muted); margin-bottom: 20px; }
+
+        .input-group { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; margin-bottom: 20px; }
+        input {
+            flex: 1; min-width: 200px; padding: 14px; border-radius: 15px;
+            background: var(--bg-input); border: 1px solid var(--border-color);
+            color: #fff; font-size: 1rem; outline: none; font-family: 'Cairo';
+        }
+        input:focus { border-color: var(--primary); }
+
+        .btn-generate {
+            padding: 14px 30px; border: none; border-radius: 15px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: #000; font-weight: 900; cursor: pointer; transition: 0.3s;
+        }
+        .btn-generate:hover { transform: scale(1.05); }
+
+        .emails-grid {
+            display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 10px; margin-top: 20px; max-height: 500px; overflow-y: auto;
+            text-align: center;
+        }
+        .email-item {
+            background: var(--bg-input); padding: 10px; border-radius: 12px;
+            border: 1px solid var(--border-color); font-size: 0.85rem; font-family: monospace;
+            color: var(--primary); transition: 0.3s; cursor: pointer;
+        }
+        .email-item:hover { border-color: var(--secondary); background: #1f2937; }
+        .counter { margin-top: 15px; color: var(--text-muted); font-size: 0.85rem; }
+
+        @media (max-width: 600px) {
+            .container { padding: 20px; }
+            h1 { font-size: 1.6rem; }
+            .input-group { flex-direction: column; }
+            input { width: 100%; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>📧 مولد الإيميلات الوهمية</h1>
+        <p class="sub">أدخل إيميلك (يجب أن ينتهي بـ @gmail.com)، وسأولّد لك مئات الإيميلات الوهمية التي تصل جميعها إلى صندوقك الرئيسي!</p>
+
+        <div class="input-group">
+            <input type="email" id="userEmail" placeholder="مثال: user@gmail.com" value="test@gmail.com">
+            <button class="btn-generate" onclick="generateEmails()">🚀 توليد الإيميلات</button>
+        </div>
+
+        <div id="emailGrid" class="emails-grid"></div>
+        <div class="counter" id="emailCounter">تم توليد 0 إيميلاً</div>
+    </div>
+
+    <script>
+        // ================================================================
+        // محرك المئات من الإيميلات (خدعة النقاط والزائد)
+        // ================================================================
+        function generateEmails() {
+            const emailInput = document.getElementById('userEmail').value.trim();
+            if (!emailInput || !emailInput.includes('@gmail.com')) {
+                alert('يرجى إدخال بريد Gmail صحيح (يجب أن ينتهي بـ @gmail.com)!');
+                return;
+            }
+
+            const localPart = emailInput.split('@')[0];
+            const domain = '@gmail.com';
+            let emails = new Set();
+
+            // 1. إضافة النقاط بطرق مختلفة (Dot Trick)
+            const dotPositions = (str) => {
+                let results = [];
+                for (let i = 1; i < str.length; i++) {
+                    results.push(str.slice(0, i) + '.' + str.slice(i));
+                }
+                return results;
+            };
+
+            // توليد متغيرات النقاط الأساسية
+            const dotVariations = dotPositions(localPart);
+            dotVariations.forEach(v => emails.add(v + domain));
+
+            // توليد متغيرات النقاط المتقدمة (دمج نقطتين)
+            for (let i = 1; i < localPart.length; i++) {
+                for (let j = i + 1; j < localPart.length; j++) {
+                    let newLocal = localPart.slice(0, i) + '.' + localPart.slice(i, j) + '.' + localPart.slice(j);
+                    emails.add(newLocal + domain);
+                }
+            }
+
+            // 2. إضافة علامة الزائد (Plus Addressing) مع أسماء عشوائية وخدمات
+            const services = ['amazon', 'paypal', 'twitter', 'bank', 'noreply', 'security', 'fb', 'insta', 'work', 'shop'];
+            const randomIds = ['1', '2', '3', '4', '5', 'home', 'test', 'new', 'old', 'main'];
+
+            services.forEach(s => emails.add(localPart + '+' + s + domain));
+            randomIds.forEach(id => emails.add(localPart + '+' + id + domain));
+
+            // دمج النقاط + الزائد لتوليد المئات
+            dotVariations.forEach(dot => {
+                services.forEach(s => emails.add(dot + '+' + s + domain));
+                randomIds.forEach(id => emails.add(dot + '+' + id + domain));
+            });
+
+            // 3. إضافة أرقام عشوائية في النهاية
+            for (let i = 0; i < 10; i++) {
+                const randomNum = Math.floor(Math.random() * 1000);
+                emails.add(localPart + '+' + randomNum + domain);
+                dotVariations.forEach(dot => emails.add(dot + '+' + randomNum + domain));
+            }
+
+            // تحويل إلى قائمة وتحديث الواجهة
+            const emailArray = Array.from(emails);
+            const grid = document.getElementById('emailGrid');
+            grid.innerHTML = '';
+
+            emailArray.forEach(email => {
+                const div = document.createElement('div');
+                div.className = 'email-item';
+                div.textContent = email;
+                div.onclick = () => copyToClipboard(email);
+                grid.appendChild(div);
+            });
+
+            document.getElementById('emailCounter').textContent = `تم توليد ${emailArray.length} إيميلاً`;
+        }
+
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(() => {
+                alert(`✅ تم نسخ الإيميل: ${text}`);
+            });
+        }
+
+        // تشغيل تلقائي عند فتح الصفحة
+        generateEmails();
+    </script>
+</body>
+</html>
