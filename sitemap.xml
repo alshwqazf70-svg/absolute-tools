@@ -1,68 +1,112 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <!-- الصفحة الرئيسية -->
   <url>
     <loc>https://alshwqazf70-svg.github.io/absolute-tools/</loc>
-    <lastmod>2026-07-23</lastmod>
+    <lastmod>2026-07-24</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
+
+  <!-- الأدوات الرئيسية -->
   <url>
     <loc>https://alshwqazf70-svg.github.io/absolute-tools/email-gen.html</loc>
+    <lastmod>2026-07-24</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://alshwqazf70-svg.github.io/absolute-tools/startup-ideas.html</loc>
+    <lastmod>2026-07-24</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://alshwqazf70-svg.github.io/absolute-tools/epic-story.html</loc>
+    <lastmod>2026-07-24</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://alshwqazf70-svg.github.io/absolute-tools/slogan-gen.html</loc>
+    <lastmod>2026-07-24</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://alshwqazf70-svg.github.io/absolute-tools/text-analyzer.html</loc>
+    <lastmod>2026-07-24</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://alshwqazf70-svg.github.io/absolute-tools/domain-gen.html</loc>
+    <lastmod>2026-07-24</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://alshwqazf70-svg.github.io/absolute-tools/neon-color.html</loc>
+    <lastmod>2026-07-24</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://alshwqazf70-svg.github.io/absolute-tools/age-calculator.html</loc>
+    <lastmod>2026-07-24</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://alshwqazf70-svg.github.io/absolute-tools/zodiac.html</loc>
+    <lastmod>2026-07-24</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://alshwqazf70-svg.github.io/absolute-tools/story-jokes.html</loc>
+    <lastmod>2026-07-24</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://alshwqazf70-svg.github.io/absolute-tools/riddle-master.html</loc>
+    <lastmod>2026-07-24</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
+  <url>
+    <loc>https://alshwqazf70-svg.github.io/absolute-tools/dream-interpreter.html</loc>
+    <lastmod>2026-07-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- الألعاب -->
   <url>
     <loc>https://alshwqazf70-svg.github.io/absolute-tools/game-arena.html</loc>
+    <lastmod>2026-07-24</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
-  <url>
-    <loc>https://alshwqazf70-svg.github.io/absolute-tools/privacy.html</loc>
-    <priority>0.5</priority>
-  </url>
+
+  <!-- صفحات إضافية -->
   <url>
     <loc>https://alshwqazf70-svg.github.io/absolute-tools/about.html</loc>
-    <priority>0.5</priority>
+    <lastmod>2026-07-24</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
   </url>
   <url>
     <loc>https://alshwqazf70-svg.github.io/absolute-tools/contact.html</loc>
-    <priority>0.5</priority>
+    <lastmod>2026-07-24</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://alshwqazf70-svg.github.io/absolute-tools/privacy.html</loc>
+    <lastmod>2026-07-24</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
   </url>
 </urlset>
