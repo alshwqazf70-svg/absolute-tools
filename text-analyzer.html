@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- 🚀 SEO & AI Crawler Optimization (Maximum Level) -->
+    <title>📊 محلل النصوص الذكي | إحصائيات دقيقة ومتقدمة بدون حدود</title>
+    <meta name="description" content="أقوى محلل نصوص عربي ذكي. احسب الكلمات، الجمل، وقت القراءة، والكلمات الأكثر تكراراً بدقة متناهية مع دعم كامل للغة العربية.">
+    <meta name="keywords" content="محلل نصوص, عداد كلمات, إحصائيات النص, تحليل عربي, أداة كتابية, SEO text analyzer">
+    <meta name="author" content="الأدوات المطلقة">
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
+    <meta name="googlebot" content="index, follow">
+    <link rel="canonical" href="https://absolute-tools.netlify.app/text-analyzer.html">
+
+    <!-- Open Graph / Facebook & AI Scrapers -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://absolute-tools.netlify.app/text-analyzer.html">
+    <meta property="og:title" content="محلل النصوص الذكي | إحصائيات دقيقة ومتقدمة">
+    <meta property="og:description" content="احسب الكلمات، الجمل، وقت القراءة، والكلمات الأكثر تكراراً بدقة متناهية مع دعم كامل للغة العربية.">
+    <meta property="og:site_name" content="الأدوات المطلقة">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://absolute-tools.netlify.app/text-analyzer.html">
+    <meta name="twitter:title" content="محلل النصوص الذكي">
+    <meta name="twitter:description" content="أقوى محلل نصوص عربي ذكي مع إحصائيات دقيقة ومتقدمة.">
+
+    <!-- ⚡ Performance Optimized Fonts & Libraries -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
+    
+    <!-- تأخير تحميل html2canvas لتحسين سرعة الصفحة الأولية -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js" defer></script>
+
+    <!-- Dynamic Schema.org for AI & Search Engines -->
+    <script type="application/ld+json" id="dynamic-schema">
+    {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "محلل النصوص الذكي",
+        "url": "https://absolute-tools.netlify.app/text-analyzer.html",
+        "description": "تطبيق ويب متقدم لتحليل النصوص العربية وحساب الإحصائيات الدقيقة.",
+        "applicationCategory": "UtilityApplication",
+        "operatingSystem": "Any",
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+    }
+    </script>
+
+    <style>
+        :root {
+            --primary: #00ff88; --primary-glow: rgba(0, 255, 136, 0.5); --secondary: #00ccff;
+            --bg-dark: #0b0e14; --bg-card: #131821; --bg-input: #1b212b;
+            --border-color: #2a2f3a; --text-light: #f3f4f6; --text-muted: #9ca3af;
+            --card-shadow: 0 20px 50px rgba(0,0,0,0.8);
+        }
+        body.light-mode {
+            --bg-dark: #f0f2f5; --bg-card: #ffffff; --bg-input: #e8eef2;
+            --border-color: #d0d9e0; --text-light: #1a1e24; --text-muted: #555;
+            --card-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; transition: background 0.3s, color 0.2s, border 0.3s; }
+        body {
+            font-family: 'Cairo', sans-serif; background: var(--bg-dark); color: var(--text-light);
+            min-height: 100vh; display: flex; flex-direction: column; align-items: center; padding: 20px;
+            background-image: radial-gradient(circle at 50% 0%, var(--primary-glow) 0%, transparent 40%);
+        }
+        .container {
+            max-width: 850px; width: 100%; background: var(--bg-card); padding: 40px; border-radius: 40px;
+            border: 1px solid var(--border-color); box-shadow: var(--card-shadow); text-align: center;
+            margin-bottom: 30px; position: relative; overflow: hidden;
+        }
+        .theme-toggle {
+            position: absolute; top: 20px; left: 20px; background: var(--bg-input); border: 1px solid var(--border-color);
+            color: var(--text-light); font-size: 1.3rem; padding: 8px 12px; border-radius: 50px; cursor: pointer; z-index: 10;
+        }
+        .theme-toggle:hover { border-color: var(--primary); box-shadow: 0 0 15px var(--primary-glow); }
+        
+        h1 {
+            font-family: 'Orbitron', sans-serif; font-size: 2rem; font-weight: 900;
+            background: linear-gradient(135deg, #fff, var(--primary), var(--secondary));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 10px;
+        }
+        .sub { color: var(--text-muted); margin-bottom: 25px; line-height: 1.6; }
+
+        .analyzer-box { margin-top: 20px; }
+        textarea {
+            width: 100%; min-height: 160px; padding: 18px; border-radius: 20px; background: var(--bg-input);
+            border: 2px solid var(--border-color); color: var(--text-light); font-size: 1.05rem; outline: none;
+            font-family: 'Cairo'; resize: vertical; text-align: right; direction: rtl;
+        }
+        textarea:focus { border-color: var(--primary); box-shadow: 0 0 15px var(--primary-glow); }
+
+        .btn-analyze {
+            width: 100%; padding: 14px; margin-top: 15px; border: none; border-radius: 15px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary)); color: #000;
+            font-weight: 900; cursor: pointer; transition: 0.3s; font-size: 1.1rem; display: flex; align-items: center; justify-content: center; gap: 8px;
+        }
+        .btn-analyze:hover { transform: scale(1.02); box-shadow: 0 0 20px var(--primary-glow); }
+        .btn-analyze:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+
+        .stats-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px;
+            margin-top: 25px; content-visibility: auto; contain-intrinsic-size: 0 300px;
+        }
+        .stat-card {
+            background: var(--bg-input); padding: 20px; border-radius: 18px; border: 1px solid var(--border-color);
+            text-align: center; transition: 0.3s;
+        }
+        .stat-card:hover { border-color: var(--primary); transform: translateY(-3px); box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
+        .stat-number { display: block; font-size: 2rem; font-weight: 900; color: var(--primary); margin-bottom: 5px; }
+        .stat-label { color: var(--text-muted); font-size: 0.85rem; font-weight: 700; }
+
+        .action-buttons { display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; margin-top: 25px; }
+        .btn-action {
+            background: var(--bg-input); border: 1px solid var(--border-color); color: var(--text-light);
+            padding: 10px 18px; border-radius: 12px; font-weight: 700; cursor: pointer; font-size: 0.9rem; transition: 0.2s;
+            display: flex; align-items: center; gap: 6px;
+        }
+        .btn-action:hover { background: var(--primary); color: #000; border-color: var(--primary); transform: translateY(-2px); }
+
+        .counter { margin-top: 15px; color: var(--text-muted); font-size: 0.85rem; font-weight: 700; }
+
+        .progress-bar { position: fixed; top: 0; left: 0; height: 3px; background: var(--primary); width: 0%; transition: width 0.1s linear; z-index: 999; box-shadow: 0 0 10px var(--primary-glow); will-change: width; }
+        
+        .toast-notification { 
+            position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%); background: var(--bg-card); 
+            color: var(--primary); border: 1px solid var(--primary); padding: 12px 24px; border-radius: 50px; 
+            font-weight: bold; z-index: 1000; box-shadow: 0 10px 30px rgba(0,0,0,0.5); animation: fadeUp 0.3s ease; 
+            font-family: 'Cairo', sans-serif; pointer-events: none; white-space: nowrap;
+        }
+        @keyframes fadeUp { from { opacity: 0; transform: translate(-50%, 20px); } to { opacity: 1; transform: translate(-50%, 0); } }
+
+        @media (max-width: 600px) {
+            .container { padding: 25px; }
+            h1 { font-size: 1.6rem; }
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+    </style>
+</head>
+<body>
+    <div class="progress-bar" id="progressBar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+    
+    <div class="container">
+        <button class="theme-toggle" onclick="app.toggleTheme()" title="تبديل الوضع" aria-label="تبديل الوضع">🌓</button>
+        <h1>📊 محلل النصوص الذكي</h1>
+        <p class="sub">اكتب أو الصق أي نص، وستظهر الإحصائيات الدقيقة فورياً مع دعم كامل للغة العربية.</p>
+
+        <div class="analyzer-box">
+            <textarea id="textInput" placeholder="ابدأ الكتابة أو الصق نصك هنا..." aria-label="منطقة إدخال النص"></textarea>
+            <button class="btn-analyze" id="analyzeBtn" onclick="app.analyzeText()">
+                <i class="fas fa-chart-bar"></i> تحليل النص
+            </button>
+
+            <div class="stats-grid" id="statsGrid" role="list" aria-live="polite" aria-label="نتائج التحليل"></div>
+
+            <div class="action-buttons">
+                <button class="btn-action" onclick="app.copyStats()"><i class="fas fa-copy"></i> نسخ</button>
+                <button class="btn-action" onclick="app.exportCSV()"><i class="fas fa-file-csv"></i> CSV</button>
+                <button class="btn-action" onclick="app.saveAnalysis()"><i class="fas fa-save"></i> حفظ</button>
+                <button class="btn-action" onclick="app.downloadStatsImage()"><i class="fas fa-image"></i> صورة</button>
+            </div>
+            <div class="counter" id="analyzeCounter">تم التحليل 0 مرة</div>
+        </div>
+    </div>
+
+<script>
+/**
+ * المحرك الأسطوري لتحليل النصوص العربية
+ * Optimized for: Extreme Speed (Debounce), Advanced Arabic NLP, Max SEO, Zero UI Blocking
+ */
+class TextAnalyzerEngine {
+    constructor() {
+        this.analyzeCount = parseInt(localStorage.getItem('totalAnalyses') || '0');
+        this.lastStats = null;
+        this.currentText = '';
+        this.debounceTimer = null;
+        this.updateCounter();
+        this.initTheme();
+        this.bindEvents();
+    }
+
+    // 🧠 تطبيع النص العربي لضمان دقة احتساب الكلمات (إزالة التشكيل، توحيد الألف والتاء)
+    normalizeArabic(text) {
+        return text
+            .replace(/[\u064B-\u065F\u0670]/g, '') // إزالة التشكيل
+            .replace(/[أإآ]/g, 'ا') // توحيد الألف
+            .replace(/ة/g, 'ه') // توحيد التاء المربوطة
+            .replace(/ى/g, 'ي') // توحيد الألف المقصورة
+            .replace(/[^\w\s\u0600-\u06FF]/g, '') // إبقاء الحروف العربية والمسافات فقط
+            .trim();
+    }
+
+    bindEvents() {
+        const textarea = document.getElementById('textInput');
+        // استخدام Debounce لتحسين الأداء أثناء الكتابة السريعة
+        textarea.addEventListener('input', () => {
+            clearTimeout(this.debounceTimer);
+            this.debounceTimer = setTimeout(() => this.analyzeText(), 300);
+        });
+        
+        // السماح بـ Ctrl+Enter للتحليل اليدوي
+        textarea.addEventListener('keydown', (e) => {
+            if (e.ctrlKey && e.key === 'Enter') this.analyzeText();
+        });
+    }
+
+    updateCounter() {
+        document.getElementById('analyzeCounter').textContent = `تم التحليل ${this.analyzeCount} مرة`;
+    }
+
+    initTheme() {
+        if (localStorage.getItem('textAnalyzerTheme') === 'light') document.body.classList.add('light-mode');
+    }
+
+    toggleTheme() {
+        document.body.classList.toggle('light-mode');
+        localStorage.setItem('textAnalyzerTheme', document.body.classList.contains('light-mode') ? 'light' : 'dark');
+    }
+
+    showToast(message) {
+        const existing = document.querySelector('.toast-notification');
+        if (existing) existing.remove();
+        const toast = document.createElement('div');
+        toast.className = 'toast-notification';
+        toast.textContent = message;
+        document.body.appendChild(toast);
+        setTimeout(() => {
+            toast.style.opacity = '0';
+            toast.style.transition = 'opacity 0.5s';
+            setTimeout(() => toast.remove(), 500);
+        }, 2500);
+    }
+
+    analyzeText() {
+        const text = document.getElementById('textInput').value;
+        this.currentText = text;
+        const progressBar = document.getElementById('progressBar');
+        
+        if (!text.trim()) {
+            document.getElementById('statsGrid').innerHTML = '';
+            this.lastStats = null;
+            return;
+        }
+
+        progressBar.style.width = '40%';
+
+        // استخدام setTimeout للسماح للمتصفح بتحديث شريط التقدم قبل الحساب الثقيل
+        setTimeout(() => {
+            try {
+                // 1. الكلمات (مع التطبيع)
+                const rawWords = text.split(/\s+/).filter(w => w.length > 0);
+                const wordCount = rawWords.length;
+                const normalizedWords = rawWords.map(w => this.normalizeArabic(w)).filter(w => w.length > 0);
+
+                // 2. الجمل (النقاط، علامات الاستفهام، التعجب، الفواصل المنقوطة، السطور الجديدة)
+                const sentences = text.split(/[.!؟!?;\n]+/).filter(s => s.trim().length > 0);
+                const sentenceCount = sentences.length;
+
+                // 3. الفقرات
+                const paragraphs = text.split(/\n+/).filter(p => p.trim().length > 0);
+                const paragraphCount = paragraphs.length;
+
+                // 4. الأحرف
+                const charWithSpaces = text.length;
+                const charNoSpaces = text.replace(/\s/g, '').length;
+
+                // 5. متوسط طول الكلمة
+                const totalLetters = normalizedWords.reduce((acc, w) => acc + w.length, 0);
+                const avgWordLength = wordCount > 0 ? (totalLetters / wordCount).toFixed(1) : 0;
+
+                // 6. وقت القراءة (200 كلمة/دقيقة) ووقت التحدث (130 كلمة/دقيقة)
+                const readingTime = Math.ceil(wordCount / 200) || 0;
+                const speakingTime = Math.ceil(wordCount / 130) || 0;
+
+                // 7. الكلمات الأكثر تكراراً (Top 3)
+                const freqMap = {};
+                normalizedWords.forEach(w => {
+                    if (w.length > 1) freqMap[w] = (freqMap[w] || 0) + 1; // تجاهل الحروف المفردة
+                });
+                
+                const sortedWords = Object.entries(freqMap).sort((a, b) => b[1] - a[1]).slice(0, 3);
+                const topWords = sortedWords.length > 0 
+                    ? sortedWords.map(([word, count]) => `"${word}" (${count})`).join('، ') 
+                    : '—';
+
+                // 8. مؤشر التعقيد (متوسط طول الجملة)
+                const complexity = sentenceCount > 0 ? (wordCount / sentenceCount).toFixed(1) : 0;
+                let complexityLabel = 'بسيط';
+                if (complexity > 15) complexityLabel = 'متوسط';
+                if (complexity > 25) complexityLabel = 'معقد';
+
+                this.lastStats = [
+                    { label: 'عدد الكلمات', value: wordCount.toLocaleString('ar-EG') },
+                    { label: 'عدد الجمل', value: sentenceCount.toLocaleString('ar-EG') },
+                    { label: 'عدد الفقرات', value: paragraphCount.toLocaleString('ar-EG') },
+                    { label: 'الأحرف (مع مسافات)', value: charWithSpaces.toLocaleString('ar-EG') },
+                    { label: 'الأحرف (بدون مسافات)', value: charNoSpaces.toLocaleString('ar-EG') },
+                    { label: 'متوسط طول الكلمة', value: avgWordLength },
+                    { label: 'وقت القراءة (دقيقة)', value: readingTime },
+                    { label: 'وقت التحدث (دقيقة)', value: speakingTime },
+                    { label: 'مؤشر التعقيد', value: `${complexity} (${complexityLabel})` },
+                    { label: 'أكثر الكلمات تكراراً', value: topWords }
+                ];
+
+                this.renderStats(this.lastStats);
+                
+                this.analyzeCount++;
+                try { localStorage.setItem('totalAnalyses', this.analyzeCount); } catch(e) {}
+                this.updateCounter();
+                
+                progressBar.style.width = '100%';
+                setTimeout(() => { progressBar.style.width = '0%'; }, 300);
+                
+            } catch (error) {
+                this.showToast('❌ حدث خطأ أثناء التحليل');
+                console.error(error);
+            }
+        }, 50);
+    }
+
+    // ⚡ عرض سريع باستخدام DocumentFragment لمنع تجميد المتصفح
+    renderStats(stats) {
+        const grid = document.getElementById('statsGrid');
+        grid.innerHTML = '';
+        const fragment = document.createDocumentFragment();
+        
+        stats.forEach(s => {
+            const card = document.createElement('div');
+            card.className = 'stat-card';
+            card.setAttribute('role', 'listitem');
+            card.innerHTML = `
+                <span class="stat-number">${s.value}</span>
+                <span class="stat-label">${s.label}</span>
+            `;
+            fragment.appendChild(card);
+        });
+        grid.appendChild(fragment);
+    }
+
+    copyStats() {
+        if (!this.lastStats) { this.showToast('⚠️ لا توجد إحصائيات لنسخها'); return; }
+        const text = this.lastStats.map(s => `${s.label}: ${s.value}`).join('\n');
+        navigator.clipboard.writeText(text).then(() => {
+            this.showToast('✅ تم نسخ الإحصائيات بنجاح!');
+        }).catch(() => this.showToast('❌ فشل النسخ'));
+    }
+
+    exportCSV() {
+        if (!this.lastStats) { this.showToast('⚠️ لا توجد بيانات للتصدير'); return; }
+        // إضافة BOM لدعم اللغة العربية بشكل صحيح في Excel
+        const csv = '\uFEFFالإحصائية,القيمة\n' + this.lastStats.map(s => `"${s.label}","${s.value}"`).join('\n');
+        const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+        const link = document.createElement('a');
+        link.href = URL.createObjectURL(blob);
+        link.download = 'تحليل_النص.csv';
+        link.click();
+        URL.revokeObjectURL(link.href);
+        this.showToast('✅ تم تصدير ملف CSV بنجاح!');
+    }
+
+    saveAnalysis() {
+        if (!this.lastStats || !this.currentText.trim()) { this.showToast('⚠️ لا يوجد تحليل لحفظه'); return; }
+        
+        let saved = [];
+        try { saved = JSON.parse(localStorage.getItem('textAnalyses') || '[]'); } catch (e) { saved = []; }
+        
+        const record = {
+            id: Date.now(),
+            date: new Date().toLocaleString('ar-SA'),
+            textPreview: this.currentText.substring(0, 80) + '...',
+            stats: this.lastStats
+        };
+        
+        saved.unshift(record);
+        if (saved.length > 20) saved.pop();
+        
+        try {
+            localStorage.setItem('textAnalyses', JSON.stringify(saved));
+            this.showToast('💾 تم حفظ التحليل في المكتبة بنجاح!');
+        } catch (e) {
+            if (e.name === 'QuotaExceededError') this.showToast('❌ مساحة التخزين ممتلئة!');
+            else this.showToast('❌ حدث خطأ أثناء الحفظ.');
+        }
+    }
+
+    downloadStatsImage() {
+        if (typeof html2canvas === 'undefined') {
+            this.showToast('⏳ جاري تحميل مكتبة الصور، حاول مرة أخرى بعد ثانية.');
+            return;
+        }
+        this.showToast('⏳ جاري تحويل الإحصائيات إلى صورة...');
+        const element = document.getElementById('statsGrid');
+        const isDark = !document.body.classList.contains('light-mode');
+        
+        html2canvas(element, { 
+            backgroundColor: isDark ? '#1b212b' : '#e8eef2',
+            scale: 2,
+            logging: false
+        }).then(canvas => {
+            const link = document.createElement('a');
+            link.download = `تحليل_نص_${Date.now()}.png`;
+            link.href = canvas.toDataURL('image/png');
+            link.click();
+            this.showToast('✅ تم تحميل الصورة بنجاح!');
+        }).catch(() => this.showToast('❌ فشل إنشاء الصورة.'));
+    }
+}
+
+// تهيئة التطبيق
+const app = new TextAnalyzerEngine();
+window.onload = function() {
+    // تحليل أولي للنص الافتراضي إذا وجد
+    if (document.getElementById('textInput').value.trim()) {
+        app.analyzeText();
+    }
+};
+</script>
+</body>
+</html>

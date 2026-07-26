@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>     200+   </title>
+    <meta name="description" content="   .   200      .">
+    <meta name="keywords" content=" ,  , ,  ,  ">
+    <meta name="author" content=" ">
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
+    <link rel="canonical" href="https://absolute-tools.netlify.app/story-jokes.html">
+
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="   - 200+   ">
+    <meta property="og:description" content="        .">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="print" onload="this.media='all'">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+    <script type="application/ld+json" id="dynamic-schema">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "  ",
+        "url": "https://absolute-tools.netlify.app/story-jokes.html",
+        "description": "        ."
+    }
+    </script>
+
+    <style>
+        :root {
+            --primary: #ff8800; --primary-glow: rgba(255, 136, 0, 0.5); --secondary: #ffcc00;
+            --bg-dark: #1a0f0a; --bg-card: #221411; --bg-input: #2d1c16;
+            --border-color: #4a3024; --text-light: #fce4d6; --text-muted: #c0a090;
+            --card-shadow: 0 20px 50px rgba(0,0,0,0.8);
+        }
+        body.light-mode {
+            --bg-dark: #fff9f0; --bg-card: #ffffff; --bg-input: #f5e6d3;
+            --border-color: #e0c8a8; --text-light: #3a2510; --text-muted: #6b4e3d;
+            --card-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; transition: background 0.3s, color 0.2s, border 0.3s; }
+        body { font-family: 'Cairo', sans-serif; background: var(--bg-dark); color: var(--text-light); min-height: 100vh; display: flex; flex-direction: column; align-items: center; padding: 20px; background-image: radial-gradient(circle at 50% 0%, var(--primary-glow) 0%, transparent 40%); }
+        
+        nav { width: 100%; background: rgba(34,20,17,0.9); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border-color); padding: 0 30px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; height: 60px; margin-bottom: 20px; border-radius: 0 0 20px 20px; }
+        .logo { font-weight: 900; font-size: 1.3rem; color: var(--primary); display: flex; align-items: center; gap: 10px; text-decoration: none; }
+        .nav-links { display: flex; gap: 15px; align-items: center; }
+        .nav-links a { color: var(--text-muted); font-weight: 700; text-decoration: none; transition: 0.3s; }
+        .nav-links a:hover { color: var(--primary); }
+        .theme-toggle { background: var(--bg-input); border: 1px solid var(--border-color); color: var(--text-light); border-radius: 50%; font-size: 1.1rem; cursor: pointer; width: 38px; height: 38px; display: flex; align-items: center; justify-content: center; transition: 0.3s; }
+        .theme-toggle:hover { border-color: var(--primary); box-shadow: 0 0 15px var(--primary-glow); }
+        
+        .container { max-width: 850px; width: 100%; background: var(--bg-card); padding: 40px; border-radius: 40px; border: 1px solid var(--border-color); box-shadow: var(--card-shadow); text-align: center; margin-bottom: 30px; position: relative; overflow: hidden; }
+        .container::before { content: ""; position: absolute; bottom: -30px; right: -20px; font-size: 6rem; opacity: 0.05; z-index: 0; white-space: pre; pointer-events: none; }
+        .container > * { position: relative; z-index: 1; }
+        
+        h1 { font-size: 2.2rem; font-weight: 900; margin-bottom: 10px; background: linear-gradient(135deg, #ffffff, var(--primary), var(--secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; letter-spacing: 2px; }
+        .sub { color: var(--text-muted); margin-bottom: 25px; font-size: 1.1rem; line-height: 1.6; }
+        
+        .btn-generate { padding: 18px 40px; border: none; border-radius: 20px; background: linear-gradient(135deg, var(--primary), var(--secondary)); color: #000; font-weight: 900; cursor: pointer; transition: 0.3s; font-size: 1.2rem; letter-spacing: 1px; display: flex; align-items: center; gap: 8px; margin: 0 auto; }
+        .btn-generate:hover { transform: scale(1.05); box-shadow: 0 0 25px var(--primary-glow); }
+        .btn-generate:disabled { opacity: 0.6; cursor: not-allowed; transform: none; filter: grayscale(0.5); }
+        
+        .loader { display: none; margin: 20px auto; width: 40px; height: 40px; border: 4px solid var(--border-color); border-top-color: var(--primary); border-radius: 50%; animation: spin 0.8s linear infinite; }
+        @keyframes spin { to { transform: rotate(360deg); } }
+        
+        .output-box { 
+            margin-top: 25px; padding: 35px; background: var(--bg-dark); border-radius: 25px; border-right: 6px solid var(--primary); 
+            text-align: right; line-height: 2.6; font-size: 1.25rem; display: none; animation: fadeUp 0.6s ease; 
+            position: relative; box-shadow: inset 0 0 20px rgba(0,0,0,0.3); max-height: 600px; overflow-y: auto; 
+            content-visibility: auto; contain-intrinsic-size: 0 500px; white-space: pre-wrap; font-family: 'Amiri', serif;
+        }
+        .output-box.show { display: block; }
+        @keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        
+        .action-buttons { display: none; gap: 10px; margin-top: 20px; flex-wrap: wrap; justify-content: center; }
+        .btn-action { padding: 12px 20px; border-radius: 15px; border: 1px solid var(--border-color); background: var(--bg-input); color: var(--text-light); cursor: pointer; font-size: 0.95rem; font-weight: 700; transition: 0.2s; display: flex; align-items: center; gap: 8px; }
+        .btn-action:hover { background: var(--primary); color: #000; border-color: var(--primary); transform: translateY(-2px); }
+        
+        .counter { margin-top: 15px; color: var(--text-muted); font-size: 0.9rem; }
+        
+        .saved-stories { margin-top: 30px; text-align: right; max-height: 400px; overflow-y: auto; padding: 20px; display: none; }
+        .saved-stories h3 { color: var(--primary); margin-bottom: 15px; text-align: center; font-size: 1.3rem; }
+        .story-item { background: var(--bg-input); padding: 15px; border-radius: 15px; margin-bottom: 10px; border-right: 3px solid var(--primary); font-size: 0.95rem; color: var(--text-muted); position: relative; transition: 0.3s; cursor: pointer; }
+        .story-item:hover { transform: translateX(-5px); border-right-color: var(--secondary); }
+        .delete-btn { position: absolute; top: 10px; left: 10px; color: #ff4757; cursor: pointer; background: none; border: none; font-size: 1.1rem; padding: 5px; transition: 0.2s; }
+        .delete-btn:hover { transform: scale(1.2); }
+        
+        .progress-bar { position: fixed; top: 60px; left: 0; height: 3px; background: var(--primary); width: 0%; transition: width 0.1s linear; z-index: 99; box-shadow: 0 0 10px var(--primary-glow); will-change: width; }
+        
+        .toast-notification { position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%); background: var(--bg-card); color: var(--primary); border: 1px solid var(--primary); padding: 12px 24px; border-radius: 50px; font-weight: bold; z-index: 1000; box-shadow: 0 10px 30px rgba(0,0,0,0.5); animation: fadeUp 0.3s ease; font-family: 'Cairo', sans-serif; pointer-events: none; }
+        
+        @media (max-width: 600px) { 
+            .container { padding: 25px; } 
+            h1 { font-size: 1.6rem; } 
+            .btn-generate { width: 100%; justify-content: center; } 
+            .output-box { font-size: 1.1rem; padding: 25px; }
+        }
+    </style>
+</head>
+<body>
+<div class="progress-bar" id="progressBar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+<nav>
+    <a href="index.html" class="logo"><span aria-hidden="true"></span>  </a>
+    <div class="nav-links">
+        <a href="index.html"> </a>
+        <button class="theme-toggle" onclick="app.toggleTheme()" title=" " aria-label=" "></button>
+    </div>
+</nav>
+
+<main class="container">
+    <h1>   </h1>
+    <p class="sub">  200       .   !</p>
+
+    <button class="btn-generate" id="generateBtn" onclick="app.generateStoryJoke()" aria-busy="false">
+        <i class="fas fa-laugh-squint"></i>   
+    </button>
+
+    <div class="loader" id="loader" aria-hidden="true"></div>
+    <article id="jokeOutput" class="output-box" role="article" aria-live="polite" aria-label="  "></article>
+    
+    <div class="action-buttons" id="actionButtons">
+        <button class="btn-action" onclick="app.copyJoke()"><i class="fas fa-copy"></i> </button>
+        <button class="btn-action" onclick="app.saveJoke()"><i class="fas fa-save"></i> </button>
+        <button class="btn-action" onclick="app.downloadJokeImage()"><i class="fas fa-image"></i> </button>
+        <button class="btn-action" onclick="app.shareJoke()"><i class="fas fa-share-alt"></i> </button>
+        <button class="btn-action" onclick="app.playLaugh()"><i class="fas fa-play"></i>   </button>
+    </div>
+    <div class="counter" id="jokeCounter">  0  </div>
+</main>
+
+<section class="container saved-stories" id="savedStoriesContainer" aria-label="  ">
+    <h3>   </h3>
+    <div id="savedStoriesList"></div>
+    <button class="btn-action" onclick="app.exportCSV()" style="margin-top:15px; width: 100%; justify-content: center;">  </button>
+</section>
+
+<script>
+class JokeEngine {
+    constructor() {
+        this.jokeCount = parseInt(localStorage.getItem('totalJokesGenerated') || '0');
+        this.jokeHistory = new Set();
+        this.currentJoke = null;
+        this.updateCounter();
+        this.initTheme();
+
+        //     (200+ )
+        this.jokeBank = [
+            `  :     .           .         .
+       .
+ :  
+ :     !
+ : 
+ : :      ! `,
+
+            `    :   
+ :  .
+ : 
+ :   ! `,
+
+            `   :      .
+ :              ! `,
+
+            `   :
+-   
+ :   
+ :       .
+ :   
+ :         ! `,
+
+            `  :    .
+ :   
+ :  !
+ :   
+ :  :     !
+ :  
+ :  ! `,
+
+            `     :
+-   
+ :  .
+:   
+:  .
+:   
+:    ! `,
+
+            `     .
+ :        
+ :       .
+ :            ! `,
+
+            `   :  .
+ :   
+ :    ! `,
+
+            `       .
+       .
+ :    .
+ :     .
+ .
+ :     .
+ .
+ .
+ :  
+ :        ! `,
+
+            `  :     
+ :       ! `,
+
+            `    :       .
+ :      ! `,
+
+            `  :     
+ : ...
+ :  
+ :   ... `,
+
+            `    :      .
+ :  .
+ :  
+ : ! `,
+
+            `      .
+ :  .
+ :    ! `,
+
+            `  :     .
+ :     .
+ :   
+ :  ! `,
+
+            `  :    
+ :     !
+ :  !
+ :   ! `,
+
+            `  :    .
+ :     ! `,
+
+            `  :   
+:    .
+:  
+:     ! `,
+
+            `  :     .
+ :   !
+:  ! `,
+
+            `     :    .
+ :      ! `,
+
+            `  :   
+:     .
+:   !
+:  ! `,
+
+            `  :     .
+:   
+:      ! `,
+
+            `  :     
+:      .
+: 
+:    ! `,
+
+            `  :     .
+:    
+:     ! `,
+
+            `     :    .
+ :   .
+:   !
+:     ! `,
+
+            `  :     
+:  .
+:   !
+:     ! `,
+
+            `  :   .
+:  
+: ! `,
+
+            `     :   .
+ :   
+:  ! `,
+
+            `  :     
+:   .
+:   !
+:    ! `,
+
+            `  :   .
+:     
+:    ! `,
+
+            `    :   .
+ :       
+:       ! `,
+
+            `  :      
+:    ! `,
+
+            `  :   .
+:  
+:   ! `,
+
+            `     :   .
+ :   
+:  .
+:   
+:      ! `,
+
+            `  :    
+:   .
+:   !
+:     ! `,
+
+            `  :   .
+:     
+:       ! `,
+
+            `      .
+ :   .
+:  
+:   ! `,
+
+            `  :   
+:    .
+:   !
+:     ! `,
+
+            `  :    .
+:    
+:   .
+:      ! `,
+
+            `    :    .
+ : .
+:  
+:    ! `,
+
+            `  :      
+:      ! `,
+
+            `  :       
+:  
+:  ! `,
+
+            `     :    .
+ :  
+: .
+: 
+:   ! `,
+
+            `  :  
+:    .
+:   !
+:  ! `,
+
+            `  :      .
+: .
+    :       ! `,
+
+            `       .
+ :  .
+:    .
+:  .
+:     .
+:      !
+:      ! `,
+
+            `  :      
+:    .
+: 
+:    .
+:     
+:      ! `,
+
+            `     :     .
+ : .
+  :   !
+ :    ! `,
+
+            `  :     
+:    .
+:   !
+:    ! `,
+
+            `  :    .
+ :     ! `,
+
+            `     .
+ :   .
+ :  
+ :      ! `,
+
+            `  :   
+:         .
+:   !
+:       ! `,
+
+            `  :   .
+ :  
+ :   ! `,
+
+            `     :   .
+ :     
+ :   ! `,
+
+            `  :     
+ :         !
+ :   !
+ :      ! `,
+
+            `  :   .
+ :     
+ :    ! `,
+
+            `    :   .
+ :       
+ :       ! `,
+
+            `  :        
+ :       ! `,
+
+            `  :   !
+ :  
+ :   ! `,
+
+            `     :   .
+ :   
+ :  .
+ :   .
+ :    
+ :      ! `,
+
+            `  :    
+ :   !
+ :   !
+ :      ! `,
+
+            `  :   .
+ :     
+ :       ! `,
+
+            `      .
+ :     .
+ :  
+ :    ! `,
+
+            `  :   
+ :      !
+ :   !
+ :     ! `,
+
+            `  :    .
+ :    
+ :     !
+ :       ! `,
+
+            `    :    .
+ :   .
+ :  
+ :      ! `,
+
+            `  :        
+ :      ! `,
+
+            `  :        
+ :      
+ :  ! `,
+
+            `     :     .
+ :        !
+ :    !
+ :       ! `,
+
+            `  :     
+ :       !
+ : 
+ :    ! `,
+
+            `  :       !
+ :   
+ :      ! `,
+
+            `    :     .
+ :          ! `,
+
+            `  :        
+ :      ! `,
+
+            `     :     .
+ :        ! `,
+
+            `  :   !
+ :  
+ :   ! `,
+
+            `  :        
+ :       ! `,
+
+            `      .
+ :   .
+ :  
+ :      ! `,
+
+            `  :     .
+ :    
+ :     ! `,
+
+            `  :   
+ :         !
+ :   !
+ :       ! `,
+
+            `    :    .
+ :   .
+ :  
+ :      ! `,
+
+            `  :   .
+ :   
+ :  ! `,
+
+            `  :     
+ :         !
+ :   !
+ :      ! `,
+
+            `     :   .
+ :     
+ :   ! `,
+
+            `  :   .
+ :     
+ :    ! `,
+
+            `  :      
+ :   !
+ :   !
+ :      ! `,
+
+            `      .
+ :     .
+ :  
+ :    ! `,
+
+            `  :    .
+ :    
+ :     !
+ :       ! `,
+
+            `  :   
+ :      !
+ :   !
+ :     ! `,
+
+            `     :   .
+ :   
+ :  .
+ :   .
+ :    
+ :      ! `,
+
+            `  :   .
+ :     
+ :       ! `,
+
+            `  :    
+ :   !
+ :   !
+ :      ! `,
+
+            `    :   .
+ :       
+ :       ! `,
+
+            `  :        
+ :       ! `,
+
+            `  :   !
+ :  
+ :   ! `,
+
+            `     :   .
+ :   
+ :  .
+ :   .
+ :    
+ :      ! `,
+
+            `  :    
+ :   !
+ :   !
+ :      ! `,
+
+            `  :   .
+ :     
+ :       ! `,
+
+            `      .
+ :     .
+ :  
+ :    ! `,
+
+            `  :   
+ :      !
+ :   !
+ :     ! `,
+
+            `  :    .
+ :    
+ :     !
+ :       ! `,
+
+            `    :    .
+ :   .
+ :  
+ :      ! `,
+
+            `  :        
+ :      ! `,
+
+            `  :        
+ :      
+ :  ! `,
+
+            `     :     .
+ :        !
+ :    !
+ :       ! `,
+
+            `  :     
+ :       !
+ : 
+ :    ! `,
+
+            `  :       !
+ :   
+ :      ! `,
+
+            `    :     .
+ :          ! `
+        ];
+    }
+
+    getRandom(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
+
+    updateCounter() {
+        document.getElementById('jokeCounter').textContent = `  ${this.jokeCount}  `;
+    }
+
+    generateStoryJoke() {
+        const loader = document.getElementById('loader');
+        const outputBox = document.getElementById('jokeOutput');
+        const actionButtons = document.getElementById('actionButtons');
+        const generateBtn = document.getElementById('generateBtn');
+
+        outputBox.classList.remove('show');
+        actionButtons.style.display = 'none';
+        loader.style.display = 'block';
+        generateBtn.disabled = true;
+        generateBtn.setAttribute('aria-busy', 'true');
+
+        setTimeout(() => {
+            let joke, signature;
+            let attempt = 0;
+            
+            do {
+                joke = this.getRandom(this.jokeBank);
+                signature = joke.substring(0, 50);
+                attempt++;
+            } while (this.jokeHistory.has(signature) && attempt < 100);
+
+            this.jokeHistory.add(signature);
+            if (this.jokeHistory.size > 1000) {
+                const arr = Array.from(this.jokeHistory);
+                this.jokeHistory = new Set(arr.slice(-500));
+            }
+
+            this.jokeCount++;
+            try { localStorage.setItem('totalJokesGenerated', this.jokeCount); } catch (e) {}
+            this.updateCounter();
+            
+            loader.style.display = 'none';
+            generateBtn.disabled = false;
+            generateBtn.setAttribute('aria-busy', 'false');
+
+            this.typeWriterEffect(joke, outputBox);
+            actionButtons.style.display = 'flex';
+
+            this.currentJoke = {
+                title: ` ${this.jokeCount}`,
+                content: joke,
+                date: new Date().toLocaleDateString('ar-EG'),
+                word: ''
+            };
+
+            this.updateSchemaForSEO(this.currentJoke);
+        }, 400);
+    }
+
+    typeWriterEffect(text, element) {
+        let i = 0;
+        element.textContent = '';
+        element.classList.add('show');
+        const progressBar = document.getElementById('progressBar');
+        const chunkSize = 3;
+        
+        const type = () => {
+            if (i < text.length) {
+                element.textContent += text.substring(i, i + chunkSize);
+                i += chunkSize;
+                element.scrollTop = element.scrollHeight;
+                const progress = Math.min((i / text.length) * 100, 100);
+                progressBar.style.width = `${progress}%`;
+                requestAnimationFrame(type);
+            } else {
+                progressBar.style.width = '0%';
+            }
+        };
+        requestAnimationFrame(type);
+    }
+
+    updateSchemaForSEO(joke) {
+        const schema = {
+            "@context": "https://schema.org",
+            "@type": "Article",
+            "headline": joke.title,
+            "author": { "@type": "Organization", "name": " " },
+            "datePublished": new Date().toISOString(),
+            "description": "   .",
+            "articleBody": joke.content,
+            "inLanguage": "ar",
+            "genre": "Comedy"
+        };
+        const scriptTag = document.getElementById('dynamic-schema');
+        if (scriptTag) scriptTag.textContent = JSON.stringify(schema);
+    }
+
+    copyJoke() {
+        navigator.clipboard.writeText(document.getElementById('jokeOutput').textContent)
+            .then(() => this.showNotification('   !'))
+            .catch(() => this.showNotification('  '));
+    }
+
+    saveJoke() {
+        if (!this.currentJoke) return;
+        let saved = [];
+        try { saved = JSON.parse(localStorage.getItem('jokeLibrary') || '[]'); } catch (e) { saved = []; }
+        if (saved.some(s => s.content === this.currentJoke.content)) {
+            this.showNotification('  !'); return;
+        }
+        saved.unshift({ id: Date.now(), word: this.currentJoke.word, date: new Date().toLocaleString('ar-SA'), content: this.currentJoke.content });
+        if (saved.length > 50) saved.pop();
+        try {
+            localStorage.setItem('jokeLibrary', JSON.stringify(saved));
+            this.showNotification('  !');
+            this.displaySavedJokes();
+        } catch (e) { this.showNotification('  !'); }
+    }
+
+    downloadJokeImage() {
+        if (typeof html2canvas === 'undefined') { this.showNotification('   '); return; }
+        this.showNotification('  ...');
+        html2canvas(document.getElementById('jokeOutput'), {
+            backgroundColor: getComputedStyle(document.body).getPropertyValue('--bg-dark').trim(), scale: 2
+        }).then(canvas => {
+            const link = document.createElement('a');
+            link.download = `_${Date.now()}.png`;
+            link.href = canvas.toDataURL('image/png');
+            link.click();
+            this.showNotification('  !');
+        }).catch(() => this.showNotification(' '));
+    }
+
+    shareJoke() {
+        const text = document.getElementById('jokeOutput').textContent + '\n\n(  )';
+        if (navigator.share) { navigator.share({ title: ' ', text }).catch(() => {}); }
+        else { navigator.clipboard.writeText(text); this.showNotification('   !'); }
+    }
+
+    playLaugh() {
+        try {
+            const ctx = new (window.AudioContext || window.webkitAudioContext)();
+            const dur = 1.5, sr = ctx.sampleRate, buf = ctx.createBuffer(1, sr * dur, sr), d = buf.getChannelData(0);
+            for (let i = 0; i < d.length; i++) {
+                const t = i / sr;
+                d[i] = Math.sign(Math.sin(2 * Math.PI * (200 + Math.sin(t * 30) * 150) * t)) * Math.sin(t * Math.PI / dur) * (0.5 + 0.5 * Math.sin(t * 20)) * 0.3;
+            }
+            const s = ctx.createBufferSource(); s.buffer = buf; s.connect(ctx.destination); s.start();
+            setTimeout(() => ctx.close(), dur * 1000 + 100);
+            this.showNotification('   !');
+        } catch (e) { this.showNotification('   !'); }
+    }
+
+    displaySavedJokes() {
+        const container = document.getElementById('savedStoriesContainer');
+        const list = document.getElementById('savedStoriesList');
+        let saved = [];
+        try { saved = JSON.parse(localStorage.getItem('jokeLibrary') || '[]'); } catch(e) { saved = []; }
+        if (saved.length === 0) { container.style.display = 'none'; return; }
+        container.style.display = 'block';
+        list.innerHTML = '';
+        saved.forEach(s => {
+            const item = document.createElement('div');
+            item.className = 'story-item';
+            const header = document.createElement('div');
+            header.innerHTML = `<strong> </strong> | <small>${s.date}</small>`;
+            const del = document.createElement('button');
+            del.className = 'delete-btn';
+            del.innerHTML = '<i class="fas fa-trash"></i>';
+            del.onclick = (e) => { e.stopPropagation(); this.deleteJoke(s.id); };
+            const p = document.createElement('p');
+            p.style.marginTop = '8px';
+            p.textContent = s.content;
+            item.appendChild(del); item.appendChild(header); item.appendChild(p);
+            item.onclick = () => {
+                document.getElementById('jokeOutput').textContent = s.content;
+                document.getElementById('jokeOutput').classList.add('show');
+                document.getElementById('actionButtons').style.display = 'flex';
+                this.currentJoke = { title: '', content: s.content, word: s.word };
+                window.scrollTo({top: document.querySelector('.container').offsetTop, behavior:'smooth'});
+            };
+            list.appendChild(item);
+        });
+    }
+
+    deleteJoke(id) {
+        let saved = [];
+        try { saved = JSON.parse(localStorage.getItem('jokeLibrary') || '[]'); } catch(e) { return; }
+        saved = saved.filter(s => s.id !== id);
+        try { localStorage.setItem('jokeLibrary', JSON.stringify(saved)); } catch(e) {}
+        this.displaySavedJokes();
+        this.showNotification('  ');
+    }
+
+    exportCSV() {
+        let saved = [];
+        try { saved = JSON.parse(localStorage.getItem('jokeLibrary') || '[]'); } catch(e) { saved = []; }
+        if (saved.length === 0) { this.showNotification('    '); return; }
+        let csv = "\uFEFF,\n";
+        saved.forEach(i => { csv += `"${i.date}","${i.content.replace(/"/g, '""')}"\n`; });
+        const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+        const link = document.createElement('a');
+        link.href = URL.createObjectURL(blob);
+        link.download = '_.csv';
+        link.click();
+        URL.revokeObjectURL(link.href);
+        this.showNotification('  !');
+    }
+
+    showNotification(message) {
+        const existing = document.querySelector('.toast-notification');
+        if (existing) existing.remove();
+        const toast = document.createElement('div');
+        toast.className = 'toast-notification';
+        toast.textContent = message;
+        document.body.appendChild(toast);
+        setTimeout(() => { toast.style.opacity = '0'; toast.style.transition = 'opacity 0.5s'; setTimeout(() => toast.remove(), 500); }, 2500);
+    }
+
+    toggleTheme() {
+        document.body.classList.toggle('light-mode');
+        localStorage.setItem('jokeTheme', document.body.classList.contains('light-mode') ? 'light' : 'dark');
+    }
+
+    initTheme() {
+        if (localStorage.getItem('jokeTheme') === 'light') document.body.classList.add('light-mode');
+    }
+}
+
+const app = new JokeEngine();
+window.onload = function() { app.displaySavedJokes(); };
+</script>
+</body>
+</html>
