@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مفسر الأحلام الذكي | الأدوات المطلقة – تفسير الأحلام مجاناً</title>
+    <meta name="description" content="أداة ذكية لتفسير الأحلام والرؤى بناءً على أكثر من 70 رمزاً ودلالات فورية. جرّب الآن مفسر الأحلام المتقدم.">
+    <meta name="keywords" content="تفسير الأحلام, تفسير حلم, أداة تفسير الأحلام, تفسير الأحلام مجاني, ابن سيرين, رموز الأحلام">
+    <meta name="author" content="الأدوات المطلقة المتنوعة">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://example.com/dream-interpreter.html">
+    <meta property="og:title" content="مفسر الأحلام الذكي – تفسير الأحلام مجاناً">
+    <meta property="og:description" content="أداة ذكية لتفسير الأحلام والرؤى بناءً على أكثر من 70 رمزاً ودلالات فورية. جرّب الآن مفسر الأحلام المتقدم.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://example.com/dream-interpreter.html">
+    <meta property="og:image" content="https://example.com/images/dream-preview.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="مفسر الأحلام الذكي – تفسير الأحلام مجاناً">
+    <meta name="twitter:description" content="أداة ذكية لتفسير الأحلام والرؤى بناءً على أكثر من 70 رمزاً ودلالات فورية. جرّب الآن مفسر الأحلام المتقدم.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+    <style>
+        :root {
+            --primary: #00ff88;
+            --primary-glow: rgba(0, 255, 136, 0.4);
+            --secondary: #00ccff;
+            --purple: #a855f7;
+            --purple-glow: rgba(168, 85, 247, 0.5);
+            --bg-dark: #0b0e14;
+            --bg-card: #131821;
+            --bg-input: #1b212b;
+            --border-color: #2a2f3a;
+            --text-light: #f3f4f6;
+            --text-muted: #9ca3af;
+            --danger: #ef4444;
+        }
+        body.light-mode {
+            --bg-dark: #f8f5fc;
+            --bg-card: #ffffff;
+            --bg-input: #f0e8f8;
+            --border-color: #d8c8f0;
+            --text-light: #2a1038;
+            --text-muted: #6b5080;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; transition: background 0.3s, color 0.2s, border-color 0.3s; }
+        body {
+            font-family: 'Cairo', sans-serif;
+            background: var(--bg-dark); color: var(--text-light);
+            min-height: 100vh; display: flex; flex-direction: column;
+            background-image: radial-gradient(circle at 50% 0%, var(--purple-glow) 0%, transparent 40%);
+        }
+        a { text-decoration: none; color: inherit; }
+        nav {
+            background: var(--bg-dark); border-bottom: 1px solid var(--border-color);
+            padding: 15px 30px; display: flex; justify-content: space-between; align-items: center;
+            position: sticky; top: 0; z-index: 100; backdrop-filter: blur(10px);
+        }
+        .logo {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 900; font-size: 1.3rem; color: var(--primary);
+            display: flex; align-items: center; gap: 10px;
+        }
+        .nav-links { display: flex; gap: 20px; align-items: center; flex-wrap: wrap; }
+        .nav-links a { color: var(--text-muted); font-weight: 600; }
+        .nav-links a:hover { color: var(--primary); }
+        .theme-toggle {
+            background: var(--bg-input); border: 1px solid var(--border-color);
+            color: var(--text-light); padding: 6px 12px; border-radius: 50px;
+            font-size: 1.1rem; cursor: pointer;
+        }
+        main { flex: 1; }
+        .container { max-width: 850px; margin: 0 auto; padding: 40px 20px; width: 100%; }
+        .tool-header { text-align: center; margin-bottom: 30px; }
+        .tool-header h1 {
+            font-size: 2.2rem; font-weight: 900;
+            background: linear-gradient(135deg, #fff, var(--purple), var(--secondary));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+        }
+        .tool-header p { color: var(--text-muted); font-size: 1rem; }
+
+        .dream-card {
+            background: var(--bg-card); border: 1px solid var(--border-color);
+            border-radius: 25px; padding: 30px; box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+            margin-bottom: 30px;
+        }
+        .input-group { margin-bottom: 20px; }
+        .input-group label { display: block; margin-bottom: 10px; font-weight: 700; color: var(--purple); font-size: 1.1rem; }
+        .dream-textarea {
+            width: 100%; height: 150px; padding: 18px; border-radius: 16px;
+            background: var(--bg-input); border: 2px solid var(--border-color);
+            color: var(--text-light); font-family: 'Cairo'; font-size: 1.05rem;
+            resize: vertical; outline: none;
+        }
+        .dream-textarea:focus { border-color: var(--purple); box-shadow: 0 0 20px var(--purple-glow); }
+
+        .settings-row {
+            display: flex; gap: 15px; flex-wrap: wrap; margin-bottom: 20px;
+        }
+        .setting-group {
+            display: flex; align-items: center; gap: 10px; background: var(--bg-input);
+            padding: 10px 16px; border-radius: 14px; border: 1px solid var(--border-color);
+        }
+        .setting-group span { color: var(--text-muted); font-weight: 600; font-size: 0.95rem; }
+        .gender-btn {
+            padding: 6px 14px; border-radius: 20px; border: 1px solid var(--border-color);
+            background: transparent; color: var(--text-muted); cursor: pointer;
+            font-weight: 700; font-size: 0.85rem; transition: 0.2s;
+        }
+        .gender-btn.active { background: var(--purple); color: #fff; border-color: var(--purple); }
+
+        .btn-row { display: flex; gap: 10px; flex-wrap: wrap; }
+        .btn-interpret {
+            flex: 1; min-width: 200px; padding: 14px 20px; border: none; border-radius: 14px;
+            background: linear-gradient(135deg, var(--purple), #6366f1);
+            color: #fff; font-size: 1.1rem; font-weight: 700; cursor: pointer;
+            box-shadow: 0 4px 20px var(--purple-glow); transition: 0.3s;
+        }
+        .btn-interpret:hover { transform: translateY(-3px); opacity: 0.95; }
+        .btn-random {
+            padding: 14px 20px; border: 1px solid var(--purple); border-radius: 14px;
+            background: transparent; color: var(--purple); font-weight: 700; cursor: pointer;
+            font-size: 1rem; white-space: nowrap; transition: 0.3s;
+        }
+        .btn-random:hover { background: var(--purple); color: #fff; }
+        .btn-voice {
+            padding: 14px 20px; border: 1px solid #ffaa00; border-radius: 14px;
+            background: transparent; color: #ffaa00; font-weight: 700; cursor: pointer;
+            font-size: 1rem; white-space: nowrap; transition: 0.3s;
+        }
+        .btn-voice:hover { background: #ffaa00; color: #000; }
+        .btn-voice.listening { animation: pulse 1s infinite; background: #ff0000; color: #fff; border-color: #ff0000; }
+        @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.05); } 100% { transform: scale(1); } }
+
+        .result-box {
+            margin-top: 30px; display: none; padding: 25px; border-radius: 20px;
+            background: var(--bg-input); border: 1px solid var(--purple);
+            animation: fadeIn 0.4s forwards;
+        }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .result-title { font-size: 1.3rem; font-weight: 700; color: var(--secondary); margin-bottom: 15px; display: flex; align-items: center; gap: 8px; }
+        .symbol-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 15px; }
+        .symbol-tag { background: rgba(168, 85, 247, 0.2); color: var(--purple); padding: 5px 14px; border-radius: 20px; font-size: 0.85rem; font-weight: 700; }
+        .sentiment-badge { display: inline-block; padding: 6px 14px; border-radius: 20px; font-weight: 700; font-size: 0.85rem; margin-bottom: 15px; }
+        .sentiment-positive { background: rgba(0,255,136,0.2); color: var(--primary); }
+        .sentiment-negative { background: rgba(239,68,68,0.2); color: var(--danger); }
+        .sentiment-neutral { background: rgba(255,170,0,0.2); color: #ffaa00; }
+        .result-content { font-size: 1rem; line-height: 2; color: var(--text-light); }
+
+        .rating-box { margin-top: 20px; display: flex; gap: 15px; align-items: center; }
+        .rating-btn { background: var(--bg-card); border: 1px solid var(--border-color); padding: 8px 16px; border-radius: 12px; color: var(--text-light); cursor: pointer; font-size: 1.2rem; }
+        .rating-btn.active { border-color: var(--primary); box-shadow: 0 0 10px var(--primary-glow); }
+
+        .action-buttons { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 20px; }
+        .btn-action {
+            padding: 10px 18px; border-radius: 12px; border: 1px solid var(--border-color);
+            background: var(--bg-card); color: var(--text-light); font-weight: 700;
+            cursor: pointer; font-size: 0.9rem; transition: 0.3s;
+        }
+        .btn-action:hover { background: var(--purple); color: #fff; border-color: var(--purple); }
+        .saved-dreams { margin-top: 30px; display: none; }
+        .saved-dreams h3 { color: var(--purple); margin-bottom: 15px; }
+        .dream-item {
+            background: var(--bg-card); border: 1px solid var(--border-color);
+            padding: 15px; border-radius: 15px; margin-bottom: 10px;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .dream-item span { color: var(--text-muted); font-size: 0.9rem; word-break: break-word; }
+        .dream-item button { background: transparent; border: none; color: var(--danger); cursor: pointer; font-size: 1.2rem; }
+        footer {
+            background: var(--bg-card); border-top: 1px solid var(--border-color);
+            padding: 25px 20px; text-align: center; color: var(--text-muted); margin-top: auto;
+        }
+        footer strong { color: var(--primary); }
+        @media (max-width: 600px) {
+            .tool-header h1 { font-size: 1.7rem; }
+            .dream-card { padding: 20px; }
+            .btn-interpret, .btn-random, .btn-voice { width: 100%; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="logo"><i class="fas fa-shield-halved"></i><span>الأدوات المطلقة</span></div>
+        <div class="nav-links">
+            <a href="index.html">الرئيسية</a>
+            <button class="theme-toggle" onclick="toggleTheme()" aria-label="تبديل الوضع">🌓</button>
+        </div>
+    </nav>
+
+    <main>
+        <div class="container">
+            <article>
+                <header class="tool-header">
+                    <h1>🌙 مفسر الأحلام الذكي</h1>
+                    <p>اكتب تفاصيل حلمك أو تحدث بها، واختر الجنس لتحصل على تفسير أدق.</p>
+                </header>
+
+                <section class="dream-card">
+                    <div class="settings-row">
+                        <div class="setting-group">
+                            <span>الجنس:</span>
+                            <button class="gender-btn active" onclick="setGender('male', this)">👨 رجل</button>
+                            <button class="gender-btn" onclick="setGender('female', this)">👩 امرأة</button>
+                        </div>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="dreamInput"><i class="fas fa-pen-nib"></i> صف ما رأيته:</label>
+                        <textarea id="dreamInput" class="dream-textarea" placeholder="مثال: رأيت أنني أطير فوق بحر صافٍ وهناك مطر خفيف ينزل من السماء وقابلت شخصاً غريباً..."></textarea>
+                    </div>
+                    <div class="btn-row">
+                        <button class="btn-interpret" onclick="interpretDream()"><i class="fas fa-wand-magic-sparkles"></i> تفسير الحلم الآن</button>
+                        <button class="btn-random" onclick="randomDream()"><i class="fas fa-dice"></i> حلم عشوائي</button>
+                        <button id="voiceBtn" class="btn-voice" onclick="startVoice()"><i class="fas fa-microphone"></i> تحدث</button>
+                    </div>
+
+                    <div class="result-box" id="resultBox">
+                        <div class="result-title"><i class="fas fa-moon"></i> التفسير والدلالات المتوقعة:</div>
+                        <div class="sentiment-badge" id="sentimentBadge"></div>
+                        <div class="symbol-tags" id="symbolTags"></div>
+                        <div class="result-content" id="resultText"></div>
+                        <div class="rating-box" id="ratingBox">
+                            <span style="color:var(--text-muted);">هل كان التفسير مفيداً؟</span>
+                            <button class="rating-btn" onclick="rateInterpretation('useful')" aria-label="تقييم مفيد">👍</button>
+                            <button class="rating-btn" onclick="rateInterpretation('notuseful')" aria-label="تقييم غير مفيد">👎</button>
+                        </div>
+                        <div class="action-buttons">
+                            <button class="btn-action" onclick="copyResult()"><i class="fas fa-copy"></i> نسخ التفسير</button>
+                            <button class="btn-action" onclick="saveResult()"><i class="fas fa-save"></i> حفظ في المكتبة</button>
+                            <button class="btn-action" onclick="shareResult()"><i class="fas fa-share-alt"></i> مشاركة</button>
+                            <button class="btn-action" onclick="downloadImage()"><i class="fas fa-image"></i> تحميل كصورة</button>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="saved-dreams" id="savedDreamsContainer">
+                    <h3>📚 مكتبة الأحلام المحفوظة</h3>
+                    <div id="savedDreamsList"></div>
+                    <button class="btn-action" onclick="exportCSV()" style="margin-top:10px;">📥 تصدير المكتبة (CSV)</button>
+                </section>
+            </article>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 <strong>الأدوات المطلقة المتنوعة</strong>. صنع في اليمن بفخر 🇾🇪</p>
+    </footer>
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "مفسر الأحلام الذكي",
+        "url": "https://example.com/dream-interpreter.html",
+        "description": "أداة ذكية لتفسير الأحلام والرؤى بناءً على أكثر من 70 رمزاً ودلالات فورية.",
+        "applicationCategory": "Lifestyle",
+        "operatingSystem": "All"
+    }
+    </script>
+
+    <script>
+        // إعدادات المستخدم
+        let userGender = 'male'; 
+
+        function setGender(gender, btn) {
+            userGender = gender;
+            document.querySelectorAll('.gender-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+        }
+
+        // الوضع الليلي
+        function toggleTheme() { 
+            document.body.classList.toggle('light-mode'); 
+            localStorage.setItem('theme', document.body.classList.contains('light-mode') ? 'light' : 'dark'); 
+        }
+        if (localStorage.getItem('theme') === 'light') document.body.classList.add('light-mode');
+
+        // قاموس الرموز (الموسع)
+        const dreamDictionary = [
+            { keywords: ['طيران', 'أطير', 'يطير', 'طائر', 'أجنحة', 'طارت'], name: 'الطيران', sentiment: 'positive', meaning: 'يدل على الطموح العالي، الرغبة في الحرية، والتحرر من الضغوطات أو نيل مرتبة رفيعة.' },
+            { keywords: ['ماء', 'بحر', 'نهر', 'محيط', 'بحيرة', 'شلال'], name: 'الماء/البحر', sentiment: 'neutral', meaning: 'الماء الصافي يرمز إلى الرزق والصفاء والحياة الجديدة، بينما البحر الهائج قد يعبر عن التحديات أو التقلبات النفسية.' },
+            { keywords: ['مطر', 'غيث', 'أمطار', 'ماطر', 'مطرة'], name: 'المطر', sentiment: 'positive', meaning: 'بشرى خير ورحمة وفرج قريب، ويدل على استجابة الدعاء وتجدد الأمل والبركة في الرزق.' },
+            { keywords: ['ثعبان', 'أفعى', 'حية', 'ثعابين'], name: 'الثعبان', sentiment: 'negative', meaning: 'قد يشير إلى وجود عداوة أو حاسد في المحيط، وحجم الثعبان يعكس حجم التحدي، قتله في الحلم نصر وفرج.' },
+            { keywords: ['مال', 'فلوس', 'نقود', 'ذهب', 'فضة', 'كنز', 'عملات'], name: 'المال والذهب', sentiment: 'positive', meaning: 'يرمز إلى المسؤوليات الجسيمة، وفي أحيان أخرى يشير إلى الرزق الوفير أو الأخبار السارة القادمة.' },
+            { keywords: ['سفر', 'طائرة', 'سيارة', 'طريق', 'قطار', 'سفينة'], name: 'السفر والحركة', sentiment: 'positive', meaning: 'يعكس الانتقال من حال إلى حال أفضل، والبدء في مرحلة جديدة أو مشروع شخصي جديد.' },
+            { keywords: ['سقوط', 'أسقط', 'هاوية', 'وقوع', 'طاح'], name: 'السقوط', sentiment: 'negative', meaning: 'يعبر عن الشعور بالقلق أو الخوف من فقدان السيطرة على أمر معين في حياتك اليومية.' },
+            { keywords: ['موت', 'ميت', 'وفاة', 'قبر', 'جنازة'], name: 'الموت', sentiment: 'neutral', meaning: 'غالباً لا يعني الموت الحقيقي بل يرمز لنهاية مرحلة قديمة وبداية عمر جديد أو تحول إيجابي كبير.' },
+            { keywords: ['زواج', 'عروس', 'عريس', 'زفاف', 'فرح'], name: 'الزواج', sentiment: 'positive', meaning: 'يدل على دخول في شراكة جديدة، الحصول على وظيفة، أو الاستقرار والراحة النفسية.' },
+            { keywords: ['نار', 'حريق', 'لهب', 'دخان'], name: 'النار', sentiment: 'negative', meaning: 'قد ترمز إلى الغضب المكبوت أو فتنة قادمة، لكن النار الدافئة في الشتاء تدل على الأمان والعائلة.' },
+            { keywords: ['قطة', 'قط', 'قطط', 'هرة'], name: 'القطة', sentiment: 'neutral', meaning: 'ترمز القطة غالباً إلى امرأة ماكرة أو صديقة غيورة، وقد تدل على الاستقلالية والغموض.' },
+            { keywords: ['كلب', 'كلاب', 'كلبة'], name: 'الكلب', sentiment: 'positive', meaning: 'يرمز للصديق الوفي والحامي، لكن الكلب المسعور قد يعكس خيانة أو خطراً من شخص تثق به.' },
+            { keywords: ['طفل', 'أطفال', 'رضيع', 'ولادة'], name: 'الطفل/الولادة', sentiment: 'positive', meaning: 'بشرى ببداية جديدة، مشروع جديد، أو مسؤولية قادمة. الطفل الجميل يدل على الفرح والبراءة.' },
+            { keywords: ['شمس', 'قمر', 'نجوم', 'سماء'], name: 'الأجرام السماوية', sentiment: 'positive', meaning: 'الشمس ترمز للسلطة والعزة والقوة، والقمر يرمز للجمال والهدوء، والنجوم تدل على الأهداف البعيدة.' },
+            { keywords: ['حيوان', 'أسد', 'نمر', 'فيل', 'حصان'], name: 'الحيوانات', sentiment: 'neutral', meaning: 'الأسد يرمز للقوة والمنصب، والحصان يرمز للسرعة في تحقيق الأهداف، والفيل للصبر والحكمة.' },
+            { keywords: ['أكل', 'طعام', 'فاكهة', 'خبز', 'لحم'], name: 'الطعام', sentiment: 'positive', meaning: 'يدل على الرزق والخير القادم، والفاكهة الطازجة ترمز للصحة والعافية.' },
+            { keywords: ['مدرسة', 'جامعة', 'امتحان', 'دراسة'], name: 'الدراسة', sentiment: 'neutral', meaning: 'تعكس القلق من اختبار قادم أو مرحلة تعلم جديدة في الحياة، وقد تشير للنجاح بعد تعب.' },
+            { keywords: ['مريض', 'مرض', 'مستشفى', 'دواء'], name: 'المرض', sentiment: 'negative', meaning: 'قد يعكس قلقاً على الصحة أو تعباً نفسياً، لكن الشفاء في الحلم يدل على تجاوز الصعاب.' },
+            { keywords: ['شخص', 'غريب', 'رجل', 'امرأة', 'قابلت'], name: 'الأشخاص', sentiment: 'neutral', meaning: 'لقاء شخص غريب في الحلم قد يرمز إلى فرصة جديدة أو تحذير من أمر ما قادم.' },
+            { keywords: ['بيت', 'منزل', 'غرفة', 'باب', 'نافذة'], name: 'البيت', sentiment: 'neutral', meaning: 'البيت يرمز للأمان والاستقرار، والبيت الجديد يدل على حياة جديدة، والباب المفتوح فرصة قادمة.' },
+            { keywords: ['شعر', 'قص شعر', 'تسريحة'], name: 'الشعر', sentiment: 'neutral', meaning: 'الشعر الطويل للنساء زينة وجمال، وقص الشعر قد يدل على التخلص من الهموم أو تغيير في الحياة.' },
+            { keywords: ['أسنان', 'ضرس', 'سنة', 'طاح'], name: 'الأسنان', sentiment: 'negative', meaning: 'سقوط الأسنان في الحلم قد يعكس القلق على أحد أفراد العائلة أو الشعور بفقدان السيطرة.' },
+            { keywords: ['شمعة', 'شموع', 'نور شمعة'], name: 'الشمعة', sentiment: 'positive', meaning: 'ترمز للأمل والإيمان والصمود في الظلام، وقد تدل على شخص حكيم ينير لك الطريق.' },
+            { keywords: ['مفتاح', 'مفاتيح', 'فتح'], name: 'المفتاح', sentiment: 'positive', meaning: 'يدل على الحلول القادمة والفرج بعد الضيق، وفتح أبواب الرزق المغلقة.' },
+            { keywords: ['تاج', 'ملك', 'عرش'], name: 'التاج', sentiment: 'positive', meaning: 'يرمز للعزة والسلطة والمنصب الرفيع، وقد يدل على ترقية أو نجاح كبير.' },
+            { keywords: ['جسر', 'عبور', 'معبر'], name: 'الجسر', sentiment: 'neutral', meaning: 'يدل على الانتقال من مرحلة لأخرى، واتخاذ قرار مصيري، فإذا عبرته بسلام نلت مرادك.' },
+            { keywords: ['سجن', 'حبس', 'قضبان'], name: 'السجن', sentiment: 'negative', meaning: 'يعكس شعوراً بالقيود أو العجز في الواقع، لكن الخروج منه في الحلم يدل على الفرج.' },
+            { keywords: ['كتاب', 'قراءة', 'مكتبة'], name: 'الكتاب', sentiment: 'positive', meaning: 'يرمز للعلم والمعرفة والحكمة، وقد يدل على خبر جديد يصل إليك قريباً.' },
+            { keywords: ['وردة', 'زهرة', 'ورود'], name: 'الورد', sentiment: 'positive', meaning: 'يدل على الحب والجمال والمشاعر الطيبة، وقد يبشر بلقاء شخص عزيز.' },
+            { keywords: ['ريح', 'عاصفة', 'هواء شديد'], name: 'الريح', sentiment: 'negative', meaning: 'تعكس تغيرات مفاجئة أو اضطرابات قادمة، لكنها قد تحمل خيراً بعد شدتها.' },
+            { keywords: ['ظلام', 'عتمة', 'ليل'], name: 'الظلام', sentiment: 'negative', meaning: 'يرمز للحيرة أو الخوف من المجهول، لكن ظهور النور بعده يدل على الهداية.' },
+            { keywords: ['نور', 'ضوء', 'إشراق'], name: 'النور', sentiment: 'positive', meaning: 'يدل على الهداية والفرج وكشف الحقائق، وهو بشرى خير في أغلب الأحلام.' },
+            { keywords: ['حبل', 'ربط', 'حبال'], name: 'الحبل', sentiment: 'neutral', meaning: 'قد يرمز للعهد أو الارتباط، والحبل المتين يدل على قوة العلاقات، بينما المتقطع يدل على انفصال.' },
+            { keywords: ['ساعة', 'وقت', 'توقيت'], name: 'الساعة', sentiment: 'neutral', meaning: 'تعكس الإحساس بالوقت والمسؤولية، وقد تنبهك لضرورة الإسراع في أمر مهم.' },
+            { keywords: ['مرآة', 'انعكاس', 'نظر لنفسه'], name: 'المرآة', sentiment: 'neutral', meaning: 'ترمز للتأمل الذاتي ومراجعة النفس، وقد تدل على اكتشاف حقيقة كانت مخفية.' },
+            { keywords: ['دموع', 'بكاء', 'يبكي'], name: 'الدموع', sentiment: 'neutral', meaning: 'قد تكون دموع الفرح أو الحزن، لكنها غالباً ترمز للتفريج وتنقية النفس من الهموم.' },
+            { keywords: ['ضحك', 'يضحك', 'ابتسامة'], name: 'الضحك', sentiment: 'positive', meaning: 'يدل على الفرح القادم وزوال الهم، والضحك بصوت عال قد يعكس مفاجأة سعيدة.' },
+            // الرموز الجديدة
+            { keywords: ['خاتم', 'خواتم', 'خاتم ذهب'], name: 'الخاتم', sentiment: 'positive', meaning: 'يرمز للارتباط والالتزام، وقد يدل على زواج قريب أو شراكة جديدة أو مسؤولية قادمة.' },
+            { keywords: ['سيارة', 'عربية', 'مركبة'], name: 'السيارة', sentiment: 'neutral', meaning: 'تعكس مسار حياتك وسرعة تحقيق الأهداف. قيادتها بسلاسة تدل على النجاح، أما تعطلها فقد يشير إلى عقبات.' },
+            { keywords: ['مصعد', 'أسانسير', 'صعود'], name: 'المصعد', sentiment: 'neutral', meaning: 'الصعود في المصعد يدل على الارتقاء السريع في المنصب أو الحالة الاجتماعية، والهبوط قد يعكس انتكاسة.' },
+            { keywords: ['حديقة', 'بستان', 'مزرعة'], name: 'الحديقة', sentiment: 'positive', meaning: 'ترمز للراحة النفسية والاستقرار العائلي، وهي بشرة خير وازدهار في الحياة.' },
+            { keywords: ['تلفاز', 'تلفزيون', 'شاشة'], name: 'التلفاز', sentiment: 'neutral', meaning: 'يشير إلى الأخبار القادمة أو الرسائل التي تنتظرها. مشاهدة برنامج معين قد تعكس اهتماماتك.' },
+            { keywords: ['جوال', 'موبايل', 'هاتف'], name: 'الجوال', sentiment: 'neutral', meaning: 'يدل على التواصل والاتصالات القادمة. رنين الجوال قد يعني خبراً عاجلاً.' }
+        ];
+
+        // التفسيرات المركبة
+        const combinedInterpretations = [
+            { pair: ['الماء/البحر', 'المطر'], meaning: 'اجتماع الماء والمطر في الحلم بشرى عظيمة بالرزق الوفير والبركة المضاعفة في الحياة.' },
+            { pair: ['الطيران', 'السقوط'], meaning: 'الطيران ثم السقوط يعكس تقلباً بين الطموح والقلق، وقد يشير إلى أنك تسعى لهدف كبير لكنك تخشى الفشل.' },
+            { pair: ['المال والذهب', 'النار'], meaning: 'المال مع النار قد ينذر بوجود مال مشبوه أو فتنة مالية قادمة، فاحذر مصادر رزقك.' },
+            { pair: ['الزواج', 'الموت'], meaning: 'زواج ثم موت في الحلم قد يرمز لنهاية مرحلة وبداية أخرى جديدة تماماً.' },
+            { pair: ['الطفل/الولادة', 'الماء/البحر'], meaning: 'ولادة مع ماء صافٍ ترمز لمشروع جديد ناجح ورزق وفير قادم.' },
+            { pair: ['النور', 'الظلام'], meaning: 'تضاد النور والظلام في الحلم يعكس صراعاً داخلياً بين الحق والباطل، وغلبة النور بشارة خير.' },
+            { pair: ['المفتاح', 'الباب'], meaning: 'المفتاح مع الباب يبشر بحل قريب لمشكلة مستعصية وفتح أبواب مغلقة في حياتك.' },
+            { pair: ['الشمعة', 'الظلام'], meaning: 'شمعة في الظلام تدل على الأمل القادم من قلب المعاناة، وأن الفرج قريب رغم شدة المحنة.' },
+            { pair: ['الجسر', 'الماء/البحر'], meaning: 'عبور جسر فوق الماء يرمز لتجاوز الصعاب والمخاوف بنجاح، والوصول إلى بر الأمان.' },
+            { pair: ['الدموع', 'الضحك'], meaning: 'الدموع ثم الضحك تعني تحول الأحزان إلى أفراح قريباً، وانتهاء فترة عصيبة من حياتك.' },
+            { pair: ['الخاتم', 'الزواج'], meaning: 'الخاتم مع الزواج تأكيد قوي على ارتباط أو شراكة ناجحة قادمة.' },
+            { pair: ['السيارة', 'السفر'], meaning: 'السيارة مع السفر تدل على سرعة في تحقيق الأهداف والوصول إلى الوجهة المنشودة.' }
+        ];
+
+        let typingInterval = null;
+
+        // تطبيق الجنس فقط (بدون visionType)
+        function applyGenderContext(symbols, baseText) {
+            let modified = baseText;
+            if (userGender === 'female') {
+                const femaleAdjustments = {
+                    'الشعر': 'قد يشير الشعر في منام المرأة إلى زينتها وسترها، وطوله زيادة في الخير والجمال.',
+                    'الطفل/الولادة': 'بالنسبة للمرأة، قد تدل الولادة على قرب حمل أو رزق بطفل جديد، أو بداية مرحلة أمومة سعيدة.',
+                    'الزواج': 'للمرأة، الزواج في الحلم قد يعكس رغبة في الاستقرار أو تحسن في العلاقة الزوجية.'
+                };
+                symbols.forEach(sym => {
+                    if (femaleAdjustments[sym.name]) {
+                        modified += `<br><br>👩 <strong>ملاحظة للنساء:</strong> ${femaleAdjustments[sym.name]}`;
+                    }
+                });
+            } else if (userGender === 'male') {
+                const maleAdjustments = {
+                    'الشعر': 'أما للرجل، فقد يدل الشعر الطويل على الهيبة والوقار أو زيادة في المال.',
+                    'الطفل/الولادة': 'للرجل، بشارة بمشروع جديد أو مسؤولية كبيرة قادمة يحملها على عاتقه.',
+                    'الزواج': 'للرجل، الزواج في الحلم قد يشير إلى ترقية في العمل أو شراكة ناجحة.'
+                };
+                symbols.forEach(sym => {
+                    if (maleAdjustments[sym.name]) {
+                        modified += `<br><br>👨 <strong>ملاحظة للرجال:</strong> ${maleAdjustments[sym.name]}`;
+                    }
+                });
+            }
+            return modified;
+        }
+
+        function interpretDream() {
+            const text = document.getElementById('dreamInput').value.trim().toLowerCase();
+            const resultBox = document.getElementById('resultBox');
+            const symbolTags = document.getElementById('symbolTags');
+            const resultText = document.getElementById('resultText');
+            const sentimentBadge = document.getElementById('sentimentBadge');
+
+            if (!text) {
+                alert('يرجى كتابة أو التحدث بتفاصيل الحلم أولاً!');
+                return;
+            }
+
+            let foundSymbols = [];
+            let interpretationDetails = [];
+
+            dreamDictionary.forEach(item => {
+                const matched = item.keywords.some(word => text.includes(word));
+                if (matched && !foundSymbols.find(s => s.name === item.name)) {
+                    foundSymbols.push(item);
+                }
+            });
+
+            symbolTags.innerHTML = '';
+            sentimentBadge.className = 'sentiment-badge';
+            
+            if (foundSymbols.length > 0) {
+                foundSymbols.forEach(sym => {
+                    symbolTags.innerHTML += `<span class="symbol-tag">✨ ${sym.name}</span>`;
+                });
+
+                const posCount = foundSymbols.filter(s => s.sentiment === 'positive').length;
+                const negCount = foundSymbols.filter(s => s.sentiment === 'negative').length;
+                if (posCount > negCount) {
+                    sentimentBadge.textContent = '😊 إيجابي';
+                    sentimentBadge.classList.add('sentiment-positive');
+                } else if (negCount > posCount) {
+                    sentimentBadge.textContent = '😟 يحتاج انتباهاً';
+                    sentimentBadge.classList.add('sentiment-negative');
+                } else {
+                    sentimentBadge.textContent = '🤔 محايد';
+                    sentimentBadge.classList.add('sentiment-neutral');
+                }
+
+                foundSymbols.forEach(sym => {
+                    interpretationDetails.push(`🔹 <strong>${sym.name}:</strong> ${sym.meaning}`);
+                });
+
+                let combinedFound = [];
+                for (let i = 0; i < foundSymbols.length; i++) {
+                    for (let j = i + 1; j < foundSymbols.length; j++) {
+                        combinedInterpretations.forEach(comb => {
+                            if ((comb.pair[0] === foundSymbols[i].name && comb.pair[1] === foundSymbols[j].name) ||
+                                (comb.pair[0] === foundSymbols[j].name && comb.pair[1] === foundSymbols[i].name)) {
+                                combinedFound.push(comb.meaning);
+                            }
+                        });
+                    }
+                }
+
+                let fullText = interpretationDetails.join('<br><br>');
+                if (combinedFound.length > 0) {
+                    fullText += `<br><br>🔗 <strong>تفسير مركب:</strong><br>${combinedFound.join('<br>')}`;
+                }
+
+                fullText = applyGenderContext(foundSymbols, fullText);
+                typeWriter(resultText, fullText);
+            } else {
+                symbolTags.innerHTML = `<span class="symbol-tag">✨ رؤية عامة</span>`;
+                sentimentBadge.textContent = '🤔 غير مصنف';
+                sentimentBadge.classList.add('sentiment-neutral');
+                let defaultText = `لم نتمكن من تحديد رموز مباشرة وشائعة.<br><br>✨ <strong>التفسير العام:</strong> يرمز حلمك بشكل عام إلى حديث النفس أو انشغال الفكر ببعض الأحداث اليومية.`;
+                defaultText = applyGenderContext([], defaultText);
+                typeWriter(resultText, defaultText);
+            }
+
+            resultBox.style.display = 'block';
+            playSound();
+        }
+
+        function typeWriter(element, htmlContent) {
+            if (typingInterval) clearInterval(typingInterval);
+            element.innerHTML = '';
+            let i = 0;
+            typingInterval = setInterval(() => {
+                if (i < htmlContent.length) {
+                    if (htmlContent.charAt(i) === '<') {
+                        let tagEnd = htmlContent.indexOf('>', i);
+                        if (tagEnd !== -1) i = tagEnd + 1;
+                        else i++;
+                    } else {
+                        i++;
+                    }
+                    element.innerHTML = htmlContent.substring(0, i);
+                } else {
+                    clearInterval(typingInterval);
+                }
+            }, 10);
+        }
+
+        function playSound() {
+            try {
+                const ctx = new (window.AudioContext || window.webkitAudioContext)();
+                const osc = ctx.createOscillator();
+                const gain = ctx.createGain();
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(600, ctx.currentTime);
+                gain.gain.setValueAtTime(0.08, ctx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.25);
+                osc.connect(gain); gain.connect(ctx.destination);
+                osc.start(); osc.stop(ctx.currentTime + 0.25);
+            } catch(e) {}
+        }
+
+        function randomDream() {
+            const dreams = [
+                'رأيت أنني أطير فوق بحر أزرق وفيه أسماك ملونة',
+                'حلمت أنني في امتحان صعب وليس معي قلم',
+                'رأيت أسناني تتساقط في يدي',
+                'حلمت بطفل صغير يضحك لي ويعطيني وردة',
+                'رأيت ناراً تحرق بيتنا القديم',
+                'حلمت بأنني تزوجت شخصاً لا أعرفه',
+                'رأيت ثعباناً كبيراً يطاردني فهربت منه',
+                'حلمت بمطر غزير وأنا واقف تحته سعيداً',
+                'رأيت مفتاحاً ذهبياً في يدي وأفتح به باباً قديماً',
+                'حلمت أنني أقود سيارة جديدة في الصحراء'
+            ];
+            document.getElementById('dreamInput').value = dreams[Math.floor(Math.random() * dreams.length)];
+            interpretDream();
+        }
+
+        // نظام التقييم
+        function rateInterpretation(type) {
+            const ratings = JSON.parse(localStorage.getItem('dreamRatings') || '[]');
+            ratings.push({ type, date: new Date().toISOString() });
+            localStorage.setItem('dreamRatings', JSON.stringify(ratings));
+            alert(`شكراً لتقييمك! ${type === 'useful' ? '👍' : '👎'}`);
+        }
+
+        function shareResult() {
+            const text = document.getElementById('resultText').innerText;
+            const dream = document.getElementById('dreamInput').value.trim();
+            const shareText = `🌙 تفسير حلمي:\n"${dream}"\n\n${text}\n\nتم التفسير عبر أداة مفسر الأحلام الذكي – الأدوات المطلقة`;
+            if (navigator.share) {
+                navigator.share({ title: 'تفسير حلمي', text: shareText }).catch(() => {});
+            } else {
+                navigator.clipboard.writeText(shareText).then(() => {
+                    alert('✅ تم نسخ التفسير كرسالة جاهزة للمشاركة!');
+                });
+            }
+        }
+
+        function copyResult() {
+            const text = document.getElementById('resultText').innerText;
+            navigator.clipboard.writeText(text).then(() => alert('✅ تم نسخ التفسير بنجاح!'));
+        }
+
+        function saveResult() {
+            const content = document.getElementById('resultText').innerText;
+            const dreamText = document.getElementById('dreamInput').value.trim();
+            if(!dreamText) return;
+            let saved = JSON.parse(localStorage.getItem('dreamLibrary') || '[]');
+            saved.unshift({ id: Date.now(), dream: dreamText.substring(0, 80) + (dreamText.length > 80 ? '...' : ''), date: new Date().toLocaleDateString('ar-EG'), content });
+            if (saved.length > 20) saved.pop();
+            localStorage.setItem('dreamLibrary', JSON.stringify(saved));
+            alert('💾 تم حفظ التفسير في مكتبتك المحلية!');
+            displaySavedDreams();
+        }
+
+        function displaySavedDreams() {
+            const saved = JSON.parse(localStorage.getItem('dreamLibrary') || '[]');
+            const container = document.getElementById('savedDreamsContainer');
+            const list = document.getElementById('savedDreamsList');
+            if (saved.length === 0) { container.style.display = 'none'; return; }
+            container.style.display = 'block';
+            list.innerHTML = saved.map((item, index) => `
+                <div class="dream-item">
+                    <span>📝 <strong>${item.dream}</strong> <small>(${item.date})</small></span>
+                    <button onclick="deleteDream(${index})" title="حذف"><i class="fas fa-trash"></i></button>
+                </div>
+            `).join('');
+        }
+
+        function deleteDream(index) {
+            let saved = JSON.parse(localStorage.getItem('dreamLibrary') || '[]');
+            saved.splice(index, 1);
+            localStorage.setItem('dreamLibrary', JSON.stringify(saved));
+            displaySavedDreams();
+        }
+
+        function exportCSV() {
+            const saved = JSON.parse(localStorage.getItem('dreamLibrary') || '[]');
+            if (saved.length === 0) { alert('لا توجد أحلام محفوظة لتصديرها.'); return; }
+            let csvContent = "تاريخ,الحلم,التفسير\n";
+            saved.forEach(item => {
+                let dream = item.dream.replace(/"/g, '""');
+                let content = item.content.replace(/"/g, '""');
+                csvContent += `"${item.date}","${dream}","${content}"\n`;
+            });
+            const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+            const link = document.createElement('a');
+            const url = URL.createObjectURL(blob);
+            link.setAttribute('href', url);
+            link.setAttribute('download', 'dreams_export.csv');
+            link.style.visibility = 'hidden';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+
+        function downloadImage() {
+            const target = document.getElementById('resultBox');
+            const isLight = document.body.classList.contains('light-mode');
+            const bgColor = isLight ? '#ffffff' : '#131821';
+            html2canvas(target, { backgroundColor: bgColor, scale: 2, logging: false, useCORS: true }).then(canvas => {
+                const link = document.createElement('a');
+                link.download = `تفسير_حلم_${Date.now()}.png`;
+                link.href = canvas.toDataURL('image/png');
+                link.click();
+            });
+        }
+
+        // الإدخال الصوتي
+        const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+        let recognition = null;
+        let isListening = false;
+
+        function startVoice() {
+            if (!SpeechRecognition) {
+                alert('عذراً، متصفحك لا يدعم التعرف على الصوت. يُفضل استخدام متصفح Chrome.');
+                return;
+            }
+            const btn = document.getElementById('voiceBtn');
+            if (isListening) { stopListening(); return; }
+            recognition = new SpeechRecognition();
+            recognition.lang = 'ar-SA';
+            recognition.interimResults = false;
+            recognition.continuous = false;
+            recognition.onstart = () => {
+                isListening = true;
+                btn.classList.add('listening');
+                btn.innerHTML = '<i class="fas fa-microphone"></i> استمع...';
+            };
+            recognition.onresult = (event) => {
+                const transcript = event.results[0][0].transcript;
+                const textarea = document.getElementById('dreamInput');
+                textarea.value += (textarea.value ? ' ' : '') + transcript;
+                stopListening();
+            };
+            recognition.onerror = () => {
+                stopListening();
+                alert('حدث خطأ أثناء الاستماع للصوت، يرجى المحاولة مرة أخرى وتأكيد الإذن بالمايكروفون.');
+            };
+            recognition.onend = () => stopListening();
+            recognition.start();
+        }
+
+        function stopListening() {
+            const btn = document.getElementById('voiceBtn');
+            isListening = false;
+            btn.classList.remove('listening');
+            btn.innerHTML = '<i class="fas fa-microphone"></i> تحدث';
+            if (recognition) { try { recognition.stop(); } catch(e) {} }
+        }
+
+        window.onload = function() { displaySavedDreams(); };
+    </script>
+</body>
+</html>
