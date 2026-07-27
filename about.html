@@ -3,13 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>من نحن - الأدوات المطلقة المتنوعة</title>
+    
+    <!-- 🚀 SEO Optimization -->
+    <title>من نحن – الأدوات المطلقة المتنوعة | 13 أداة و8 ألعاب</title>
+    <meta name="description" content="تعرف على فريق الأدوات المطلقة المتنوعة. نقدم 13 أداة إبداعية و8 ألعاب أسطورية مجانية تعمل مباشرة في متصفحك. صنع في اليمن.">
+    <meta name="keywords" content="من نحن, الأدوات المطلقة, أدوات مجانية, ألعاب, اليمن">
+    <meta name="author" content="الأدوات المطلقة">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://absolute-tools.vercel.app/about.html">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://absolute-tools.vercel.app/about.html">
+    <meta property="og:title" content="من نحن – الأدوات المطلقة المتنوعة">
+    <meta property="og:description" content="13 أداة و8 ألعاب أسطورية مجانية. تعرف على قصتنا.">
+    <meta property="og:site_name" content="الأدوات المطلقة">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="من نحن – الأدوات المطلقة المتنوعة">
+    <meta name="twitter:description" content="13 أداة و8 ألعاب أسطورية مجانية. تعرف على قصتنا.">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "الأدوات المطلقة المتنوعة",
+        "url": "https://absolute-tools.vercel.app",
+        "description": "منصة تقدم 13 أداة إبداعية و8 ألعاب أسطورية مجانية تعمل مباشرة في المتصفح.",
+        "foundingLocation": "اليمن",
+        "contactPoint": {
+            "@type": "ContactPoint",
+            "contactType": "customer support",
+            "url": "https://absolute-tools.vercel.app/contact.html"
+        }
+    }
+    </script>
+
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
     <style>
-        /* نفس التصميم الأساسي */
         :root {
             --primary: #00ff88;
             --bg-dark: #0b0e14;
@@ -25,52 +62,96 @@
             min-height: 100vh; display: flex; flex-direction: column;
         }
         a { text-decoration: none; color: inherit; }
+        
+        /* شريط التنقل */
         nav {
-            background: rgba(11, 14, 20, 0.9); backdrop-filter: blur(12px);
-            border-bottom: 1px solid var(--border-color); padding: 15px 30px;
+            background: rgba(11, 14, 20, 0.95); backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color); padding: 0 25px;
             display: flex; justify-content: space-between; align-items: center;
-            position: sticky; top: 0; z-index: 100;
+            position: sticky; top: 0; z-index: 100; height: 65px;
         }
-        .logo { font-weight: 900; font-size: 1.3rem; color: var(--primary); display: flex; align-items: center; gap: 10px; }
-        .nav-links { display: flex; gap: 20px; align-items: center; flex-wrap: wrap; }
+        .logo { font-weight: 900; font-size: 1.2rem; color: var(--primary); display: flex; align-items: center; gap: 8px; }
+        .nav-links { display: flex; gap: 20px; align-items: center; }
         .nav-links a { color: var(--text-muted); font-weight: 600; transition: 0.3s; }
         .nav-links a:hover { color: var(--primary); }
-        .container { max-width: 800px; margin: 0 auto; padding: 40px 20px; width: 100%; flex: 1; }
-        .page-title { font-size: 2.2rem; font-weight: 900; margin-bottom: 20px; background: linear-gradient(135deg, #fff, var(--primary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .content-box { background: var(--bg-card); padding: 30px; border-radius: 20px; border: 1px solid var(--border-color); line-height: 1.8; text-align: center; }
-        .content-box h2 { color: var(--primary); margin-top: 20px; font-size: 1.4rem; }
-        footer { background: var(--bg-dark); border-top: 1px solid var(--border-color); padding: 30px 20px; text-align: center; color: var(--text-muted); margin-top: auto; }
+        
+        /* المحتوى الرئيسي */
+        .container { max-width: 850px; margin: 0 auto; padding: 40px 20px; width: 100%; flex: 1; }
+        .page-title {
+            font-size: 2.2rem; font-weight: 900; margin-bottom: 30px; text-align: center;
+            background: linear-gradient(135deg, #fff, var(--primary));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
+        .content-box {
+            background: var(--bg-card); padding: 35px 30px; border-radius: 24px;
+            border: 1px solid var(--border-color); line-height: 1.9;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+        }
+        .content-box h2 {
+            color: var(--primary); margin: 25px 0 10px; font-size: 1.3rem;
+            display: flex; align-items: center; gap: 8px;
+        }
+        .content-box h2:first-of-type { margin-top: 0; }
+        .content-box p { color: var(--text-muted); margin-bottom: 15px; }
+        .content-box a { color: var(--primary); font-weight: 700; text-decoration: underline; }
+        .highlight { color: var(--text-light); font-weight: 700; }
+        
+        /* التذييل */
+        footer {
+            background: var(--bg-card); border-top: 1px solid var(--border-color);
+            padding: 30px 20px; text-align: center; color: var(--text-muted);
+            margin-top: auto; display: flex; flex-direction: column; gap: 15px;
+        }
+        footer .footer-links { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; }
+        footer .footer-links a { color: var(--text-muted); font-weight: 600; transition: 0.3s; }
+        footer .footer-links a:hover { color: var(--primary); }
         footer strong { color: var(--primary); }
-        @media (max-width: 600px) { .logo { font-size: 1rem; } .nav-links { gap: 10px; font-size: 0.9rem; } }
+        
+        @media (max-width: 600px) {
+            .logo { font-size: 1rem; }
+            .nav-links { gap: 12px; font-size: 0.9rem; }
+            .container { padding: 30px 15px; }
+            .page-title { font-size: 1.8rem; }
+        }
     </style>
 </head>
 <body>
     <nav>
-        <div class="logo"><i class="fas fa-shield-halved"></i> الأدوات المطلقة</div>
+        <a href="index.html" class="logo"><span aria-hidden="true">🛡️</span> الأدوات المطلقة</a>
         <div class="nav-links">
             <a href="index.html">الرئيسية</a>
             <a href="about.html" style="color: var(--primary);">من نحن</a>
         </div>
     </nav>
-    <div class="container">
+    
+    <main class="container">
         <h1 class="page-title">🧑‍💻 من نحن</h1>
-        <div class="content-box">
+        <article class="content-box">
             <h2>✨ مرحباً بك في "الأدوات المطلقة المتنوعة"</h2>
-            <p>نحن مجموعة من المبدعين والمبرمجين الشغوفين بتقديم <strong>أفضل الأدوات والألعاب</strong> التي تعمل مباشرة في متصفحك دون الحاجة لأي تثبيت أو خادم.</p>
+            <p>نحن مجموعة من المبدعين والمبرمجين الشغوفين بتقديم <span class="highlight">أفضل الأدوات والألعاب</span> التي تعمل مباشرة في متصفحك دون الحاجة لأي تثبيت أو خادم. كل ما تحتاجه هو متصفح حديث واتصال بالإنترنت لتبدأ رحلة الإبداع والمرح.</p>
             
             <h2>💡 ما الذي نقدمه؟</h2>
-            <p>نقدم مجموعة متكاملة من <strong>12 أداة و10 ألعاب</strong>، تم تصميمها لتكون مفيدة، ممتعة، وتعمل بشكل لا نهائي. سواء كنت تريد توليد إيميلات وهمية، إيجاد فكرة مشروع، كتابة قصة، أو قضاء وقت ممتع في الألعاب، فنحن نوفر لك كل ذلك في مكان واحد.</p>
+            <p>نقدم مجموعة متكاملة من <span class="highlight">13 أداة إبداعية</span> و <span class="highlight">8 ألعاب أسطورية</span>، تم تصميمها لتكون مفيدة، ممتعة، وتعمل بشكل لا نهائي. سواء كنت تريد توليد إيميلات وهمية، إيجاد فكرة مشروع، كتابة قصة، تحليل نص، أو قضاء وقت ممتع في ألعاب مثل الثعبان الأسطوري، المتاهة، 2048، وتحدي الذاكرة، فنحن نوفر لك كل ذلك في مكان واحد.</p>
 
             <h2>🚀 فلسفتنا</h2>
-            <p>نؤمن بأن التكنولوجيا يجب أن تكون <strong>مجانية، سهلة، ومتاحة للجميع</strong>. لذلك، جميع أدواتنا تعمل على أي متصفح، ولا تحتاج إلى تسجيل الدخول أو دفع أي رسوم.</p>
+            <p>نؤمن بأن التكنولوجيا يجب أن تكون <span class="highlight">مجانية، سهلة، ومتاحة للجميع</span>. لذلك، جميع أدواتنا وألعابنا تعمل على أي متصفح، ولا تحتاج إلى تسجيل الدخول أو دفع أي رسوم. كل ما نطلبه هو أن تستمتع وتشاركنا تجربتك.</p>
 
             <h2>📍 من أين نحن؟</h2>
-            <p>نحن فخورون بأن موقعنا <strong>صنع في اليمن</strong>، بأيادٍ يمنية، لعيون العالم العربي والعالم أجمع.</p>
+            <p>نحن فخورون بأن هذا الموقع <span class="highlight">صُنع في اليمن 🇾🇪</span>، بأيادٍ يمنية، لعيون العالم العربي والعالم أجمع. نؤمن بأن الإبداع لا يعرف حدوداً جغرافية، وأن الأفكار العظيمة تولد من التحدي.</p>
             
             <h2>🤝 تواصل معنا</h2>
-            <p>إذا كان لديك أي اقتراح أو فكرة، لا تتردد في التواصل معنا عبر صفحة <a href="contact.html" style="color: var(--primary);">اتصل بنا</a>.</p>
+            <p>إذا كان لديك أي اقتراح، فكرة، أو حتى إبلاغ عن مشكلة، لا تتردد في التواصل معنا عبر صفحة <a href="contact.html">اتصل بنا</a>. رأيك يهمنا، وملاحظاتك هي ما يدفعنا للتحسين المستمر.</p>
+        </article>
+    </main>
+    
+    <footer>
+        <div class="footer-links">
+            <a href="index.html">الرئيسية</a>
+            <a href="about.html">من نحن</a>
+            <a href="contact.html">اتصل بنا</a>
+            <a href="privacy.html">سياسة الخصوصية</a>
         </div>
-    </div>
-    <footer>&copy; 2026 <strong>الأدوات المطلقة المتنوعة</strong>. صنع في اليمن بفخر.</footer>
+        <p>&copy; 2026 <strong>الأدوات المطلقة المتنوعة</strong>. صنع في اليمن بفخر 🇾🇪</p>
+    </footer>
 </body>
 </html>
