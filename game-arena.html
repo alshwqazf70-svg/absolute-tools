@@ -218,7 +218,7 @@
         <div class="game-card">
             <select class="game-select" id="gameSelector" aria-label=" ">
                 <option value="detective">  </option>
-                <option value="memory">   (4×4)</option>
+                <option value="memory">   (4Ã—4)</option>
                 <option value="maze">  </option>
                 <option value="space">   ()</option>
                 <option value="reaction">   </option>
@@ -586,10 +586,10 @@
 
             switch (type) {
                 case 'math': {
-                    const ops = ['+', '-', '×', '÷'];
+                    const ops = ['+', '-', 'Ã—', 'Ã·'];
                     const op = ops[Math.floor(Math.random() * ops.length)];
                     let num1, num2, ans;
-                    if (op === '×') {
+                    if (op === 'Ã—') {
                         num1 = Math.floor(Math.random() * 25) + 2;
                         num2 = Math.floor(Math.random() * 15) + 2;
                         ans = num1 * num2;
