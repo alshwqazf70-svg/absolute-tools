@@ -34,9 +34,12 @@
     <meta name="twitter:description" content="منصة متكاملة تضم أدوات إبداعية وألعاب تفاعلية تعمل مباشرة في متصفحك.">
     <meta name="twitter:image" content="https://absolute-tools.vercel.app/og-image.jpg">
 
-    <!-- ========== ⚡ الاتصال المسبق والتحميل السريع بدون تحذيرات ========== -->
+    <!-- ========== ⚡ الأداء الصاروخي: Preconnect + Preload الخطوط (3 أوزان فقط) ========== -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Preload الخط الأساسي بأعلى أولوية لجعله غير قابل للحظر -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Cairo:wght@600;700;900&display=swap" as="style" fetchpriority="high" crossorigin="anonymous">
+    <!-- تحميل الخط بشكل غير متزامن (يمنع حظر العرض) -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cairo:wght@600;700;900&display=swap" media="print" onload="this.media='all'">
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cairo:wght@600;700;900&display=swap"></noscript>
 
@@ -68,6 +71,20 @@
         }
         
         a { text-decoration: none; color: inherit; }
+
+        /* رابط التخطي لإمكانية الوصول (من Code B) */
+        .skip-link {
+            position: absolute;
+            top: -100px;
+            right: 0;
+            background: var(--primary);
+            color: #000;
+            padding: 10px 15px;
+            font-weight: bold;
+            z-index: 9999;
+            transition: top 0.2s ease;
+        }
+        .skip-link:focus { top: 0; }
         
         /* ========== شريط التنقل ========== */
         nav {
@@ -163,26 +180,7 @@
             border-radius: 20px; padding: 25px 20px; text-align: center;
             display: flex; flex-direction: column; justify-content: center; align-items: center;
             min-height: 200px; height: 100%; transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
-            contain: layout style paint; opacity: 0; animation: fadeInUp 0.5s ease forwards;
-        }
-
-        .tool-card:nth-child(1) { animation-delay: 0.05s; }
-        .tool-card:nth-child(2) { animation-delay: 0.1s; }
-        .tool-card:nth-child(3) { animation-delay: 0.15s; }
-        .tool-card:nth-child(4) { animation-delay: 0.2s; }
-        .tool-card:nth-child(5) { animation-delay: 0.25s; }
-        .tool-card:nth-child(6) { animation-delay: 0.3s; }
-        .tool-card:nth-child(7) { animation-delay: 0.35s; }
-        .tool-card:nth-child(8) { animation-delay: 0.4s; }
-        .tool-card:nth-child(9) { animation-delay: 0.45s; }
-        .tool-card:nth-child(10) { animation-delay: 0.5s; }
-        .tool-card:nth-child(11) { animation-delay: 0.55s; }
-        .tool-card:nth-child(12) { animation-delay: 0.6s; }
-        .tool-card:nth-child(13) { animation-delay: 0.65s; }
-
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+            contain: layout style paint;
         }
 
         .tool-card:hover { border-color: var(--primary); transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
@@ -223,7 +221,6 @@
                 transition-duration: 0.01ms !important;
                 scroll-behavior: auto !important;
             }
-            .tool-card { animation: none; opacity: 1; }
         }
 
         @media (max-width: 768px) {
@@ -238,6 +235,8 @@
     </style>
 </head>
 <body>
+    <a href="#main-content" class="skip-link">تخطي إلى المحتوى الرئيسي</a>
+
     <nav aria-label="التنقل الرئيسي">
         <a href="index.html" class="logo"><span aria-hidden="true">🛡️</span><span>الأدوات المطلقة</span></a>
         <div class="nav-links">
@@ -283,7 +282,7 @@
         </div>
     </nav>
 
-    <main class="container" id="main-content">
+    <main class="container" id="main-content" role="main">
         <article>
             <header class="hero">
                 <h1>استكشف الأكوان المتعددة في <span>مكان واحد</span></h1>
@@ -299,8 +298,8 @@
                 <input type="text" id="searchInput" placeholder="🔍 ابحث عن أداة أو لعبة (مثال: ألغاز، ألوان، عمر)..." aria-label="بحث عن أداة أو لعبة">
             </section>
 
-            <section class="tools-grid" id="toolsGrid">
-                <a href="email-gen.html" class="tool-card" data-keywords="إيميل وهمي بريد مؤقت حماية خصوصية"><span class="tool-icon" aria-hidden="true">📧</span><h2>مولد الإيميلات الوهمية</h2><p>أنشئ عشرات الإيميلات الوهمية لحماية خصوصيتك وتسجيلاتك بأمان.</p></a>
+            <section class="tools-grid" id="toolsGrid" aria-label="قائمة الأدوات">
+                <a href="email-gen.html" class="tool-card" data-keywords="إيميل وهمي بريد مؤقت حماية خصوصية"><span class="tool-icon" aria-hidden="true">📧</span><h2>مولد الإيميلات الوهمية</h2><p>أنشئ عشرات الإيميلات الوهمية لحماية خصوصيتك وتسجيلااتك بأمان.</p></a>
                 <a href="startup-ideas.html" class="tool-card" data-keywords="مشروع فكرة ريادية أفكار عمل خطة"><span class="tool-icon" aria-hidden="true">🚀</span><h2>مولد أفكار المشاريع</h2><p>توليد أفكار مشاريع ريادية مبتكرة مع خطة عمل سريعة ومفصلة.</p></a>
                 <a href="epic-story.html" class="tool-card" data-keywords="قصة رواية ملحمية كتابة إبداع"><span class="tool-icon" aria-hidden="true">📖</span><h2>مولد القصص الملحمية</h2><p>روايات خيالية طويلة ومثيرة ولدت خصيصاً من أجلك بدون تكرار.</p></a>
                 <a href="slogan-gen.html" class="tool-card" data-keywords="شعار علامة تجارية تسويق إعلان"><span class="tool-icon" aria-hidden="true">🏷️</span><h2>مولد شعارات العلامات</h2><p>شعارات إعلانية وتسويقية فورية واحترافية لعلامتك التجارية.</p></a>
@@ -317,7 +316,7 @@
         </article>
     </main>
 
-    <footer>
+    <footer role="contentinfo">
         <div class="footer-links">
             <a href="index.html">الرئيسية</a>
             <a href="about.html">من نحن</a>
@@ -426,16 +425,13 @@
                     
                     if (text.includes(query)) {
                         card.style.display = 'flex';
-                        card.style.animation = 'none';
-                        card.offsetHeight;
-                        card.style.animation = 'fadeInUp 0.4s ease forwards';
                     } else {
                         card.style.display = 'none';
                     }
                 });
             }
 
-            const debouncedFilter = debounce(filterTools, 300);
+            const debouncedFilter = debounce(filterTools, 200);
 
             function setupDropdowns() {
                 document.querySelectorAll('.dropdown .dropbtn').forEach(btn => {
