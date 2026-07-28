@@ -11,6 +11,8 @@
     <meta name="author" content="الأدوات المطلقة المتنوعة">
     <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
     <meta name="googlebot" content="index, follow">
+    
+    <!-- Canonical URL (من كلا الكودين) -->
     <link rel="canonical" href="https://absolute-tools.vercel.app/">
 
     <!-- Open Graph / Facebook & AI Scrapers -->
@@ -27,15 +29,20 @@
     <meta name="twitter:description" content="منصة متكاملة تضم أدوات إبداعية وألعاب تفاعلية تعمل مباشرة في متصفحك.">
 
     <!-- ========== ⚡ الأداء الصاروخي: Preconnect + Preload الخطوط ========== -->
+    <!-- [أفضل ما في Code A]: تحميل غير متزامن مع fetchpriority عالي -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <!-- Preload الخط الأساسي بأعلى أولوية لجعله غير قابل للحظر -->
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" as="style" fetchpriority="high" crossorigin="anonymous">
-    <!-- تحميل الخط بشكل غير متزامن (يمنع حظر العرض) -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" media="print" onload="this.media='all'">
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap"></noscript>
 
     <style>
+        /* [دمج: Code B] @font-face لضمان font-display: swap */
+        @font-face {
+            font-family: 'Cairo';
+            font-display: swap;
+        }
+
         /* ========== الأساسيات مع إصلاح CLS ========== */
         html { scroll-behavior: smooth; }
 
@@ -56,13 +63,12 @@
             font-family: 'Cairo', system-ui, -apple-system, sans-serif;
             background: var(--bg-dark); color: var(--text-light);
             min-height: 100vh; display: flex; flex-direction: column;
-            /* منع الوميض أثناء تحميل الخط */
-            font-display: swap;
         }
         
         a { text-decoration: none; color: inherit; }
         
         /* ========== شريط التنقل ========== */
+        /* [دمج: Code B] aria-label و contain: layout على nav-links */
         nav {
             background: rgba(11, 14, 20, 0.95); backdrop-filter: blur(10px);
             border-bottom: 1px solid var(--border-color); padding: 0 20px;
@@ -72,7 +78,12 @@
         body.light-mode nav { background: rgba(240, 242, 245, 0.95); }
 
         .logo { font-weight: 900; font-size: 1.2rem; color: var(--primary); display: flex; align-items: center; gap: 8px; }
-        .nav-links { display: flex; gap: 15px; align-items: center; }
+        
+        /* [Code B] تثبيت أبعاد الهيكل الخاص بالروابط لمنع الـ CLS */
+        .nav-links { 
+            display: flex; gap: 15px; align-items: center; 
+            min-height: 40px; contain: layout;
+        }
         .nav-links a, .dropbtn { 
             color: var(--text-muted); font-weight: 600; cursor: pointer; 
             display: flex; align-items: center; gap: 4px; font-size: 0.95rem; 
@@ -130,9 +141,11 @@
         .container { max-width: 1200px; margin: 0 auto; padding: 30px 20px; width: 100%; flex: 1; }
         .hero { text-align: center; padding: 20px 10px 30px; }
         
+        /* [Code A] min-height لمنع CLS */
         .hero h1 {
             font-size: 2.5rem; font-weight: 900; color: var(--text-light);
             margin-bottom: 12px; line-height: 1.3;
+            min-height: 3.5rem;
         }
         .hero h1 span { color: var(--primary); }
         .hero p { color: var(--text-muted); font-size: 1.1rem; max-width: 650px; margin: 0 auto 25px; line-height: 1.6; }
@@ -150,22 +163,23 @@
         }
         .search-box input:focus { border-color: var(--primary); box-shadow: 0 0 20px var(--primary-glow); }
 
-        /* ========== شبكة الأدوات (مع إصلاح CLS) ========== */
+        /* ========== شبكة الأدوات (القضاء التام على CLS) ========== */
+        /* [دمج: Code A + Code B] contain + min-height أقوى */
         .tools-grid {
             display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px;
-            /* حجز مساحة مبدئية لمنع تغيير التنسيق أثناء الأنيميشن */
-            min-height: 400px;
+            min-height: 500px;
+            contain: layout style paint;
         }
         
         .tool-card {
             background: var(--bg-card); border: 1px solid var(--border-color);
             border-radius: 20px; padding: 25px 20px; text-align: center;
             display: flex; flex-direction: column; justify-content: center; align-items: center;
-            min-height: 180px; height: 100%; transition: all 0.3s ease;
-            /* إصلاح CLS: حجز مساحة للأيقونة */
+            min-height: 200px; height: 100%; transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
             contain: layout style paint;
             opacity: 0; animation: fadeInUp 0.6s ease forwards;
         }
+
         .tool-card:nth-child(1) { animation-delay: 0.05s; }
         .tool-card:nth-child(2) { animation-delay: 0.1s; }
         .tool-card:nth-child(3) { animation-delay: 0.15s; }
@@ -186,12 +200,14 @@
         }
 
         .tool-card:hover { border-color: var(--primary); transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
-        /* أيقونات ذات حجم ثابت لمنع الإزاحة */
+        
+        /* [Code A] أبعاد ثابتة لرمز الأداة */
         .tool-icon { 
             font-size: 2.5rem; margin-bottom: 15px; display: block;
             width: 50px; height: 50px; line-height: 50px; text-align: center;
         }
-        .tool-card h3 { font-size: 1.15rem; margin-bottom: 10px; color: var(--text-light); font-weight: 700; }
+        /* [Code B] تغيير h3 إلى h2 لتحسين ترتيب العناوين */
+        .tool-card h2 { font-size: 1.15rem; margin-bottom: 10px; color: var(--text-light); font-weight: 700; }
         .tool-card p { color: var(--text-muted); font-size: 0.9rem; line-height: 1.6; }
 
         /* ========== التذييل ========== */
@@ -215,8 +231,15 @@
         .back-to-top.show { opacity: 1; pointer-events: auto; }
         .back-to-top:hover { transform: translateY(-3px); }
 
-        /* ========== تحسينات الوصول ========== */
+        /* ========== تحسينات إمكانية الوصول ========== */
+        /* [Code B] أقوى تعطيل للحركة */
         @media (prefers-reduced-motion: reduce) {
+            *, ::before, ::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+                scroll-behavior: auto !important;
+            }
             .tool-card { animation: none; opacity: 1; }
         }
 
@@ -232,7 +255,8 @@
     </style>
 </head>
 <body>
-    <nav>
+    <!-- [Code B] aria-label للتنقل -->
+    <nav aria-label="التنقل الرئيسي">
         <a href="index.html" class="logo"><span aria-hidden="true">🛡️</span><span>الأدوات المطلقة</span></a>
         <div class="nav-links">
             <a href="index.html">الرئيسية</a>
@@ -277,7 +301,8 @@
         </div>
     </nav>
 
-    <main class="container">
+    <!-- [Code B] main مع id -->
+    <main class="container" id="main-content">
         <article>
             <header class="hero">
                 <h1>استكشف الأكوان المتعددة في <span>مكان واحد</span></h1>
@@ -293,20 +318,21 @@
                 <input type="text" id="searchInput" placeholder="🔍 ابحث عن أداة أو لعبة (مثال: ألغاز، ألوان، عمر)..." aria-label="بحث عن أداة أو لعبة">
             </section>
 
+            <!-- [Code B] استخدام h2 لتحسين هيكلية العناوين -->
             <section class="tools-grid" id="toolsGrid">
-                <a href="email-gen.html" class="tool-card" data-keywords="إيميل وهمي بريد مؤقت حماية خصوصية"><span class="tool-icon" aria-hidden="true">📧</span><h3>مولد الإيميلات الوهمية</h3><p>أنشئ عشرات الإيميلات الوهمية لحماية خصوصيتك وتسجيلاتك بأمان.</p></a>
-                <a href="startup-ideas.html" class="tool-card" data-keywords="مشروع فكرة ريادية أفكار عمل خطة"><span class="tool-icon" aria-hidden="true">🚀</span><h3>مولد أفكار المشاريع</h3><p>توليد أفكار مشاريع ريادية مبتكرة مع خطة عمل سريعة ومفصلة.</p></a>
-                <a href="epic-story.html" class="tool-card" data-keywords="قصة رواية ملحمية كتابة إبداع"><span class="tool-icon" aria-hidden="true">📖</span><h3>مولد القصص الملحمية</h3><p>روايات خيالية طويلة ومثيرة ولدت خصيصاً من أجلك بدون تكرار.</p></a>
-                <a href="slogan-gen.html" class="tool-card" data-keywords="شعار علامة تجارية تسويق إعلان"><span class="tool-icon" aria-hidden="true">🏷️</span><h3>مولد شعارات العلامات</h3><p>شعارات إعلانية وتسويقية فورية واحترافية لعلامتك التجارية.</p></a>
-                <a href="text-analyzer.html" class="tool-card" data-keywords="نص تحليل إحصاء كلمات حروف"><span class="tool-icon" aria-hidden="true">📊</span><h3>محلل النصوص الذكي</h3><p>تحليل النصوص بدقة متناهية وإحصاء الكلمات والحروف ووقت القراءة.</p></a>
-                <a href="domain-gen.html" class="tool-card" data-keywords="نطاق دومين اسم موقع ويب"><span class="tool-icon" aria-hidden="true">🔀</span><h3>مولد أسماء النطاقات</h3><p>اقتراح 30 فكرة لاسم نطاق مميز وجذاب بناءً على كلمتك الرئيسية.</p></a>
-                <a href="neon-color.html" class="tool-card" data-keywords="ألوان نيون لوحة تصميم جرافيك"><span class="tool-icon" aria-hidden="true">🎨</span><h3>صانع الألوان النيونية</h3><p>لوحات ألوان نيونية ساحرة وعصرية قابلة للنسخ والتصدير فوراً.</p></a>
-                <a href="age-calculator.html" class="tool-card" data-keywords="عمر أيام حساب تاريخ ميلاد"><span class="tool-icon" aria-hidden="true">🎂</span><h3>حاسبة العمر بالأيام</h3><p>احسب عمرك بالضبط بالأيام والساعات والدقائق مع إحصائيات بيولوجية.</p></a>
-                <a href="zodiac.html" class="tool-card" data-keywords="برج فلكي معرفة صفات شخصية"><span class="tool-icon" aria-hidden="true">🔮</span><h3>معرفة برجك الفلكي</h3><p>اكتشف برجك الحقيقي وصفاتك العميقة بناءً على تاريخ ميلادك.</p></a>
-                <a href="story-jokes.html" class="tool-card" data-keywords="نكتة مضحكة قصصية ضحك ترفيه"><span class="tool-icon" aria-hidden="true">😂</span><h3>مولد النكت القصصية</h3><p>نكت طويلة ومضحكة جداً باللغة العربية الفصحى، متجددة ولا تنتهي.</p></a>
-                <a href="riddle-master.html" class="tool-card" data-keywords="لغز تطوري نقاط ذكاء تحدي"><span class="tool-icon" aria-hidden="true">🧩</span><h3>اللغز التطوري</h3><p>ألغاز ذكية متطورة مع نظام نقاط وتلميحات مشوقة لاختبار ذكائك.</p></a>
-                <a href="game-arena.html" class="tool-card" data-keywords="لعبة ألعاب ساحة مهارة ثعبان متاهة"><span class="tool-icon" aria-hidden="true">🎮</span><h3>ساحة الألعاب الأسطورية</h3><p>8 ألعاب ممتعة في منصة واحدة مع نظام نقاط برميوم وتحديات يومية.</p></a>
-                <a href="dream-interpreter.html" class="tool-card" data-keywords="تفسير أحلام رؤى حلم تفسير"><span class="tool-icon" aria-hidden="true">🌙</span><h3>مفسر الأحلام الذكي</h3><p>أداة ذكية لتفسير الأحلام بناءً على أكثر من 70 رمزاً ودلالات فورية.</p></a>
+                <a href="email-gen.html" class="tool-card" data-keywords="إيميل وهمي بريد مؤقت حماية خصوصية"><span class="tool-icon" aria-hidden="true">📧</span><h2>مولد الإيميلات الوهمية</h2><p>أنشئ عشرات الإيميلات الوهمية لحماية خصوصيتك وتسجيلاتك بأمان.</p></a>
+                <a href="startup-ideas.html" class="tool-card" data-keywords="مشروع فكرة ريادية أفكار عمل خطة"><span class="tool-icon" aria-hidden="true">🚀</span><h2>مولد أفكار المشاريع</h2><p>توليد أفكار مشاريع ريادية مبتكرة مع خطة عمل سريعة ومفصلة.</p></a>
+                <a href="epic-story.html" class="tool-card" data-keywords="قصة رواية ملحمية كتابة إبداع"><span class="tool-icon" aria-hidden="true">📖</span><h2>مولد القصص الملحمية</h2><p>روايات خيالية طويلة ومثيرة ولدت خصيصاً من أجلك بدون تكرار.</p></a>
+                <a href="slogan-gen.html" class="tool-card" data-keywords="شعار علامة تجارية تسويق إعلان"><span class="tool-icon" aria-hidden="true">🏷️</span><h2>مولد شعارات العلامات</h2><p>شعارات إعلانية وتسويقية فورية واحترافية لعلامتك التجارية.</p></a>
+                <a href="text-analyzer.html" class="tool-card" data-keywords="نص تحليل إحصاء كلمات حروف"><span class="tool-icon" aria-hidden="true">📊</span><h2>محلل النصوص الذكي</h2><p>تحليل النصوص بدقة متناهية وإحصاء الكلمات والحروف ووقت القراءة.</p></a>
+                <a href="domain-gen.html" class="tool-card" data-keywords="نطاق دومين اسم موقع ويب"><span class="tool-icon" aria-hidden="true">🔀</span><h2>مولد أسماء النطاقات</h2><p>اقتراح 30 فكرة لاسم نطاق مميز وجذاب بناءً على كلمتك الرئيسية.</p></a>
+                <a href="neon-color.html" class="tool-card" data-keywords="ألوان نيون لوحة تصميم جرافيك"><span class="tool-icon" aria-hidden="true">🎨</span><h2>صانع الألوان النيونية</h2><p>لوحات ألوان نيونية ساحرة وعصرية قابلة للنسخ والتصدير فوراً.</p></a>
+                <a href="age-calculator.html" class="tool-card" data-keywords="عمر أيام حساب تاريخ ميلاد"><span class="tool-icon" aria-hidden="true">🎂</span><h2>حاسبة العمر بالأيام</h2><p>احسب عمرك بالضبط بالأيام والساعات والدقائق مع إحصائيات بيولوجية.</p></a>
+                <a href="zodiac.html" class="tool-card" data-keywords="برج فلكي معرفة صفات شخصية"><span class="tool-icon" aria-hidden="true">🔮</span><h2>معرفة برجك الفلكي</h2><p>اكتشف برجك الحقيقي وصفاتك العميقة بناءً على تاريخ ميلادك.</p></a>
+                <a href="story-jokes.html" class="tool-card" data-keywords="نكتة مضحكة قصصية ضحك ترفيه"><span class="tool-icon" aria-hidden="true">😂</span><h2>مولد النكت القصصية</h2><p>نكت طويلة ومضحكة جداً باللغة العربية الفصحى، متجددة ولا تنتهي.</p></a>
+                <a href="riddle-master.html" class="tool-card" data-keywords="لغز تطوري نقاط ذكاء تحدي"><span class="tool-icon" aria-hidden="true">🧩</span><h2>اللغز التطوري</h2><p>ألغاز ذكية متطورة مع نظام نقاط وتلميحات مشوقة لاختبار ذكائك.</p></a>
+                <a href="game-arena.html" class="tool-card" data-keywords="لعبة ألعاب ساحة مهارة ثعبان متاهة"><span class="tool-icon" aria-hidden="true">🎮</span><h2>ساحة الألعاب الأسطورية</h2><p>8 ألعاب ممتعة في منصة واحدة مع نظام نقاط برميوم وتحديات يومية.</p></a>
+                <a href="dream-interpreter.html" class="tool-card" data-keywords="تفسير أحلام رؤى حلم تفسير"><span class="tool-icon" aria-hidden="true">🌙</span><h2>مفسر الأحلام الذكي</h2><p>أداة ذكية لتفسير الأحلام بناءً على أكثر من 70 رمزاً ودلالات فورية.</p></a>
             </section>
         </article>
     </main>
@@ -324,6 +350,7 @@
     <div class="back-to-top" id="backToTop" onclick="window.scrollTo({top:0, behavior:'smooth'})" aria-label="العودة للأعلى">⬆️</div>
 
     <!-- ========== Schema.org منظم لأقصى SEO ========== -->
+    <!-- [Code A] Organization + WebSite + ItemList (AI Crawler 2/2) -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -372,20 +399,18 @@
 
     <script>
         /**
-         * المحرك الأسطوري للصفحة الرئيسية – نسخة محسنة للأداء
-         * Optimized for: Debounce Search, A11y, Robust LocalStorage, Smooth Animations
+         * [دمج: Code A + Code B] محرك الصفحة الرئيسية
+         * تم تعديل selectors لاستخدام h2 بدلاً من h3 في filterTools
          */
         const app = (function() {
-            // === 1. الوضع الليلي / النهاري (مع حماية الأخطاء) ===
             function toggleTheme() {
                 document.body.classList.toggle('light-mode');
                 try {
                     const isLight = document.body.classList.contains('light-mode');
                     localStorage.setItem('theme', isLight ? 'light' : 'dark');
-                } catch (e) { /* تجاهل أخطاء التخزين */ }
+                } catch (e) {}
             }
 
-            // === 2. عداد الزيارات (آمن ودقيق) ===
             function trackVisits() {
                 try {
                     let totalVisits = parseInt(localStorage.getItem('siteVisits') || '0', 10);
@@ -396,10 +421,9 @@
                     }
                     const el = document.getElementById('visitCount');
                     if (el) el.textContent = totalVisits.toLocaleString('ar-EG');
-                } catch (e) { /* تجاهل أخطاء التخزين */ }
+                } catch (e) {}
             }
 
-            // === 3. تصفية الأدوات مع Debounce (أداء صاروخي) ===
             function debounce(func, wait) {
                 let timeout;
                 return function(...args) {
@@ -416,14 +440,14 @@
                 
                 cards.forEach(card => {
                     const keywords = card.getAttribute('data-keywords') || '';
-                    const h3 = card.querySelector('h3')?.textContent || '';
+                    const h2 = card.querySelector('h2')?.textContent || '';
                     const p = card.querySelector('p')?.textContent || '';
-                    const text = (keywords + ' ' + h3 + ' ' + p).toLowerCase();
+                    const text = (keywords + ' ' + h2 + ' ' + p).toLowerCase();
                     
                     if (text.includes(query)) {
                         card.style.display = 'flex';
                         card.style.animation = 'none';
-                        card.offsetHeight; /* trigger reflow */
+                        card.offsetHeight;
                         card.style.animation = 'fadeInUp 0.4s ease forwards';
                     } else {
                         card.style.display = 'none';
@@ -433,7 +457,6 @@
 
             const debouncedFilter = debounce(filterTools, 300);
 
-            // === 4. إدارة القوائم المنسدلة (Accessibility) ===
             function setupDropdowns() {
                 document.querySelectorAll('.dropdown .dropbtn').forEach(btn => {
                     btn.addEventListener('click', (e) => {
@@ -464,7 +487,6 @@
                 });
             }
 
-            // === 5. زر العودة للأعلى ===
             function setupBackToTop() {
                 const btn = document.getElementById('backToTop');
                 if (!btn) return;
@@ -474,7 +496,6 @@
                 }, { passive: true });
             }
 
-            // === التهيئة ===
             function init() {
                 if (localStorage.getItem('theme') === 'light') document.body.classList.add('light-mode');
                 trackVisits();
@@ -490,8 +511,7 @@
             return { toggleTheme, init };
         })();
 
-        // تشغيل المحرك عند تحميل الصفحة
         document.addEventListener('DOMContentLoaded', app.init);
     </script>
 </body>
-    </html>
+</html>
