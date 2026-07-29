@@ -136,8 +136,17 @@
         .dropdown.active .dropdown-content { opacity: 1; visibility: visible; transform: translateY(0); }
         .dropdown-content a { color: var(--text-muted); padding: 10px 15px; display: block; font-size: 0.9rem; transition: 0.2s; border-radius: 8px; white-space: nowrap; }
         .dropdown-content a:hover { background: var(--bg-input); color: var(--primary); }
-        .games-mini-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5px; margin-top: 5px; padding-top: 5px; border-top: 1px solid var(--border-color); }
-        .games-mini-grid a { text-align: center; font-size: 0.8rem; padding: 8px 5px; display: flex; align-items: center; justify-content: center; gap: 4px; }
+        .games-mini-grid {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 5px;
+            margin-top: 5px; padding-top: 5px; border-top: 1px solid var(--border-color);
+            list-style: none;
+            padding: 0;
+        }
+        .games-mini-grid li { display: block; }
+        .games-mini-grid li a {
+            text-align: center; font-size: 0.8rem; padding: 8px 5px;
+            display: flex; align-items: center; justify-content: center; gap: 4px;
+        }
         .theme-toggle { background: var(--bg-input); border: 1px solid var(--border-color); color: var(--text-light); border-radius: 50%; font-size: 1.1rem; cursor: pointer; width: 38px; height: 38px; display: flex; align-items: center; justify-content: center; transition: 0.3s; }
         .theme-toggle:hover { border-color: var(--primary); box-shadow: 0 0 15px var(--primary-glow); }
 
@@ -268,16 +277,16 @@
                 </button>
                 <div class="dropdown-content" id="gamesMenu" role="menu" aria-labelledby="gamesDropdown">
                     <a href="game-arena.html" role="menuitem" style="font-weight:bold;justify-content:center;"><span aria-hidden="true">🎮</span> ساحة الألعاب الأسطورية</a>
-                    <div class="games-mini-grid" role="list" aria-label="قائمة الألعاب المصغرة">
-                        <a href="game-arena.html" role="listitem"><span aria-hidden="true">🕵️</span> المحقق</a>
-                        <a href="game-arena.html" role="listitem"><span aria-hidden="true">🧩</span> الذاكرة</a>
-                        <a href="game-arena.html" role="listitem"><span aria-hidden="true">🌐</span> المتاهة</a>
-                        <a href="game-arena.html" role="listitem"><span aria-hidden="true">🚀</span> الفضاء</a>
-                        <a href="game-arena.html" role="listitem"><span aria-hidden="true">⚡</span> الرد</a>
-                        <a href="game-arena.html" role="listitem"><span aria-hidden="true">🐍</span> الثعبان</a>
-                        <a href="game-arena.html" role="listitem"><span aria-hidden="true">🔢</span> 2048</a>
-                        <a href="game-arena.html" role="listitem"><span aria-hidden="true">⌨️</span> الكتابة</a>
-                    </div>
+                    <ul class="games-mini-grid" role="list" aria-label="قائمة الألعاب المصغرة">
+                        <li role="listitem"><a href="game-arena.html"><span aria-hidden="true">🕵️</span> المحقق</a></li>
+                        <li role="listitem"><a href="game-arena.html"><span aria-hidden="true">🧩</span> الذاكرة</a></li>
+                        <li role="listitem"><a href="game-arena.html"><span aria-hidden="true">🌐</span> المتاهة</a></li>
+                        <li role="listitem"><a href="game-arena.html"><span aria-hidden="true">🚀</span> الفضاء</a></li>
+                        <li role="listitem"><a href="game-arena.html"><span aria-hidden="true">⚡</span> الرد</a></li>
+                        <li role="listitem"><a href="game-arena.html"><span aria-hidden="true">🐍</span> الثعبان</a></li>
+                        <li role="listitem"><a href="game-arena.html"><span aria-hidden="true">🔢</span> 2048</a></li>
+                        <li role="listitem"><a href="game-arena.html"><span aria-hidden="true">⌨️</span> الكتابة</a></li>
+                    </ul>
                 </div>
             </div>
 
@@ -507,4 +516,4 @@
     document.addEventListener('DOMContentLoaded', window.app.init);
     </script>
 </body>
-</html>
+    </html>
