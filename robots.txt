@@ -1,4 +1,11 @@
+# ============================================================
+# robots.txt - Absolute Tools
+# ============================================================
+
 User-agent: *
 Allow: /
+
+# رابط خريطة الموقع
 Sitemap: https://absolute-tools.vercel.app/sitemap.xml
+
 
