@@ -26,14 +26,15 @@
     <meta name="twitter:title" content="الأدوات المطلقة – 13 أداة و8 ألعاب أسطورية">
     <meta name="twitter:description" content="منصة متكاملة تضم أدوات إبداعية وألعاب تفاعلية.">
 
-    <!-- ⚡ تحميل الخط مع preload كـ font و font-display:swap -->
+    <!-- ⚡ استراتيجية الخط الاحتياطي الفوري (Flash of Fallback Font) -->
+    <!-- الخط يُحمّل بتأخير، والنص يظهر فوراً بخط النظام -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=optional" media="print" onload="this.media='all'">
+    <!-- إضافة preload للخط كـ font لتحميله مبكراً جداً -->
     <link rel="preload" as="font" href="https://fonts.gstatic.com/s/cairo/v28/SLXVc1nY6HkvangtZmpc.woff2" crossorigin type="font/woff2">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" media="print" onload="this.media='all'">
     <noscript>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=optional">
     </noscript>
 
     <!-- 📌 البيانات المنظمة -->
@@ -84,8 +85,9 @@
     }
     </script>
 
+    <!-- ⚡ جميع الأنماط مضمنة مباشرة لتسريع العرض الأولي -->
     <style>
-        @font-face { font-family: 'Cairo'; font-display: swap; }
+        @font-face { font-family: 'Cairo'; font-display: optional; src: local('Cairo'), local('Cairo-Regular'); }
         html { scroll-behavior: smooth; }
 
         :root {
@@ -99,14 +101,20 @@
         }
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body {
-            font-family: 'Cairo', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            /* استخدام خط النظام أولاً، ثم Cairo عند تحمله */
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
             background: var(--bg-dark); color: var(--text-light);
             min-height: 100vh; display: flex; flex-direction: column;
-            font-size: 16px;
-            line-height: 1.5;
+            font-size: 16px; line-height: 1.5;
         }
+        /* عند تحميل الخط، نستبدله بسلاسة */
+        .wf-active body, .wf-active .logo, .wf-active h1, .wf-active h2 {
+            font-family: 'Cairo', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        }
+
         a { text-decoration: none; color: inherit; }
 
+        /* ====== التنقل ====== */
         nav[role="banner"] {
             background: rgba(11,14,20,0.95); backdrop-filter: blur(10px);
             border-bottom: 1px solid var(--border-color); padding: 0 20px;
@@ -140,13 +148,13 @@
         .theme-toggle { background: var(--bg-input); border: 1px solid var(--border-color); color: var(--text-light); border-radius: 50%; font-size: 1.1rem; cursor: pointer; width: 38px; height: 38px; display: flex; align-items: center; justify-content: center; transition: 0.3s; }
         .theme-toggle:hover { border-color: var(--primary); box-shadow: 0 0 15px var(--primary-glow); }
 
+        /* ====== المحتوى ====== */
         main[role="main"] { flex: 1; }
         .container { max-width: 1200px; margin: 0 auto; padding: 30px 20px; width: 100%; }
         .hero { text-align: center; padding: 20px 10px 30px; }
         .hero h1 {
             font-size: 2.5rem; font-weight: 900; color: var(--text-light);
-            margin-bottom: 12px; line-height: 1.3;
-            min-height: 4rem;
+            margin-bottom: 12px; line-height: 1.3; min-height: 4rem;
         }
         .hero h1 span { color: var(--primary); }
         .hero p { color: var(--text-muted); font-size: 1.1rem; max-width: 650px; margin: 0 auto 25px; line-height: 1.6; }
@@ -378,7 +386,7 @@
     </button>
 
     <script>
-    const app = (function() {
+    (function() {
         'use strict';
 
         function toggleTheme() {
@@ -426,7 +434,6 @@
                 const text = `${keywords} ${title} ${desc}`.toLowerCase();
                 if (text.includes(query)) {
                     card.style.display = 'flex';
-                    // إعادة تشغيل الأنيميشن بسلاسة
                     card.style.animation = 'none';
                     card.offsetHeight;
                     card.style.animation = 'fadeInUp 0.4s ease forwards';
@@ -500,13 +507,10 @@
             }
         }
 
-        return {
-            toggleTheme,
-            init
-        };
+        window.app = { toggleTheme, init };
     })();
 
-    document.addEventListener('DOMContentLoaded', app.init);
+    document.addEventListener('DOMContentLoaded', window.app.init);
     </script>
 </body>
-                                                                      </html>
+    </html>
