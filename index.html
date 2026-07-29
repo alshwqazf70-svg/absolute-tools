@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#0b0e14">
     
-    <!-- 🚀 SEO & Performance Ultimate -->
     <title>الأدوات المطلقة – 13 أداة و8 ألعاب أسطورية مجانية</title>
     <meta name="description" content="منصة الأدوات المطلقة المتنوعة - 13 أداة عملية وإبداعية، 8 ألعاب أسطورية، ونظام نقاط لا نهائي.">
     <meta name="keywords" content="أدوات مجانية, ألعاب, قصص, ألوان, ألغاز, إيميلات, نطاقات, تحليل نصوص, أبراج, حاسبة عمر, مفسر أحلام, مشاريع, شعارات">
@@ -26,13 +25,11 @@
     <meta name="twitter:title" content="الأدوات المطلقة – 13 أداة و8 ألعاب أسطورية">
     <meta name="twitter:description" content="منصة متكاملة تضم أدوات إبداعية وألعاب تفاعلية.">
 
-    <!-- ⚡ استراتيجية الخط الاحتياطي الفوري (Flash of Fallback Font) -->
-    <!-- الخط يُحمّل بتأخير، والنص يظهر فوراً بخط النظام -->
+    <!-- ⚡ تحميل الخطوط مع font-display:optional -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=optional" media="print" onload="this.media='all'">
-    <!-- إضافة preload للخط كـ font لتحميله مبكراً جداً -->
     <link rel="preload" as="font" href="https://fonts.gstatic.com/s/cairo/v28/SLXVc1nY6HkvangtZmpc.woff2" crossorigin type="font/woff2">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=optional" media="print" onload="this.media='all'">
     <noscript>
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=optional">
     </noscript>
@@ -85,9 +82,8 @@
     }
     </script>
 
-    <!-- ⚡ جميع الأنماط مضمنة مباشرة لتسريع العرض الأولي -->
     <style>
-        @font-face { font-family: 'Cairo'; font-display: optional; src: local('Cairo'), local('Cairo-Regular'); }
+        @font-face { font-family: 'Cairo'; font-display: optional; }
         html { scroll-behavior: smooth; }
 
         :root {
@@ -101,20 +97,17 @@
         }
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body {
-            /* استخدام خط النظام أولاً، ثم Cairo عند تحمله */
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
             background: var(--bg-dark); color: var(--text-light);
             min-height: 100vh; display: flex; flex-direction: column;
             font-size: 16px; line-height: 1.5;
         }
-        /* عند تحميل الخط، نستبدله بسلاسة */
         .wf-active body, .wf-active .logo, .wf-active h1, .wf-active h2 {
             font-family: 'Cairo', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
         }
 
         a { text-decoration: none; color: inherit; }
 
-        /* ====== التنقل ====== */
         nav[role="banner"] {
             background: rgba(11,14,20,0.95); backdrop-filter: blur(10px);
             border-bottom: 1px solid var(--border-color); padding: 0 20px;
@@ -148,7 +141,6 @@
         .theme-toggle { background: var(--bg-input); border: 1px solid var(--border-color); color: var(--text-light); border-radius: 50%; font-size: 1.1rem; cursor: pointer; width: 38px; height: 38px; display: flex; align-items: center; justify-content: center; transition: 0.3s; }
         .theme-toggle:hover { border-color: var(--primary); box-shadow: 0 0 15px var(--primary-glow); }
 
-        /* ====== المحتوى ====== */
         main[role="main"] { flex: 1; }
         .container { max-width: 1200px; margin: 0 auto; padding: 30px 20px; width: 100%; }
         .hero { text-align: center; padding: 20px 10px 30px; }
@@ -167,7 +159,7 @@
         .seo-static h2 { font-size: 1.5rem; color: var(--primary); margin-bottom: 12px; text-align: center; }
         .seo-static p { color: var(--text-muted); font-size: 1rem; margin-bottom: 10px; }
         .seo-static p:last-child { margin-bottom: 0; }
-        .seo-static ul { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-top: 10px; }
+        .seo-static ul[role="list"] { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-top: 10px; }
         .seo-static ul li { background: var(--bg-input); padding: 8px 16px; border-radius: 20px; font-size: 0.9rem; color: var(--text-light); border: 1px solid var(--border-color); }
 
         .stats-bar { display: flex; justify-content: center; gap: 40px; flex-wrap: wrap; margin-bottom: 30px; }
@@ -274,15 +266,15 @@
                 </button>
                 <div class="dropdown-content" id="gamesMenu" role="menu" aria-labelledby="gamesDropdown">
                     <a href="game-arena.html" role="menuitem" style="font-weight:bold;justify-content:center;"><span aria-hidden="true">🎮</span> ساحة الألعاب الأسطورية</a>
-                    <div class="games-mini-grid" role="group" aria-label="قائمة الألعاب المصغرة">
-                        <a href="game-arena.html" role="menuitem"><span aria-hidden="true">🕵️</span> المحقق</a>
-                        <a href="game-arena.html" role="menuitem"><span aria-hidden="true">🧩</span> الذاكرة</a>
-                        <a href="game-arena.html" role="menuitem"><span aria-hidden="true">🌐</span> المتاهة</a>
-                        <a href="game-arena.html" role="menuitem"><span aria-hidden="true">🚀</span> الفضاء</a>
-                        <a href="game-arena.html" role="menuitem"><span aria-hidden="true">⚡</span> الرد</a>
-                        <a href="game-arena.html" role="menuitem"><span aria-hidden="true">🐍</span> الثعبان</a>
-                        <a href="game-arena.html" role="menuitem"><span aria-hidden="true">🔢</span> 2048</a>
-                        <a href="game-arena.html" role="menuitem"><span aria-hidden="true">⌨️</span> الكتابة</a>
+                    <div class="games-mini-grid" role="list" aria-label="قائمة الألعاب المصغرة">
+                        <a href="game-arena.html" role="listitem"><span aria-hidden="true">🕵️</span> المحقق</a>
+                        <a href="game-arena.html" role="listitem"><span aria-hidden="true">🧩</span> الذاكرة</a>
+                        <a href="game-arena.html" role="listitem"><span aria-hidden="true">🌐</span> المتاهة</a>
+                        <a href="game-arena.html" role="listitem"><span aria-hidden="true">🚀</span> الفضاء</a>
+                        <a href="game-arena.html" role="listitem"><span aria-hidden="true">⚡</span> الرد</a>
+                        <a href="game-arena.html" role="listitem"><span aria-hidden="true">🐍</span> الثعبان</a>
+                        <a href="game-arena.html" role="listitem"><span aria-hidden="true">🔢</span> 2048</a>
+                        <a href="game-arena.html" role="listitem"><span aria-hidden="true">⌨️</span> الكتابة</a>
                     </div>
                 </div>
             </div>
@@ -314,7 +306,7 @@
                     <p>
                         استكشف أدواتنا المتنوعة: من <strong>مولد الإيميلات الوهمية</strong> لحماية خصوصيتك، إلى <strong>مولد القصص الملحمية</strong> لإطلاق العنان لإبداعك، و<strong>محلل النصوص الذكي</strong> لتحسين كتاباتك، و<strong>صانع الألوان النيونية</strong> لإضفاء لمسة فنية على مشاريعك. واجهة بسيطة، أداء سريع، وتجربة مستخدم سلسة.
                     </p>
-                    <ul aria-label="كلمات مفتاحية رئيسية">
+                    <ul role="list" aria-label="كلمات مفتاحية رئيسية">
                         <li><span aria-hidden="true">📧</span> إيميلات وهمية</li>
                         <li><span aria-hidden="true">🚀</span> أفكار مشاريع</li>
                         <li><span aria-hidden="true">📖</span> قصص ملحمية</li>
@@ -513,4 +505,4 @@
     document.addEventListener('DOMContentLoaded', window.app.init);
     </script>
 </body>
-    </html>
+                        </html>
