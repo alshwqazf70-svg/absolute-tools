@@ -108,7 +108,7 @@
 
         a { text-decoration: none; color: inherit; }
 
-        nav[role="banner"] {
+        nav {
             background: rgba(11,14,20,0.95); backdrop-filter: blur(10px);
             border-bottom: 1px solid var(--border-color); padding: 0 20px;
             display: flex; justify-content: space-between; align-items: center;
@@ -132,9 +132,14 @@
             padding: 10px; z-index: 999; top: 120%; right: 0;
             opacity: 0; visibility: hidden; transform: translateY(-10px);
             transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s;
+            list-style: none;
         }
         .dropdown.active .dropdown-content { opacity: 1; visibility: visible; transform: translateY(0); }
-        .dropdown-content a { color: var(--text-muted); padding: 10px 15px; display: block; font-size: 0.9rem; transition: 0.2s; border-radius: 8px; white-space: nowrap; }
+        .dropdown-content li { display: block; }
+        .dropdown-content a {
+            color: var(--text-muted); padding: 10px 15px; display: block;
+            font-size: 0.9rem; transition: 0.2s; border-radius: 8px; white-space: nowrap;
+        }
         .dropdown-content a:hover { background: var(--bg-input); color: var(--primary); }
         .games-mini-grid {
             display: grid; grid-template-columns: 1fr 1fr; gap: 5px;
@@ -243,7 +248,7 @@
     </style>
 </head>
 <body>
-    <nav role="banner" aria-label="التنقل الرئيسي">
+    <nav aria-label="التنقل الرئيسي">
         <a href="index.html" class="logo">
             <span aria-hidden="true">🛡️</span>
             <span>الأدوات المطلقة</span>
@@ -255,28 +260,28 @@
                 <button class="dropbtn" aria-haspopup="true" aria-expanded="false" aria-controls="toolsMenu">
                     <span aria-hidden="true">⚙️</span> الأدوات ▾
                 </button>
-                <div class="dropdown-content" id="toolsMenu" role="menu" aria-labelledby="toolsDropdown">
-                    <a href="email-gen.html" role="menuitem"><span aria-hidden="true">📧</span> مولد الإيميلات الوهمية</a>
-                    <a href="startup-ideas.html" role="menuitem"><span aria-hidden="true">🚀</span> مولد أفكار المشاريع</a>
-                    <a href="epic-story.html" role="menuitem"><span aria-hidden="true">📖</span> مولد القصص الملحمية</a>
-                    <a href="slogan-gen.html" role="menuitem"><span aria-hidden="true">🏷️</span> مولد شعارات العلامات</a>
-                    <a href="text-analyzer.html" role="menuitem"><span aria-hidden="true">📊</span> محلل النصوص الذكي</a>
-                    <a href="domain-gen.html" role="menuitem"><span aria-hidden="true">🔀</span> مولد أسماء النطاقات</a>
-                    <a href="neon-color.html" role="menuitem"><span aria-hidden="true">🎨</span> صانع الألوان النيونية</a>
-                    <a href="age-calculator.html" role="menuitem"><span aria-hidden="true">🎂</span> حاسبة العمر بالأيام</a>
-                    <a href="zodiac.html" role="menuitem"><span aria-hidden="true">🔮</span> معرفة برجك الفلكي</a>
-                    <a href="story-jokes.html" role="menuitem"><span aria-hidden="true">😂</span> مولد النكت القصصية</a>
-                    <a href="riddle-master.html" role="menuitem"><span aria-hidden="true">🧩</span> اللغز التطوري</a>
-                    <a href="dream-interpreter.html" role="menuitem"><span aria-hidden="true">🌙</span> مفسر الأحلام الذكي</a>
-                </div>
+                <ul class="dropdown-content" id="toolsMenu" role="menu" aria-labelledby="toolsDropdown">
+                    <li role="menuitem"><a href="email-gen.html"><span aria-hidden="true">📧</span> مولد الإيميلات الوهمية</a></li>
+                    <li role="menuitem"><a href="startup-ideas.html"><span aria-hidden="true">🚀</span> مولد أفكار المشاريع</a></li>
+                    <li role="menuitem"><a href="epic-story.html"><span aria-hidden="true">📖</span> مولد القصص الملحمية</a></li>
+                    <li role="menuitem"><a href="slogan-gen.html"><span aria-hidden="true">🏷️</span> مولد شعارات العلامات</a></li>
+                    <li role="menuitem"><a href="text-analyzer.html"><span aria-hidden="true">📊</span> محلل النصوص الذكي</a></li>
+                    <li role="menuitem"><a href="domain-gen.html"><span aria-hidden="true">🔀</span> مولد أسماء النطاقات</a></li>
+                    <li role="menuitem"><a href="neon-color.html"><span aria-hidden="true">🎨</span> صانع الألوان النيونية</a></li>
+                    <li role="menuitem"><a href="age-calculator.html"><span aria-hidden="true">🎂</span> حاسبة العمر بالأيام</a></li>
+                    <li role="menuitem"><a href="zodiac.html"><span aria-hidden="true">🔮</span> معرفة برجك الفلكي</a></li>
+                    <li role="menuitem"><a href="story-jokes.html"><span aria-hidden="true">😂</span> مولد النكت القصصية</a></li>
+                    <li role="menuitem"><a href="riddle-master.html"><span aria-hidden="true">🧩</span> اللغز التطوري</a></li>
+                    <li role="menuitem"><a href="dream-interpreter.html"><span aria-hidden="true">🌙</span> مفسر الأحلام الذكي</a></li>
+                </ul>
             </div>
 
             <div class="dropdown" id="gamesDropdown">
                 <button class="dropbtn" aria-haspopup="true" aria-expanded="false" aria-controls="gamesMenu">
                     <span aria-hidden="true">🎮</span> الألعاب ▾
                 </button>
-                <div class="dropdown-content" id="gamesMenu" role="menu" aria-labelledby="gamesDropdown">
-                    <a href="game-arena.html" role="menuitem" style="font-weight:bold;justify-content:center;"><span aria-hidden="true">🎮</span> ساحة الألعاب الأسطورية</a>
+                <ul class="dropdown-content" id="gamesMenu" role="menu" aria-labelledby="gamesDropdown">
+                    <li role="menuitem" style="font-weight:bold;justify-content:center;"><a href="game-arena.html"><span aria-hidden="true">🎮</span> ساحة الألعاب الأسطورية</a></li>
                     <ul class="games-mini-grid" role="list" aria-label="قائمة الألعاب المصغرة">
                         <li role="listitem"><a href="game-arena.html"><span aria-hidden="true">🕵️</span> المحقق</a></li>
                         <li role="listitem"><a href="game-arena.html"><span aria-hidden="true">🧩</span> الذاكرة</a></li>
@@ -287,7 +292,7 @@
                         <li role="listitem"><a href="game-arena.html"><span aria-hidden="true">🔢</span> 2048</a></li>
                         <li role="listitem"><a href="game-arena.html"><span aria-hidden="true">⌨️</span> الكتابة</a></li>
                     </ul>
-                </div>
+                </ul>
             </div>
 
             <a href="about.html">من نحن</a>
