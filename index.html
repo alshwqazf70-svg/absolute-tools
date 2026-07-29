@@ -202,7 +202,9 @@
         .tool-card h2 { font-size: 1.15rem; margin-bottom: 10px; color: var(--text-light); font-weight: 700; }
         .tool-card p { color: var(--text-muted); font-size: 0.9rem; line-height: 1.6; }
 
-        .internal-nav { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-top: 20px; padding: 12px; background: var(--bg-card); border-radius: 20px; border: 1px solid var(--border-color); }
+        .internal-nav {
+            display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-top: 20px; padding: 12px; background: var(--bg-card); border-radius: 20px; border: 1px solid var(--border-color);
+        }
         .internal-nav a { color: var(--primary); font-weight: 700; text-decoration: none; transition: 0.2s; font-size: 0.9rem; }
         .internal-nav a:hover { text-decoration: underline; color: var(--secondary); }
 
@@ -298,7 +300,7 @@
                 </header>
 
                 <!-- قسم SEO الثابت -->
-                <section class="seo-static" aria-label="مقدمة عن المنصة">
+                <section class="seo-static" role="region" aria-label="مقدمة عن المنصة">
                     <h2>🌟 مرحباً بك في منصة الأدوات المطلقة</h2>
                     <p>
                         <strong>الأدوات المطلقة</strong> هي منصة متكاملة تجمع بين <strong>13 أداة إبداعية</strong> و<strong>8 ألعاب أسطورية</strong> في مكان واحد. صُممت هذه المنصة لتكون وجهتك الأولى لكل ما تحتاجه من أدوات عملية، ترفيهية، وإبداعية تعمل مباشرة في متصفحك دون الحاجة إلى تحميل أو تثبيت.
@@ -347,7 +349,7 @@
     </main>
 
     <!-- روابط داخلية سريعة -->
-    <nav class="internal-nav" aria-label="روابط سريعة للأدوات">
+    <nav class="internal-nav" role="navigation" aria-label="روابط سريعة للأدوات">
         <a href="email-gen.html"><span aria-hidden="true">📧</span> إيميلات</a>
         <a href="startup-ideas.html"><span aria-hidden="true">🚀</span> أفكار</a>
         <a href="epic-story.html"><span aria-hidden="true">📖</span> قصص</a>
@@ -505,4 +507,4 @@
     document.addEventListener('DOMContentLoaded', window.app.init);
     </script>
 </body>
-                        </html>
+</html>
