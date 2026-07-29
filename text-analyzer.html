@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- 🚀 SEO Ultimate -->
+    <title>تحليل النصوص الذكي - أداة تحليل نصوص عربية متقدمة مجاناً</title>
+    <meta name="description" content="أقوى أداة تحليل نصوص عربية ذكية. تحليل متقدم للكلمات، الجمل، الفقرات، الأحرف، زمن القراءة، التحدث، وتكرار الكلمات. مثالي للكتّاب والمدونين.">
+    <meta name="keywords" content="تحليل نصوص, أداة تحليل, عد الكلمات, تحليل عربي, SEO, كتابة محتوى, text analyzer, word counter">
+    <meta name="author" content="الأدوات المطلقة">
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
+    <link rel="canonical" href="https://absolute-tools.vercel.app/text-analyzer.html">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://absolute-tools.vercel.app/text-analyzer.html">
+    <meta property="og:title" content="تحليل النصوص الذكي - أداة تحليل نصوص عربية">
+    <meta property="og:description" content="تحليل متقدم للنصوص العربية: عد الكلمات، الجمل، الفقرات، زمن القراءة والتحدث، وتكرار الكلمات.">
+    <meta property="og:site_name" content="الأدوات المطلقة">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="تحليل النصوص الذكي">
+    <meta name="twitter:description" content="تحليل نصوص عربية متقدم مع إحصائيات دقيقة.">
+
+    <!-- ⚡ Optimized Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&family=Orbitron:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
+
+    <!-- 📌 Structured Data (Triple Boost) -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "تحليل النصوص الذكي",
+        "description": "أداة تحليل نصوص عربية متقدمة مع إحصائيات دقيقة للكتّاب والمدونين.",
+        "url": "https://absolute-tools.vercel.app/text-analyzer.html",
+        "inLanguage": "ar",
+        "isPartOf": {
+            "@type": "WebSite",
+            "name": "Absolute Tools",
+            "url": "https://absolute-tools.vercel.app"
+        },
+        "breadcrumb": {
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+                { "@type": "ListItem", "position": 1, "name": "الرئيسية", "item": "https://absolute-tools.vercel.app/" },
+                { "@type": "ListItem", "position": 2, "name": "تحليل النصوص", "item": "https://absolute-tools.vercel.app/text-analyzer.html" }
+            ]
+        }
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "تحليل النصوص الذكي",
+        "url": "https://absolute-tools.vercel.app/text-analyzer.html",
+        "description": "تطبيق ويب متقدم لتحليل النصوص العربية مع إحصائيات شاملة.",
+        "applicationCategory": "UtilityApplication",
+        "operatingSystem": "Any",
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "كيف تعمل أداة تحليل النصوص؟",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "انسخ النص العربي في المربع المخصص، وستقوم الأداة تلقائياً بحساب عدد الكلمات، الجمل، الفقرات، الأحرف مع الفراغات وبدونها، متوسط طول الكلمة، زمن القراءة والتحدث، وتعقيد النص، بالإضافة إلى الكلمات الأكثر تكراراً."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "هل يمكنني تصدير نتائج التحليل؟",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "نعم، يمكنك نسخ النتائج، تصديرها كملف CSV، حفظها في المتصفح، أو تحميلها كصورة عالية الجودة."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "هل الأداة مجانية بالكامل؟",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "نعم، جميع الميزات مجانية 100% بدون أي اشتراكات أو إعلانات مزعجة. يمكنك تحليل عدد غير محدود من النصوص."
+                }
+            }
+        ]
+    }
+    </script>
+
+    <style>
+        :root {
+            --primary: #00ff88;
+            --primary-glow: rgba(0, 255, 136, 0.4);
+            --secondary: #00ccff;
+            --bg-dark: #0b0e14;
+            --bg-card: #131821;
+            --bg-input: #1b212b;
+            --border-color: #2a2f3a;
+            --text-light: #f3f4f6;
+            --text-muted: #9ca3af;
+            --card-shadow: 0 20px 50px rgba(0,0,0,0.8);
+            --radius-lg: 30px;
+            --radius: 16px;
+            --transition: 0.2s ease;
+        }
+        body.light-mode {
+            --bg-dark: #f0f2f5;
+            --bg-card: #ffffff;
+            --bg-input: #e8eef2;
+            --border-color: #d0d9e0;
+            --text-light: #1a1e24;
+            --text-muted: #555;
+            --card-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'Cairo', sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-light);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 15px;
+            background-image: radial-gradient(circle at 50% 0%, var(--primary-glow) 0%, transparent 40%);
+            transition: background 0.3s, color 0.2s;
+        }
+
+        /* Navbar */
+        nav {
+            width: 100%;
+            background: rgba(19,24,33,0.92);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-color);
+            padding: 0 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            height: 60px;
+            margin-bottom: 20px;
+            border-radius: 0 0 20px 20px;
+        }
+        .logo { font-weight: 900; font-size: 1.4rem; color: var(--primary); display: flex; align-items: center; gap: 10px; text-decoration: none; }
+        .nav-links { display: flex; gap: 15px; align-items: center; }
+        .nav-links a { color: var(--text-muted); font-weight: 700; text-decoration: none; transition: var(--transition); font-size: 0.95rem; }
+        .nav-links a:hover { color: var(--primary); }
+        .theme-toggle {
+            background: var(--bg-input); border: 1px solid var(--border-color);
+            color: var(--text-light); border-radius: 50%; font-size: 1.1rem; cursor: pointer;
+            width: 38px; height: 38px; display: flex; align-items: center; justify-content: center;
+            transition: var(--transition);
+        }
+        .theme-toggle:hover { border-color: var(--primary); box-shadow: 0 0 15px var(--primary-glow); }
+
+        .container {
+            max-width: 850px;
+            width: 100%;
+            background: var(--bg-card);
+            padding: 35px 30px;
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border-color);
+            box-shadow: var(--card-shadow);
+            text-align: center;
+            margin-bottom: 25px;
+            position: relative;
+            overflow: hidden;
+        }
+        .container::before {
+            content: "📊";
+            position: absolute;
+            bottom: -20px;
+            right: -10px;
+            font-size: 6rem;
+            opacity: 0.05;
+            z-index: 0;
+            pointer-events: none;
+        }
+        .container > * { position: relative; z-index: 1; }
+
+        h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, #ffffff, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .sub { color: var(--text-muted); margin-bottom: 25px; line-height: 1.6; }
+
+        /* 🚀 SEO Static Section */
+        .seo-static {
+            background: var(--bg-input);
+            padding: 18px 20px;
+            border-radius: var(--radius);
+            border-right: 4px solid var(--secondary);
+            margin-bottom: 25px;
+            text-align: right;
+            line-height: 1.9;
+        }
+        .seo-static h2 { font-size: 1.3rem; color: var(--secondary); margin-bottom: 8px; }
+        .seo-static p { color: var(--text-muted); font-size: 1rem; margin-bottom: 8px; }
+        .seo-static p:last-child { margin-bottom: 0; }
+
+        .analyzer-box { margin-top: 20px; }
+        textarea {
+            width: 100%;
+            min-height: 160px;
+            padding: 18px;
+            border-radius: var(--radius);
+            background: var(--bg-input);
+            border: 2px solid var(--border-color);
+            color: var(--text-light);
+            font-size: 1.05rem;
+            outline: none;
+            font-family: 'Cairo';
+            resize: vertical;
+            text-align: right;
+            direction: rtl;
+            transition: border 0.2s, box-shadow 0.2s;
+        }
+        textarea:focus { border-color: var(--primary); box-shadow: 0 0 15px var(--primary-glow); }
+
+        .btn-analyze {
+            width: 100%;
+            padding: 14px;
+            margin-top: 15px;
+            border: none;
+            border-radius: var(--radius);
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: #000;
+            font-weight: 900;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        .btn-analyze:hover { transform: scale(1.02); box-shadow: 0 0 20px var(--primary-glow); }
+        .btn-analyze:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin-top: 25px;
+            content-visibility: auto;
+            contain-intrinsic-size: 0 300px;
+        }
+        .stat-card {
+            background: var(--bg-input);
+            padding: 20px;
+            border-radius: var(--radius);
+            border: 1px solid var(--border-color);
+            text-align: center;
+            transition: 0.3s;
+        }
+        .stat-card:hover { border-color: var(--primary); transform: translateY(-3px); box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
+        .stat-number { display: block; font-size: 2rem; font-weight: 900; color: var(--primary); margin-bottom: 5px; }
+        .stat-label { color: var(--text-muted); font-size: 0.85rem; font-weight: 700; }
+
+        .action-buttons {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 25px;
+        }
+        .btn-action {
+            background: var(--bg-input);
+            border: 1px solid var(--border-color);
+            color: var(--text-light);
+            padding: 10px 18px;
+            border-radius: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .btn-action:hover { background: var(--primary); color: #000; border-color: var(--primary); transform: translateY(-2px); }
+
+        .counter { margin-top: 15px; color: var(--text-muted); font-size: 0.85rem; font-weight: 700; }
+
+        .progress-bar {
+            position: fixed;
+            top: 60px;
+            left: 0;
+            height: 3px;
+            background: var(--primary);
+            width: 0%;
+            z-index: 99;
+            box-shadow: 0 0 10px var(--primary-glow);
+            will-change: width;
+            transition: width 0.08s linear;
+        }
+        .toast-notification {
+            position: fixed;
+            bottom: 25px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--bg-card);
+            color: var(--primary);
+            border: 1px solid var(--primary);
+            padding: 12px 24px;
+            border-radius: 50px;
+            font-weight: bold;
+            z-index: 1000;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.6);
+            animation: fadeUp 0.3s ease;
+            font-family: 'Cairo', sans-serif;
+            pointer-events: none;
+            white-space: nowrap;
+        }
+        @keyframes fadeUp { from { opacity: 0; transform: translate(-50%, 20px); } to { opacity: 1; transform: translate(-50%, 0); } }
+
+        /* FAQ Section */
+        .faq-section {
+            max-width: 850px;
+            width: 100%;
+            background: var(--bg-card);
+            padding: 35px 30px;
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border-color);
+            box-shadow: var(--card-shadow);
+            margin-bottom: 30px;
+            text-align: right;
+        }
+        .faq-section h2 { color: var(--primary); margin-bottom: 25px; font-size: 1.8rem; text-align: center; font-family: 'Orbitron', sans-serif; }
+        .faq-item { margin-bottom: 20px; border-bottom: 1px solid var(--border-color); padding-bottom: 18px; }
+        .faq-item:last-child { border-bottom: none; }
+        .faq-question { font-weight: 900; font-size: 1.15rem; color: var(--text-light); margin-bottom: 8px; display: flex; align-items: center; gap: 10px; }
+        .faq-question i { color: var(--primary); font-size: 1.2rem; }
+        .faq-answer { color: var(--text-muted); font-size: 1rem; line-height: 1.8; }
+
+        /* Internal Links */
+        .internal-nav {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 25px;
+            padding: 15px;
+            background: var(--bg-card);
+            border-radius: 20px;
+            border: 1px solid var(--border-color);
+        }
+        .internal-nav a {
+            color: var(--primary);
+            font-weight: 700;
+            text-decoration: none;
+            transition: 0.2s;
+        }
+        .internal-nav a:hover { text-decoration: underline; color: var(--secondary); }
+
+        .site-footer {
+            max-width: 850px;
+            width: 100%;
+            padding: 20px;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+        }
+
+        @media (max-width: 600px) {
+            .container { padding: 25px 20px; }
+            h1 { font-size: 1.6rem; }
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+            .faq-section { padding: 25px 20px; }
+            nav { padding: 0 15px; }
+        }
+    </style>
+</head>
+<body>
+<div class="progress-bar" id="progressBar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+
+<nav>
+    <a href="index.html" class="logo"><span aria-hidden="true">📊</span> تحليل النصوص</a>
+    <div class="nav-links">
+        <a href="index.html">🏠 الرئيسية</a>
+        <button class="theme-toggle" onclick="app.toggleTheme()" title="تغيير الوضع" aria-label="تغيير الوضع">🌓</button>
+    </div>
+</nav>
+
+<main class="container">
+    <h1>📊 تحليل النصوص الذكي</h1>
+    <p class="sub">انسخ أو اكتب نصك العربي، وسنقوم بتحليل شامل للكلمات، الجمل، الفقرات، الأحرف، زمن القراءة والتحدث، والمزيد.</p>
+
+    <!-- 🚀 SEO Static Section -->
+    <section class="seo-static" aria-label="مقدمة عن أداة تحليل النصوص">
+        <h2>🔍 لماذا تحتاج إلى أداة تحليل نصوص ذكية؟</h2>
+        <p>
+            <strong>تحليل النصوص الذكي</strong> هو أداة متطورة تساعد الكتاب، المدونين، وصناع المحتوى على فهم نصوصهم بشكل أعمق. توفر الأداة إحصائيات دقيقة عن <strong>عدد الكلمات، الجمل، الفقرات، الأحرف</strong>، بالإضافة إلى <strong>زمن القراءة والتحدث، تعقيد النص، والكلمات الأكثر تكراراً</strong>.
+        </p>
+        <p>
+            استخدم هذه الأداة لتحسين محتواك لتحسين ترتيبك في محركات البحث (SEO)، أو لتقييم وضوح نصوصك، أو لمجرد الفضول لمعرفة خصائص كتابتك. جميع الميزات مجانية 100%.
+        </p>
+    </section>
+
+    <div class="analyzer-box">
+        <textarea id="textInput" placeholder="اكتب أو الصق النص العربي هنا..." aria-label="النص المراد تحليله"></textarea>
+        <button class="btn-analyze" id="analyzeBtn" onclick="app.analyzeText()">
+            <i class="fas fa-chart-bar"></i> تحليل النص
+        </button>
+
+        <div class="stats-grid" id="statsGrid" role="list" aria-live="polite" aria-label="إحصائيات النص المحلل"></div>
+
+        <div class="action-buttons">
+            <button class="btn-action" onclick="app.copyStats()"><i class="fas fa-copy"></i> نسخ</button>
+            <button class="btn-action" onclick="app.exportCSV()"><i class="fas fa-file-csv"></i> CSV</button>
+            <button class="btn-action" onclick="app.saveAnalysis()"><i class="fas fa-save"></i> حفظ</button>
+            <button class="btn-action" onclick="app.downloadStatsImage()"><i class="fas fa-image"></i> صورة</button>
+        </div>
+        <div class="counter" id="analyzeCounter" role="status">تم تحليل 0 نص</div>
+    </div>
+</main>
+
+<!-- FAQ Section -->
+<section class="faq-section">
+    <h2>❓ أسئلة شائعة</h2>
+    <div class="faq-item">
+        <div class="faq-question"><i class="fas fa-cogs"></i> كيف تعمل أداة تحليل النصوص؟</div>
+        <div class="faq-answer">انسخ النص العربي في المربع المخصص، وستقوم الأداة تلقائياً بحساب عدد الكلمات، الجمل، الفقرات، الأحرف مع الفراغات وبدونها، متوسط طول الكلمة، زمن القراءة والتحدث، وتعقيد النص، بالإضافة إلى الكلمات الأكثر تكراراً.</div>
+    </div>
+    <div class="faq-item">
+        <div class="faq-question"><i class="fas fa-share-alt"></i> هل يمكنني تصدير نتائج التحليل؟</div>
+        <div class="faq-answer">نعم، يمكنك نسخ النتائج، تصديرها كملف CSV، حفظها في المتصفح، أو تحميلها كصورة عالية الجودة.</div>
+    </div>
+    <div class="faq-item">
+        <div class="faq-question"><i class="fas fa-gift"></i> هل الأداة مجانية بالكامل؟</div>
+        <div class="faq-answer">نعم، جميع الميزات مجانية 100% بدون أي اشتراكات أو إعلانات مزعجة. يمكنك تحليل عدد غير محدود من النصوص.</div>
+    </div>
+</section>
+
+<!-- Internal Links & Footer -->
+<footer class="site-footer" role="contentinfo">
+    <nav class="internal-nav" aria-label="روابط الأدوات الداخلية">
+        <a href="https://absolute-tools.vercel.app/">🏠 الرئيسية</a>
+        <a href="https://absolute-tools.vercel.app/zodiac.html">🔮 كاشف البرج</a>
+        <a href="https://absolute-tools.vercel.app/epic-story.html">✨ مولد القصص</a>
+        <a href="https://absolute-tools.vercel.app/dream-interpreter.html">💭 مفسر الأحلام</a>
+        <a href="https://absolute-tools.vercel.app/game-arena.html">🎮 ألعاب</a>
+        <a href="https://absolute-tools.vercel.app/story-jokes.html">😂 نكت</a>
+        <a href="https://absolute-tools.vercel.app/riddle-master.html">🧩 ألغاز</a>
+        <a href="https://absolute-tools.vercel.app/email-gen.html">📧 إيميل</a>
+        <a href="https://absolute-tools.vercel.app/startup-ideas.html">🚀 أفكار</a>
+        <a href="https://absolute-tools.vercel.app/slogan-gen.html">✦ شعارات</a>
+    </nav>
+    <p style="margin-top:20px;">© 2026 الأدوات المطلقة – جميع الحقوق محفوظة</p>
+</footer>
+
+<script>
+/**
+ * المحرك الذكي لتحليل النصوص العربية - النسخة النهائية المطلقة
+ * Optimized for: Extreme Speed (Debounce), Advanced Arabic NLP, Max SEO, Zero UI Blocking
+ */
+class TextAnalyzerEngine {
+    constructor() {
+        this.analyzeCount = parseInt(localStorage.getItem('totalAnalyses') || '0');
+        this.lastStats = null;
+        this.currentText = '';
+        this.debounceTimer = null;
+        this.updateCounter();
+        this.initTheme();
+        this.bindEvents();
+    }
+
+    // تطبيع النص العربي
+    normalizeArabic(text) {
+        return text
+            .replace(/[\u064B-\u065F\u0670]/g, '')
+            .replace(/[أإآ]/g, 'ا')
+            .replace(/ة/g, 'ه')
+            .replace(/[^\w\s\u0600-\u06FF]/g, '')
+            .trim();
+    }
+
+    bindEvents() {
+        const textarea = document.getElementById('textInput');
+        textarea.addEventListener('input', () => {
+            clearTimeout(this.debounceTimer);
+            this.debounceTimer = setTimeout(() => this.analyzeText(), 350);
+        });
+        textarea.addEventListener('keydown', (e) => {
+            if (e.ctrlKey && e.key === 'Enter') this.analyzeText();
+        });
+    }
+
+    updateCounter() {
+        document.getElementById('analyzeCounter').textContent = `تم تحليل ${this.analyzeCount} نص`;
+    }
+
+    initTheme() {
+        if (localStorage.getItem('textAnalyzerTheme') === 'light') document.body.classList.add('light-mode');
+    }
+
+    toggleTheme() {
+        document.body.classList.toggle('light-mode');
+        localStorage.setItem('textAnalyzerTheme', document.body.classList.contains('light-mode') ? 'light' : 'dark');
+    }
+
+    showToast(message) {
+        const existing = document.querySelector('.toast-notification');
+        if (existing) existing.remove();
+        const toast = document.createElement('div');
+        toast.className = 'toast-notification';
+        toast.textContent = message;
+        document.body.appendChild(toast);
+        setTimeout(() => {
+            toast.style.opacity = '0';
+            toast.style.transition = 'opacity 0.5s';
+            setTimeout(() => toast.remove(), 500);
+        }, 2500);
+    }
+
+    analyzeText() {
+        const text = document.getElementById('textInput').value;
+        this.currentText = text;
+        const progressBar = document.getElementById('progressBar');
+
+        if (!text.trim()) {
+            document.getElementById('statsGrid').innerHTML = '';
+            this.lastStats = null;
+            return;
+        }
+
+        progressBar.style.width = '40%';
+
+        requestAnimationFrame(() => {
+            requestAnimationFrame(() => {
+                try {
+                    const rawWords = text.split(/\s+/).filter(w => w.length > 0);
+                    const wordCount = rawWords.length;
+                    const normalizedWords = rawWords.map(w => this.normalizeArabic(w)).filter(w => w.length > 0);
+
+                    const sentences = text.split(/[.!؟!?;\n]+/).filter(s => s.trim().length > 0);
+                    const sentenceCount = sentences.length;
+
+                    const paragraphs = text.split(/\n+/).filter(p => p.trim().length > 0);
+                    const paragraphCount = paragraphs.length;
+
+                    const charWithSpaces = text.length;
+                    const charNoSpaces = text.replace(/\s/g, '').length;
+
+                    const totalLetters = normalizedWords.reduce((acc, w) => acc + w.length, 0);
+                    const avgWordLength = wordCount > 0 ? (totalLetters / wordCount).toFixed(1) : 0;
+
+                    const readingTime = Math.ceil(wordCount / 200) || 0;
+                    const speakingTime = Math.ceil(wordCount / 130) || 0;
+
+                    const freqMap = {};
+                    normalizedWords.forEach(w => {
+                        if (w.length > 1) freqMap[w] = (freqMap[w] || 0) + 1;
+                    });
+                    const sortedWords = Object.entries(freqMap).sort((a, b) => b[1] - a[1]).slice(0, 3);
+                    const topWords = sortedWords.length > 0
+                        ? sortedWords.map(([word, count]) => `"${word}" (${count})`).join('، ')
+                        : 'لا يوجد';
+
+                    const complexity = sentenceCount > 0 ? (wordCount / sentenceCount).toFixed(1) : 0;
+                    let complexityLabel = 'متوسط';
+                    if (complexity > 15) complexityLabel = 'صعب';
+                    if (complexity > 25) complexityLabel = 'معقد';
+
+                    this.lastStats = [
+                        { label: 'عدد الكلمات', value: wordCount.toLocaleString('ar-EG') },
+                        { label: 'عدد الجمل', value: sentenceCount.toLocaleString('ar-EG') },
+                        { label: 'عدد الفقرات', value: paragraphCount.toLocaleString('ar-EG') },
+                        { label: 'الأحرف (مع الفراغات)', value: charWithSpaces.toLocaleString('ar-EG') },
+                        { label: 'الأحرف (بدون فراغات)', value: charNoSpaces.toLocaleString('ar-EG') },
+                        { label: 'متوسط طول الكلمة', value: avgWordLength },
+                        { label: 'زمن القراءة (دقائق)', value: readingTime },
+                        { label: 'زمن التحدث (دقائق)', value: speakingTime },
+                        { label: 'تعقيد النص', value: `${complexity} (${complexityLabel})` },
+                        { label: 'الكلمات الأكثر تكراراً', value: topWords }
+                    ];
+
+                    this.renderStats(this.lastStats);
+
+                    this.analyzeCount++;
+                    try { localStorage.setItem('totalAnalyses', this.analyzeCount); } catch(e) {}
+                    this.updateCounter();
+
+                    progressBar.style.width = '100%';
+                    setTimeout(() => { progressBar.style.width = '0%'; }, 300);
+
+                } catch (error) {
+                    this.showToast('❌ حدث خطأ أثناء التحليل');
+                    console.error(error);
+                }
+            });
+        });
+    }
+
+    renderStats(stats) {
+        const grid = document.getElementById('statsGrid');
+        grid.innerHTML = '';
+        const fragment = document.createDocumentFragment();
+
+        stats.forEach(s => {
+            const card = document.createElement('div');
+            card.className = 'stat-card';
+            card.setAttribute('role', 'listitem');
+            card.innerHTML = `
+                <span class="stat-number">${s.value}</span>
+                <span class="stat-label">${s.label}</span>
+            `;
+            fragment.appendChild(card);
+        });
+        grid.appendChild(fragment);
+    }
+
+    copyStats() {
+        if (!this.lastStats) { this.showToast('⚠️ لا يوجد تحليل لنسخه'); return; }
+        const text = this.lastStats.map(s => `${s.label}: ${s.value}`).join('\n');
+        navigator.clipboard.writeText(text).then(() => {
+            this.showToast('✅ تم نسخ الإحصائيات بنجاح!');
+        }).catch(() => this.showToast('❌ فشل النسخ'));
+    }
+
+    exportCSV() {
+        if (!this.lastStats) { this.showToast('⚠️ لا توجد بيانات للتصدير'); return; }
+        const csv = '\uFEFFالمؤشر,القيمة\n' + this.lastStats.map(s => `"${s.label}","${s.value}"`).join('\n');
+        const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+        const link = document.createElement('a');
+        link.href = URL.createObjectURL(blob);
+        link.download = 'تحليل_النص.csv';
+        link.click();
+        URL.revokeObjectURL(link.href);
+        this.showToast('✅ تم تصدير ملف CSV بنجاح!');
+    }
+
+    saveAnalysis() {
+        if (!this.lastStats || !this.currentText.trim()) { this.showToast('⚠️ لا يوجد تحليل لحفظه'); return; }
+
+        let saved = [];
+        try { saved = JSON.parse(localStorage.getItem('textAnalyses') || '[]'); } catch (e) { saved = []; }
+
+        const record = {
+            id: Date.now(),
+            date: new Date().toLocaleString('ar-SA'),
+            textPreview: this.currentText.substring(0, 80) + '...',
+            stats: this.lastStats
+        };
+
+        saved.unshift(record);
+        if (saved.length > 20) saved.pop();
+
+        try {
+            localStorage.setItem('textAnalyses', JSON.stringify(saved));
+            this.showToast('💾 تم حفظ التحليل في المتصفح بنجاح!');
+        } catch (e) {
+            if (e.name === 'QuotaExceededError') this.showToast('❌ مساحة التخزين ممتلئة!');
+            else this.showToast('❌ حدث خطأ أثناء الحفظ.');
+        }
+    }
+
+    downloadStatsImage() {
+        if (typeof html2canvas === 'undefined') {
+            this.showToast('⏳ جاري تحميل مكتبة الصور، حاول مرة أخرى بعد ثانية.');
+            return;
+        }
+        this.showToast('⏳ جاري تحويل الإحصائيات إلى صورة...');
+        const element = document.getElementById('statsGrid');
+        const isDark = !document.body.classList.contains('light-mode');
+
+        html2canvas(element, {
+            backgroundColor: isDark ? '#1b212b' : '#e8eef2',
+            scale: 2,
+            logging: false
+        }).then(canvas => {
+            const link = document.createElement('a');
+            link.download = `تحليل_نص_${Date.now()}.png`;
+            link.href = canvas.toDataURL('image/png');
+            link.click();
+            this.showToast('✅ تم تحميل الصورة بنجاح!');
+        }).catch(() => this.showToast('❌ فشل إنشاء الصورة.'));
+    }
+}
+
+const app = new TextAnalyzerEngine();
+</script>
+</body>
+</html>
