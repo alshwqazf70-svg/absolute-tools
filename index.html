@@ -26,13 +26,14 @@
     <meta name="twitter:title" content="الأدوات المطلقة – 13 أداة و8 ألعاب أسطورية">
     <meta name="twitter:description" content="منصة متكاملة تضم أدوات إبداعية وألعاب تفاعلية.">
 
-    <!-- ⚡ تحميل الخطوط مع font-display:optional لمنع CLS -->
+    <!-- ⚡ تحميل الخط مع preload كـ font و font-display:swap -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=optional">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=optional" media="print" onload="this.media='all'">
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap">
+    <link rel="preload" as="font" href="https://fonts.gstatic.com/s/cairo/v28/SLXVc1nY6HkvangtZmpc.woff2" crossorigin type="font/woff2">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" media="print" onload="this.media='all'">
     <noscript>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=optional">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap">
     </noscript>
 
     <!-- 📌 البيانات المنظمة -->
@@ -84,8 +85,7 @@
     </script>
 
     <style>
-        /* الأساسيات لمنع CLS */
-        @font-face { font-family: 'Cairo'; font-display: optional; }
+        @font-face { font-family: 'Cairo'; font-display: swap; }
         html { scroll-behavior: smooth; }
 
         :root {
@@ -177,9 +177,26 @@
             border-radius: 20px; padding: 25px 20px; text-align: center;
             display: flex; flex-direction: column; justify-content: center; align-items: center;
             min-height: 200px; height: 100%; transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
-            opacity: 1;
-            transform: none;
+            opacity: 0;
+            animation: fadeInUp 0.5s ease forwards;
+            will-change: transform, opacity;
+            contain: layout style paint;
+            aspect-ratio: auto;
         }
+        .tool-card:nth-child(1) { animation-delay: 0.05s; }
+        .tool-card:nth-child(2) { animation-delay: 0.1s; }
+        .tool-card:nth-child(3) { animation-delay: 0.15s; }
+        .tool-card:nth-child(4) { animation-delay: 0.2s; }
+        .tool-card:nth-child(5) { animation-delay: 0.25s; }
+        .tool-card:nth-child(6) { animation-delay: 0.3s; }
+        .tool-card:nth-child(7) { animation-delay: 0.35s; }
+        .tool-card:nth-child(8) { animation-delay: 0.4s; }
+        .tool-card:nth-child(9) { animation-delay: 0.45s; }
+        .tool-card:nth-child(10) { animation-delay: 0.5s; }
+        .tool-card:nth-child(11) { animation-delay: 0.55s; }
+        .tool-card:nth-child(12) { animation-delay: 0.6s; }
+        .tool-card:nth-child(13) { animation-delay: 0.65s; }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
         .tool-card:hover { border-color: var(--primary); transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
         .tool-icon { font-size: 2.5rem; margin-bottom: 15px; display: block; width: 50px; height: 50px; line-height: 50px; text-align: center; }
         .tool-card h2 { font-size: 1.15rem; margin-bottom: 10px; color: var(--text-light); font-weight: 700; }
@@ -361,9 +378,6 @@
     </button>
 
     <script>
-    /**
-     * التطبيق الرئيسي - مُحسَّن بالكامل مع Template Literals ومعالجة الأخطاء
-     */
     const app = (function() {
         'use strict';
 
@@ -410,7 +424,15 @@
                 const title = card.querySelector('h2')?.textContent || '';
                 const desc = card.querySelector('p')?.textContent || '';
                 const text = `${keywords} ${title} ${desc}`.toLowerCase();
-                card.style.display = text.includes(query) ? 'flex' : 'none';
+                if (text.includes(query)) {
+                    card.style.display = 'flex';
+                    // إعادة تشغيل الأنيميشن بسلاسة
+                    card.style.animation = 'none';
+                    card.offsetHeight;
+                    card.style.animation = 'fadeInUp 0.4s ease forwards';
+                } else {
+                    card.style.display = 'none';
+                }
             });
         }
 
@@ -487,4 +509,4 @@
     document.addEventListener('DOMContentLoaded', app.init);
     </script>
 </body>
-</html>
+                                                                      </html>
