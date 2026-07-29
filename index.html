@@ -26,13 +26,13 @@
     <meta name="twitter:title" content="الأدوات المطلقة – 13 أداة و8 ألعاب أسطورية">
     <meta name="twitter:description" content="منصة متكاملة تضم أدوات إبداعية وألعاب تفاعلية.">
 
-    <!-- ⚡ تحميل الخطوط بالتوازي مع font-display:swap -->
+    <!-- ⚡ تحميل الخطوط مع font-display:optional لمنع CLS -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" media="print" onload="this.media='all'">
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=optional">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=optional" media="print" onload="this.media='all'">
     <noscript>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=optional">
     </noscript>
 
     <!-- 📌 البيانات المنظمة -->
@@ -85,7 +85,8 @@
 
     <!-- ⚡ تحسينات الأداء: تضمين الأنماط الحاسمة في <head> -->
     <style>
-        @font-face { font-family: 'Cairo'; font-display: swap; }
+        /* الأساسيات لمنع CLS */
+        @font-face { font-family: 'Cairo'; font-display: optional; }
         html { scroll-behavior: smooth; }
 
         :root {
@@ -99,9 +100,12 @@
         }
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body {
-            font-family: 'Cairo', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+            font-family: 'Cairo', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
             background: var(--bg-dark); color: var(--text-light);
             min-height: 100vh; display: flex; flex-direction: column;
+            /* منع أي إزاحة بسبب الخط */
+            font-size: 16px;
+            line-height: 1.5;
         }
         a { text-decoration: none; color: inherit; }
 
@@ -140,7 +144,11 @@
 
         .container { max-width: 1200px; margin: 0 auto; padding: 30px 20px; width: 100%; flex: 1; }
         .hero { text-align: center; padding: 20px 10px 30px; }
-        .hero h1 { font-size: 2.5rem; font-weight: 900; color: var(--text-light); margin-bottom: 12px; line-height: 1.3; }
+        .hero h1 {
+            font-size: 2.5rem; font-weight: 900; color: var(--text-light);
+            margin-bottom: 12px; line-height: 1.3;
+            min-height: 4rem; /* منع الإزاحة */
+        }
         .hero h1 span { color: var(--primary); }
         .hero p { color: var(--text-muted); font-size: 1.1rem; max-width: 650px; margin: 0 auto 25px; line-height: 1.6; }
 
@@ -165,21 +173,15 @@
         .search-box input:focus { border-color: var(--primary); box-shadow: 0 0 20px var(--primary-glow); }
 
         .tools-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; min-height: 500px; }
-        .tool-card { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 20px; padding: 25px 20px; text-align: center; display: flex; flex-direction: column; justify-content: center; align-items: center; min-height: 200px; height: 100%; transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease; opacity: 0; animation: fadeInUp 0.5s ease forwards; }
-        .tool-card:nth-child(1) { animation-delay: 0.05s; }
-        .tool-card:nth-child(2) { animation-delay: 0.1s; }
-        .tool-card:nth-child(3) { animation-delay: 0.15s; }
-        .tool-card:nth-child(4) { animation-delay: 0.2s; }
-        .tool-card:nth-child(5) { animation-delay: 0.25s; }
-        .tool-card:nth-child(6) { animation-delay: 0.3s; }
-        .tool-card:nth-child(7) { animation-delay: 0.35s; }
-        .tool-card:nth-child(8) { animation-delay: 0.4s; }
-        .tool-card:nth-child(9) { animation-delay: 0.45s; }
-        .tool-card:nth-child(10) { animation-delay: 0.5s; }
-        .tool-card:nth-child(11) { animation-delay: 0.55s; }
-        .tool-card:nth-child(12) { animation-delay: 0.6s; }
-        .tool-card:nth-child(13) { animation-delay: 0.65s; }
-        @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        .tool-card {
+            background: var(--bg-card); border: 1px solid var(--border-color);
+            border-radius: 20px; padding: 25px 20px; text-align: center;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            min-height: 200px; height: 100%; transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+            /* إزالة الأنيميشن لتجنب أي إزاحة */
+            opacity: 1;
+            transform: none;
+        }
         .tool-card:hover { border-color: var(--primary); transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
         .tool-icon { font-size: 2.5rem; margin-bottom: 15px; display: block; width: 50px; height: 50px; line-height: 50px; text-align: center; }
         .tool-card h2 { font-size: 1.15rem; margin-bottom: 10px; color: var(--text-light); font-weight: 700; }
@@ -199,7 +201,7 @@
         .back-to-top.show { opacity: 1; pointer-events: auto; }
         .back-to-top:hover { transform: translateY(-3px); }
 
-        @media (prefers-reduced-motion: reduce) { *, ::before, ::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; } .tool-card { animation: none; opacity: 1; } }
+        @media (prefers-reduced-motion: reduce) { *, ::before, ::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; } }
         @media (max-width: 768px) { nav { padding: 0 15px; height: 60px; } .hero h1 { font-size: 1.8rem; } .nav-links { gap: 10px; } .nav-links a span { display: none; } .tools-grid { grid-template-columns: 1fr; } .dropdown-content { right: auto; left: 0; min-width: 280px; } .games-mini-grid { grid-template-columns: 1fr 1fr; } }
     </style>
 </head>
@@ -486,4 +488,4 @@ const app = (function() {
 document.addEventListener('DOMContentLoaded', app.init);
 </script>
 </body>
-                                                  </html>
+    </html>
